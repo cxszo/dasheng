@@ -15,8 +15,8 @@
 }
 .header-container .logo{
 	float: left;
-	width: 126px;
-	margin: 0 28px 0 24px;
+	width: 105px;
+	margin: 0 0 0 24px;
 }
 .header-container .logo a{
 	display: block;
@@ -27,6 +27,7 @@
 }
 .header-container .logo a img{
 	height: 60px;
+    transform: scale(.8);
 }
 .header-container .nav{
 	float: left;
@@ -307,9 +308,13 @@
 	display: inline-block;
     height: 32px;
     width: 32px;
-    background-image: url(../images/index/idx-btm.png);
+    background-image: url(../images/index/webo.png);
     background-repeat: no-repeat;
     margin: 0 9px;
+}
+.footer-sns a.wx{
+    background-image: url(../images/index/wx.png);
+    background-repeat: no-repeat;
 }
 .footer-sns p {
     font-size: 12px;
