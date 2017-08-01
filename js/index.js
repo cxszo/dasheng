@@ -7,10 +7,13 @@ var invite = (function () {
         render:function(){
         },
         bind:function(){
-       
+            $('#toggle').click(function(){
+                $(this).toggleClass('i')
+                $('.about,.mask').toggleClass('hide')
+            })
         },
         init:function(){
-            
+            o.bind()
          }
     }
     return {o:o,g:g}
