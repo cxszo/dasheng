@@ -138,6 +138,9 @@
     border-radius: 50%;
     box-shadow: 0 4px 8px 0 rgba(7,17,27,.05);
 }
+.about .panel h1 em {
+    color: #666666;
+}
 .container-types .lecturer-item .lecturer-name {
     font-size: 16px;
     line-height: 24px;
@@ -341,5 +344,311 @@
     margin-top: 8px;
     color: #93999F;
     line-height: 24px;
+}
+
+.mask{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.6);
+    position: fixed;
+    top: 0;
+    z-index: 1000
+}
+.wrapper {
+    min-height: 460px;
+    position: fixed;
+    overflow: hidden;
+    display: table;
+    z-index: 10001;
+    height: 100%;
+    width: 500px;
+    left: 50%;
+    margin-left: -250px;
+    top: 0;
+}
+.about {
+    -webkit-font-smoothing: auto;
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    perspective: 1000px;
+    color: #666666;
+}
+.accelerate {
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.cell {
+    vertical-align: middle;
+    display: table-cell;
+}
+.about .panel, .about .cables {
+    -webkit-transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    -moz-transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.about .cables {
+    -webkit-transform-origin: 50% -100%;
+    -moz-transform-origin: 50% -100%;
+    transform-origin: 50% -100%;
+}
+.about .panel, .about .cables {
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    position: relative;
+}
+.about .panel {
+    border-radius: 6px;
+    -webkit-transform-origin: 50% 0%;
+    -moz-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+    background: #F2F2F2 url(../images/index/panel.jpg) -7px 0;
+    background-size: 399px 357px;
+}
+.about .cables:before {
+    left: 10%;
+    background: transparent url(../images/index/cable.png) 0 0 no-repeat;
+    position: absolute;
+    display: block;
+    height: 860px;
+    width: 30px;
+    content: "";
+    top: -837px;
+    z-index: 1;
+}
+.about .cables:after {
+    right: 10%;
+    background: transparent url(../images/index/cable.png) 0 0 no-repeat;
+    position: absolute;
+    display: block;
+    height: 860px;
+    width: 30px;
+    content: "";
+    top: -837px;
+    z-index: 1;
+}
+.about .panel header {
+    padding: 1em 0 1em;
+}
+.about .panel header:before {
+    -webkit-border-radius: 6px 0 0 0;
+    -moz-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+    background: transparent url(../images/index/map.png) 0 0 no-repeat;
+    background-size: 60.5px 82.5px;
+    position: absolute;
+    display: block;
+    height: 150px;
+    width: 110px;
+    opacity: 0.8;
+    content: "";
+    left: 0;
+    top: 0;
+}
+.about .panel:after {
+    -webkit-border-radius: 0 0 6px 0;
+    -moz-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+    background: transparent url(../images/index/compass.png) 0 0 no-repeat;
+    background-size: 224px 224px;
+    position: absolute;
+    display: block;
+    height: 160px;
+    width: 120px;
+    opacity: 0.2;
+    content: "";
+    bottom: 0;
+    right: 0;
+}
+.about .panel h1 {
+    font-weight: 100;
+    color: #666666;
+    text-align: center;
+    letter-spacing: 3px;
+}
+.about .panel .links {
+    margin-top: 30px;
+    overflow: hidden;
+    zoom: 1;
+    -webkit-box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+.about .panel .links:after, .about .panel .links:before {
+    display: table;
+    content: "";
+}
+.about .panel .links li {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    float: left;
+    width: 50%;
+}
+.about .panel .links li + li {
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+.about .panel .links a {
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.33333em;
+    color: #666666;
+    font-family: "Dosis", sans-serif;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 1em 0 1.1em;
+    display: block;
+}
+.about.hide .cables {
+    -webkit-transform: translate3d(0,-10%,0) rotateX(-90deg);
+    -moz-transform: translate3d(0,-10%,0) rotateX(-90deg);
+    transform: translate3d(0,-10%,0) rotateX(-90deg);
+    opacity: 0; }
+.about.hide .panel {
+    -webkit-transform: rotateX(-20deg);
+    -moz-transform: rotateX(-20deg);
+    transform: rotateX(-20deg); }
+.social ul li{ 
+    width: 60%;
+    height: 60px;
+    border-radius: 8px;
+    margin:20px auto;
+    border: 1px #ccc solid;
+    padding: 0 20px;
+}
+.social ul li input{
+    background: none;
+    outline: none;
+    width: 100%;
+    height: 60px;
+    border: none;
+    font-size: 24px;
+}
+.toggle {
+    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    margin: -24px;
+    position: fixed;
+    bottom: 11.6%;
+    left: 50%;
+    z-index: 11111;
+}
+button {
+    -webkit-font-smoothing: antialiased;
+    -webkit-border-radius: 24px;
+    -moz-border-radius: 24px;
+    border-radius: 24px;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+    font-size: 1.33333em;
+    line-height: 45.6px;
+    font-family: "Dosis", sans-serif;
+    background-color: #F2F2F2;
+    font-weight: 600;
+    height: 48px;
+    width: 48px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    outline: none;
+    border: none;
+}
+a, button {
+    -webkit-transition: color 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), background-color 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    -moz-transition: color 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), background-color 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: color 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), background-color 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.cross {
+    -webkit-transform: rotateZ(45deg);
+    -moz-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+.toggle.i .cross .x {
+    margin-left: -2px;
+    width: 4px;
+    margin-top: -12px;
+}
+
+.cross .x, .cross .y {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+    background-color: #1D1F27;
+    height: 4px;
+    width: 4px;
+    margin: -2px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.cross, .x, .y {
+    -webkit-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    -moz-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.cross .x {
+    margin-left: -12px;
+    margin-top: -2px;
+    width: 24px;
+}
+.toggle.i .cross .y {
+    margin-top: -4px;
+    height: 16px;
+}
+.cross .y {
+    margin-top: -12px;
+    height: 24px;
+}
+.toggle.i .cross {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    transform: rotateZ(0deg); 
+}
+.toggle.i .cross .x {
+   margin-left: -2px;
+   width: 4px;
+   margin-top: -12px; 
+}
+.toggle.i .cross .y {
+   margin-top: -4px;
+   height: 16px; 
+}
+.toggle:hover .x,.toggle:hover .y {
+  background-color: #FFFFFF; 
+}
+.links a:hover {
+  background-color: #D92400;
+  color: #FFFFFF; 
 }
 /**********************************************首页 end*****************************************/
