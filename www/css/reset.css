@@ -1,0 +1,40 @@
+
+		body{background-color: #f8fafc!important;-webkit-backface-visibility: hidden;color:#363636;font-size:14px;font-family:arial,Microsoft YaHei,Helvetica,sans-serif;tap-highlight-color:rgba(0,0,0,0)!important;-webkit-tap-highlight-color:rgba(0,0,0,0)!important;-moz-tap-highlight-color:rgba(0,0,0,0)!important;-webkit-font-smoothing:antialiased}
+body,button,dd,dl,dt,figure,h1,h2,h3,h4,h5,html,input,li,p,select,span,strong,textarea,u,ul{margin:0;padding:0}
+input{ outline:none; -webkit-tap-highlight-color:rgba(255,255,255,0); -webkit-appearance:none; -webkit-border-radius: 0;  font-family:"微软雅黑"}
+input::-webkit-input-placeholder,input::-moz-placeholder{ color:#d0d0d0}
+input::-webkit-inner-spin-button,input::-webkit-outer-spin-button{margin:0;-webkit-appearance:none!important}
+::-webkit-scrollbar{width:.1rem;background-color:#fff}
+::-webkit-scrollbar-track{background-color:#fff;-webkit-box-shadow:inset 0 0 0 transparent}
+::-webkit-scrollbar-thumb{background-color:#fff;-webkit-box-shadow:inset 0 0 0 transparent}
+::-webkit-input-placeholder{color:#999;letter-spacing:.05rem;font-size:.86rem}
+li,ol,ul{list-style:none}
+cite,em,i{font-style:normal}
+.hide{display:none;}
+.show{display:show}
+.clear{clear:both}
+.clearfix{overflow:hidden;zoom:1}
+.left{float:left}
+.right{float:right}
+.margin_T{margin-top:10px;}
+.rz-background{background-color:#fff;}
+.hu_background{background-color:#ffd302 !important;}
+.gycolor{color:grey}
+a{color:#333;text-decoration:none}
+p{line-height:1.2rem}
+img{ width: 100%; height: 100%;}
+::-webkit-input-placeholder{color:#999;letter-spacing:.05rem;font-size:20px}
+a:hover {
+  color: #FFFFFF;
+}
+ button:hover {
+  background-color: #D92400;
+  color: #FFFFFF; 
+}
+.toggle:hover .x,.toggle:hover .y {
+  background-color: #FFFFFF; 
+}
+ .links a:hover {
+  background-color: #D92400;
+  color: #FFFFFF !important; 
+}

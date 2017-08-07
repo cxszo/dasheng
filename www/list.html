@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户列表-大圣</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        table{
+            margin:0px;
+            padding:0px;
+            border: 1px solid red;
+        }
+        td, th{
+            border-right: 1px solid red;
+            border-top: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>用户名</th>
+                <th>密  码</th>
+                <th>手机号</th>
+                <th>创建时间</th>
+                <th>更新时间</th>
+            </tr>
+        </thead>
+        <tbody id='tbody'>
+            
+        </tbody>
+        
+
+    </table>
+
+
+    <script src="js/libs/zepto.min.js"></script>
+    <script>
+        $.ajax({
+            url:'/data/userlist',
+            type: 'get',
+            success(res){
+                if(res.code == '1'){
+                    let data = res.data;
+                    let _out = []
+                    data.map((item, index)=>{
+                        let meta  = item.meta || '';
+                        _out.push(`<tr>
+                            <td>${item.username || '--'}</td>
+                            <td>${item.password || '--'}</td>
+                            <td>${item.callphone || '--'}</td>
+                            <td>${meta.createAt || '--'}</td>
+                            <td>${meta.updateAt || '--'}</td>
+                        </tr>`)
+                    })
+                    $('#tbody').html(_out.join(''))
+                }
+            },
+            error(err){
+                console.log(err)
+            }
+        })
+    </script>
+</body>
+</html>

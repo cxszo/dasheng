@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册-大圣网</title>
+    <link rel="stylesheet" href="./css/sign_in.css">
+</head>
+
+<body class="zhi  no-auth">
+    <div class="index-main">
+        <div class="index-main-body">
+            <div class="index-header">
+
+                <h1 class="logo hide-text"></h1>
+
+                <h2 class="subtitle">一入前端深似海，从此红尘陌路人</h2>
+            </div>
+
+            <div class="desk-front sign-flow clearfix sign-flow-simple">
+
+                <div class="index-tab-navs">
+                    <div class="navs-slider" data-active-index="0">
+                        <a href="/sign_up" class="active">注册</a>
+                        <a href="/sign_in">登录</a>
+                        <span class="navs-slider-bar"></span>
+                    </div>
+                </div>
+
+                <div class="view view-signup selected" data-za-module="SignUpForm">
+                    <div class="zu-side-login-box">
+                        <input type="password" hidden="">
+                        <input type="hidden" name="_xsrf" value="6a621c80d920f62870cf5fb6694d8be6">
+                        <div class="group-inputs">
+                            <div class="name input-wrapper">
+                                <input value="王炜" required="" type="text" id="username" aria-label="姓名" placeholder="姓名">
+                            </div>
+                            <div class="email input-wrapper">
+                                <input value="18121252781" required="" type="text" class="account" id="callphone" aria-label="手机号" placeholder="手机号">
+                            </div>
+
+                            <div class="input-wrapper">
+                                <input value="aini3344" required="" type="password" id="password" aria-label="密码" placeholder="密码（不少于 6 位）" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="button-wrapper command">
+                            <button class="sign-button submit">注册大圣</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <script src="js/libs/zepto.min.js"></script>
+    <script>
+        $('button').click(()=>{
+            let username = $('#username').val(),
+            callphone = $('#callphone').val(),
+            password = $('#password').val();
+            $.ajax({
+                url:'/data/signup',
+                type:'post',
+                data:{
+                    username:username,
+                    callphone:callphone,
+                    password:password
+                },
+                success(res){
+                    console.log(res)
+                    alert(res.desc)
+                    if(res.code == '1'){
+                        setTimeout(()=>{
+                            location.href='/index.html'
+                        }, 2e3)
+                    }
+                },
+                error(err){
+                    console.log(err)
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

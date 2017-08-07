@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>404</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            background-color: rgb(240,242,245);
+        }
+        a{
+            outline:none;text-decoration: none;
+        }
+        .box{
+            width: 1000px;
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            padding-top: 150px;
+        }
+        .word{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            margin-left: 120px;
+            width: 350px;
+        }
+        .word::after{
+            content: '';
+            top: 0px;
+            right: -350px;
+            width: 300px;
+            position: absolute;
+            background: url('/img/404.png') no-repeat;
+            background-size: 100%;
+            height: 300px;
+        }
+        .img{
+            flex:1;
+            
+            border-left: 1px solid red;
+        }
+        .word .span1{
+            color: rgb(79,86,95);
+            font-size: 80px;
+            margin-bottom: 40px;
+        }
+        .word .span2{
+            font-size: 187x;
+            color: rgb(130,139,152);
+            margin-bottom: 55px;
+        }
+        .word a{
+            width: 100px;
+            height: 26px;
+            background-color: rgb(79,86,95);
+            color:white;
+            border: none;
+            font-size: 12px;
+            line-height: 26px;
+            text-align: center;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class='box'>
+            <div class='word'>
+                <span class='span1'>404!</span>
+                <span class='span2'>页面，我找不到你，我找不到你啊~</span>
+                <a href='/'>跳转到首页</a>
+            </div>
+    </div>
+</body>
+</html>
