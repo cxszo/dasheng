@@ -1,5 +1,10 @@
 
 
+var profile,
+// profile = 0;//线上
+profile = 1;//王炜本地
+
+
 var express = require('express');
 var app = express();
 var router = express.Router();
@@ -9,10 +14,17 @@ let User = require('./db/models/user')
 let fs = require('fs')
 var qs = require("querystring");
 let url = require('url')
-// let lu = '/Users/wangwei/dasheng/www/';//王炜本地
-let lu = '/opt/www/';//王炜本地
+let lu = '/opt/www/';
+if(profile == '1'){
+  lu = '/Users/wangwei/dasheng/www/';//王炜本地
+}
 //链接数据库
-mongoose.connect('mongodb://59.110.143.111/dasheng',{useMongoClient:true});
+if(profile == '1'){
+  mongoose.connect('mongodb://127.0.0.1:27017/wangweimac',{useMongoClient:true});
+}else{
+  mongoose.connect('mongodb://59.110.143.111/dasheng',{useMongoClient:true});
+}
+
 var db = mongoose.connection
 
 db.on('error', console.error.bind(console, '连接错误:'));
@@ -30,11 +42,11 @@ app.use('/data', interface);
 //处理静态页面
 var options = {
   dotfiles: 'ignore',
-  etag: false,
-  extensions: ['htm', 'html'],
-  index: false,
+  etag: true,
+  extensions: ['html', 'htm'],
+  index: 'index.html',
   maxAge: '1d',
-  redirect: false,
+  redirect: true,
   setHeaders: function (res, path, stat) {
     res.set('x-timestamp', Date.now());
   }
