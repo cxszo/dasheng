@@ -13,4 +13,4 @@
 ## 接口目录
 - /data/user  用户
 - /data/blog  博客接口
-- /data/admin  后台接口 j
+- /data/admin  后台接口
