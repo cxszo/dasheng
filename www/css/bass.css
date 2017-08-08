@@ -1,8 +1,11 @@
+
+/**********************************************首页 start*****************************************/
 .header{
 	width: 100%;
     height: 60px;
     background: #fff;
     position: fixed;
+    top: 0;
     z-index: 999;
 }
 .header-container{
@@ -36,6 +39,12 @@
 .header-container .nav ul li{
 	float: left;
 	line-height: 60px;
+}
+.header-container .nav ul li.cur{
+    background: #dfdfdf;
+}
+.header-container .nav ul li.cur a{
+
 }
 .header-container .nav ul li a{
 	padding: 0 20px;
@@ -712,3 +721,103 @@ a, button {
    margin-top: -4px;
    height: 16px; 
 }
+
+/**********************************************首页 end*****************************************/
+
+/**********************************************博客 start*****************************************/
+.blog-list{
+    width: 1000px;
+    padding: 0 16px;
+    margin: 0 auto;
+    margin-top: 75px;
+}
+.blog-list ul li{
+    position: relative;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    box-sizing: border-box;
+}
+.blog-list ul li h3{
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.6;
+    color: #1e1e1e;
+    margin-top: -4px;
+    margin-bottom: -4px;
+}
+
+.blog-list ul li p{
+    max-height: 400px;
+    margin-top: 9px;
+    margin-bottom: -5px;
+    overflow: hidden;
+    font-size: 15px;
+    color: #262626;
+    line-height: 1.67;
+    text-align: justify;
+}
+.blog-name{
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.blog-name span{
+    float: left;
+}
+.blog-name span img{
+     border-radius: 2px;
+}
+.blog-name cite{
+    display: inline-block;
+    float: left;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 25px;
+    margin-left: 10px;
+}
+.blog-from{
+    margin-bottom: 10px;
+}
+.blog-from span{
+    color: #8590a6;
+    font-size: 15px;
+    line-height: 1;
+}
+.ContentItem-actions{
+   height: 40px;
+   overflow: hidden;
+}
+.ContentItem-actions .r{
+    float: left;
+    line-height: 50px;
+}
+.ContentItem-actions .l{
+    float: right;
+    line-height: 50px;
+}
+.ContentItem-actions .l span{
+    color: #8590a6;
+    font-size: 14px;
+    line-height: 50px;
+}
+.ContentItem-actions .r span{
+    display: inline-block;
+    color: #8590a6;
+    padding-right: 10px;
+    position: relative;
+}
+.Icon--left {
+    margin-right: 0px;
+}
+.Icon {
+    vertical-align: text-bottom;
+    fill: #9fadc7;
+}
+svg[Attributes Style] {
+    width: 13;
+    height: 16;
+}
+/**********************************************博客 end*****************************************/
