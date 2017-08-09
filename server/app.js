@@ -10,7 +10,6 @@ var app = express();
 var router = express.Router();
 var path = require('path');
 var mongoose = require('mongoose')
-let User = require('./db/models/user')
 let fs = require('fs')
 var qs = require("querystring");
 let url = require('url')
@@ -57,11 +56,15 @@ app.use(express.static(lu, options));
 
 // 如何处理 404 
 app.use(function(req, res, next) {
-    let pn = lu+'404.html'
+    let pn = lu+'4014.html'
     var content =  fs.readFileSync(pn,"binary");   
     res.status(404).sendFile(pn);
 });
 
 
-
 app.listen(3000)
+
+if(profile == 1){
+  let opn = require('opn')
+  opn('http://127.0.0.1:3000')
+}

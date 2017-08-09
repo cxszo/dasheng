@@ -1,14 +1,18 @@
+
 var mongoose = require('mongoose')
 var bcrypt = require('bcrypt')
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
     username: {
-        unique: true,
-        type: String
+        type: String,
+        unique: true
+    },
+    callphone: {
+      type: Number,
+      unique: true
     },
     password: String,
-    callphone: Number,
     meta: {
         createAt: {
             type: Date,
@@ -67,4 +71,4 @@ UserSchema.statics = {
   }
 }
 
-module.exports = UserSchema
+module.exports = mongoose.model('user', UserSchema)
