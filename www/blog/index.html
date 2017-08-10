@@ -40,6 +40,9 @@
 					</li>
 				</ul>
 			</div>
+			<div class="edit-open">
+				<a href="edit.html">写文章</a>
+			</div>
 		</div>
 	</div>
 	<!-- 博客列表-->
@@ -369,5 +372,12 @@
 		</ul>
 	</div>
 <script src="../js/libs/zepto.min.js"></script>
+<script>
+	(function(){
+		$('.blog-list ul li').click(function(){
+			location.href='detail.html'
+		})
+	})()
+</script>
 </body>
 </html>

@@ -75,6 +75,17 @@
     line-height: 60px;
     color: #4D555D;
 }
+.edit-open{
+    position: absolute;
+    right: 30px;
+    top: 10px;
+}
+.edit-open a{
+    display: inline-block;
+    padding: 10px;
+    border: 1px #ccc solid;
+    border-radius: 4px;
+}
 .banner{
 	padding-top: 60px;
 }
@@ -782,7 +793,8 @@ a, button {
     font-size: 15px;
     font-weight: 600;
     line-height: 25px;
-    margin-left: 10px;
+    /* margin-left: 10px; */
+    font-style: normal;
 }
 .blog-from{
     margin-bottom: 10px;
@@ -1036,4 +1048,86 @@ svg[Attributes Style] {
     margin-top: 1em;
     font-size: 14px;
     color: #8590a6;
+}
+.comment{
+    overflow: hidden;
+    margin: 10px 0;
+    background: #fff;
+    padding: 20px;
+}
+.comment-photo{
+    display: block;
+    float: left;
+    margin-right: 20px
+}
+.comment-photo img{
+    width:24px;
+    border-radius: 2px;
+}
+.comment-editor{
+     display: block;
+    float: left;
+    width: 93%;
+    height: 200px;
+    border: 1px #ccc solid;
+    padding: 10px;
+}
+.comment-editor div{
+    height: 200px;
+    outline: none;
+}
+.comment-btn{
+    display: block;
+    line-height: 40px;
+    background: #f87702;
+    text-align: center;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 18px;
+}
+.comment-list{
+    margin-top: 10px;
+}
+.comment-list ul li .author{
+    margin-bottom: 15px;
+}
+.comment-list ul li .author a{
+    margin-right: 5px;
+    width: 38px;
+    height: 38px;
+    vertical-align: middle;
+    display: inline-block;
+}
+.comment-list ul li .author span{
+    display: inline-block;
+    vertical-align: middle;
+}
+.comment-list ul li .author span p:nth-child(1){
+    font-size: 15px;
+    color: #333;
+}
+.comment-list ul li .author span p:nth-child(2){
+    font-size: 12px;
+    color: #969696;
+}
+.tool-group{
+    line-height: 40px;
+}
+.tool-group a {
+    margin-right: 10px;
+    font-size: 0;
+    color: #969696;
+    display: inline-block;
+}
+.tool-group a i {
+    margin-right: 5px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+.ic-zan:before {
+    content: "\E666";
+}
+.tool-group a span {
+    vertical-align: middle;
+    font-size: 14px;
 }
