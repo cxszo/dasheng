@@ -915,7 +915,6 @@ svg[Attributes Style] {
     position: relative;
     max-height: 90px;
     height: 90px;
-    border-top: 1px solid #dcdcdc;
     background-color: transparent;
     border-left: 5px solid transparent !important;
     border-bottom: 1px #ddd solid;
@@ -933,11 +932,14 @@ svg[Attributes Style] {
     line-height: 90px;
     padding-left: 20px;
 }
+.blog-content .blog-middle .article-list li > span:nth-child(1) img{
+    width: 50%;
+    height: 50%;
+}
 .blog-content .blog-middle .article-list li > span:nth-child(2){
     display: block;
     float: left;
     padding-top: 20px;
-    padding-left: 20px;
 }
 .blog-content .blog-middle .article-list li > span p{
     line-height: 30px;
@@ -978,4 +980,60 @@ svg[Attributes Style] {
     width: auto;
     height: auto;
 }
+.publish{
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    border: 1px #ccc solid;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 2px;
+}
 /********************************************文章编辑 end************************************/
+
+.blog-detail-title{
+    line-height: 60px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 700;
+}
+.blog-detail-msg {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.blog-detail-msg img{
+    width: 24px;
+    height: 24px;
+}
+.blog-detail-msg span:nth-child(1){
+    float: left
+}
+.blog-detail-msg span:nth-child(2){
+    float: left;
+    margin-left: 10px;
+}
+.blog-detail-contain{
+    padding: 20px;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    box-sizing: border-box;
+}
+.blog-detail-p p{
+    margin-bottom:10px;
+    line-height: 30px;
+    text-align: justify;
+    font-size: 16px;
+}
+.blog-detail-time{
+    margin-top: 1em;
+    font-size: 14px;
+    color: #8590a6;
+}

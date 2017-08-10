@@ -38,10 +38,19 @@
 				<div class="new-article">
 					<span>新建文章</span>
 				</div>
-				<ul>
+				<ul id="article-list">
 					<li class='active'>
 						<span>
-							<img src="">
+							<img src="icon/ico-book.png">
+						</span>
+						<span>
+							<h3>文章标题</h3>
+							<p>描述描述描述描述描述描述描述描述描述描述</p>
+						</span>
+					</li>
+					<li class=''>
+						<span>
+							<img src="icon/ico-book.png">
 						</span>
 						<span>
 							<h3>文章标题</h3>
@@ -53,6 +62,7 @@
 		</div>
 		<div class="blog-right">
 			<div class="edit">
+				<div class="publish">发布</div>
 				<div class="edit-header" id="edit-header"></div>
 				<div class="edit-text" id="edit-text" contenteditable=true></div>
 			</div>
@@ -65,6 +75,15 @@
 	$('.blog-content > div').height(h);//三个div高度
 	$('.edit-text').height(h-40);//编辑器的高
 	
+	//新建文章
+	$('.new-article').click(function(){
+		var _out=[];
+		_out.push('<li><span><img src="icon/ico-book.png"></span><span><h3>文章标题</h3><p>描述描述描述描述描述描述描述描述描述描述</p></span></li>');
+		$('#article-list').html(function(i, v){
+			return v + _out.join('')  
+		});
+	});
+
 	initEdit();
 
 	function initEdit(){
