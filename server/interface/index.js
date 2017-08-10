@@ -4,6 +4,11 @@ var router = express.Router();
 var qs = require("querystring");
 var User = require('../models/user')
 
+
+
+
+
+
 var bcrypt = require('bcrypt')
 var SALT_WORK_FACTOR = 10;
 //signup

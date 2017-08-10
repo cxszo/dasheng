@@ -7,24 +7,52 @@
     <title>大圣静态资源公共库</title>
 
     <link rel="stylesheet" href="./index.css">
-    <link rel="stylesheet" href="//cloud.typography.com/6692672/678184/css/fonts.css">
-  <link rel="stylesheet" href="//cdn.symbolset.com/94440cd0456394a198fb9c3302ad80fe007e5eff/symbolset.css">
-  <script type="text/javascript" async="" src="http://d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/7wW12EyGvu/analytics.min.js"></script>
-  <script type="text/javascript" async="" src="http://d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/7wW12EyGvu/analytics.min.js"></script><script type="text/javascript">
-    window.analytics||(window.analytics=[]),window.analytics.methods=["identify","track","trackLink","trackForm","trackClick","trackSubmit","page","pageview","ab","alias","ready","group","on","once","off"],window.analytics.factory=function(t){return function(){var a=Array.prototype.slice.call(arguments);return a.unshift(t),window.analytics.push(a),window.analytics}};for(var i=0;window.analytics.methods.length>i;i++){var method=window.analytics.methods[i];window.analytics[method]=window.analytics.factory(method)}window.analytics.load=function(t){var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https://":"http://")+"d2dq2ahtl5zl1z.cloudfront.net/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n)},window.analytics.SNIPPET_VERSION="2.0.8",
-    window.analytics.page();
-    window.analytics.load(location.hostname == 'localhost' ? 'tpu2mewfe5' : '7wW12EyGvu');
-  </script>
+
 </head>
 <body>
     <header class="Header">
     <h1 class="Header-title">
-      <a href="javascript:;">大圣cdn</a>
+      <a href="/">dasheng</a>
     </h1>
-    <p class="Header-subtitle">A high-level browser automation library.</p>
-    <a class="Header-github" href="https://github.com/segmentio/nightmare">Star on GitHub</a>
+    <p class="Header-subtitle">前端资源公共库</p>
+    <a class="Header-github" target="_blank" href="https://github.com/9188">Star on GitHub</a>
   </header>
+  <section class="Body">
+    <!-- <h2>Usage method</h2> -->
 
+    <input id="input" class="form-control search clearable" placeholder="请输入开源库名称..." autocomplete="off" autofocus="" tabindex="0" autocorrect="off" autocapitalize="off" spellcheck="false">
+    <br>
+    <div class="wrapper">
+      <dl id="ctx">
+        <dt><span>library</span><label>link</label></dt>
+      </dl>
+    </div>
+  </section>
 
+  <div class="md-modal">
+    <div class="md-content">
+      <h3>jqeury.js</h3>
+      <div id="libintro">为什么要想那么多 不算最坏的结果</div>
+      <div id="libvers">
+					<h4>Version<span id="libversion">0.3.2</span></h4>
+					<ul id="libfiles">
+            <li>http://apps.bdimg.com/libs/accounting.js/0.3.2/accounting.js</li>
+            <li>http://apps.bdimg.com/libs/accounting.js/0.3.2/accounting.min.js</li>
+            <li>http://apps.bdimg.com/libs/accounting.js/0.3.2/accounting.min.js</li>
+            <li>http://apps.bdimg.com/libs/accounting.js/0.3.2/accounting.min.js</li>
+          </ul>
+				</div>
+      <div id="md-modal-button">
+					<button class="md-close">Close</button>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="md-overlay"></div>
+
+<!-- display:none;position:fixed;top:40px;left:0;z-index:99999999;height:1000px;width:100%;background:rgba(0,0,0,0.4); -->
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="./index.js"></script>
 </body>
 </html>

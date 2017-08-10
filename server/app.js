@@ -33,9 +33,11 @@ db.once('open', function() {
 
 
 //接口导进来
-var interface = require('./interface/index');
-app.use('/data', interface);
+var indexInterface = require('./interface/index');
+app.use('/data', indexInterface);
 
+var cdnInterface = require('./interface/cdn');
+app.use('/data/cdn', cdnInterface);
 
 
 //处理静态页面
@@ -56,7 +58,7 @@ app.use(express.static(lu, options));
 
 // 如何处理 404 
 app.use(function(req, res, next) {
-    let pn = lu+'4014.html'
+    let pn = lu+'404.html'
     var content =  fs.readFileSync(pn,"binary");   
     res.status(404).sendFile(pn);
 });

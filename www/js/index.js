@@ -10,18 +10,27 @@ var invite = (function () {
 
         },
         login(){
-            $.ajax({
-                url:'/data/login',
-                success: res=>{
-                    console.log(res)
-                }, 
-                error: err=>{
-                    console.log(err)
-                }
-            })
+            // $.ajax({
+            //     url:'/data/login',
+            //     success: res=>{
+            //         console.log(res)
+            //     }, 
+            //     error: err=>{
+            //         console.log(err)
+            //     }
+            // })
         },
         bind:function(){
             $('#toggle').click(function(){
+                if($(this).hasClass('i')){
+                    $('.about,.mask').show()
+                    
+                }else{
+                    setTimeout(()=>{
+                        
+                        $('.about,.mask').hide()
+                    }, 500)
+                }
                 $(this).toggleClass('i')
                 $('.about,.mask').toggleClass('hide')
             })
