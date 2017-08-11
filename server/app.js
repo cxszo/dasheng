@@ -1,8 +1,8 @@
 
 
 var profile,
-// profile = 0;//线上
-profile = 1;//王炜本地
+profile = 0;//线上
+// profile = 1;//王炜本地
 
 
 var express = require('express');

@@ -1,5 +1,6 @@
 var path = 'http://static.gs.youyuwo.com';
 
+var lastInput = '';
 let df = {
     jquery:'/libs/jquery/2.1.4/jquery.min.js',
     react:'/libs/react/0.10.0/react.min.js',
@@ -36,42 +37,50 @@ let df_render = ()=>{
 
     
 }
-df_render()
 
-$('#input').on('keyup', ()=>{
+df_render()
+$('#input').on('keyup', (event)=>{
+    
+    
     let val = $('#input').val()
     if( !val ){
         $('body').removeClass('sel')
-        df_render()
-    }else{
-        if(!$('body').hasClass('sel')){
-            $('body').addClass('sel')
-            $('body').animate({scrollTop:0}, 300)
-        }
+        return df_render();
     }
+    if(!$('body').hasClass('sel')){
+        $('body').addClass('sel')
+        $('body').animate({scrollTop:0}, 300)
+    }
+    
+    let nowDate = new Date
+    lastInput = nowDate
+    setTimeout(()=>{//.3之内没有输入 才去请求接口
+        if(lastInput-nowDate == 0){
+             $.ajax({
+                url:`/data/cdn/list?charAt=${val}`,
+                type:'get',
+                success(res){
+                    if(res.code == '1'){
+                        let data = res.data || [];
+                            
 
-    $.ajax({
-        url:`/data/cdn/list?charAt=${val}`,
-        type:'get',
-        success(res){
-            if(res.code == '1'){
-                let data = res.data || [];
-                    
-
-                let html = []
-                data.map(item=>{
-                    let {title, link} = item;
-                    html.push(`<dd><span>${title}</span><label class="btn" data-clipboard-text="${link?path+link:''}">${link?path+link:''}</label></dd>`)
-                })
-                $('#ctx dd').remove();
-                $('#ctx').append(html.join(''))
-            }
-           
-        },
-        error(err){
-            console.log(err)
+                        let html = []
+                        data.map(item=>{
+                            let {title, link} = item;
+                            html.push(`<dd><span>${title}</span><label class="btn" data-clipboard-text="${link?path+link:''}">${link?path+link:''}</label></dd>`)
+                        })
+                        $('#ctx dd').remove();
+                        $('#ctx').append(html.join(''))
+                    }
+                
+                },
+                error(err){
+                    console.log(err)
+                }
+            })
         }
-    })
+    }, 300)
+   
 })
 
 

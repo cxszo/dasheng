@@ -9,8 +9,8 @@ var stats = [];
 
 
 var profile,
-// profile = 0;//线上
-profile = 1;//王炜本地
+profile = 0;//线上
+// profile = 1;//王炜本地
 
 
 //获取列表数据
@@ -22,7 +22,7 @@ router.get('/list', (req, res)=>{
         res.send(response);
         return false;
     }
-    let uri = '/opt/cdn/'
+    let uri = '/opt/cdn/libs/'
     if(profile == '1'){
         uri = '/Users/wangwei/cdn/libs/'
     }

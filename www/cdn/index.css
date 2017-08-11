@@ -1126,8 +1126,8 @@ input, button {
   position: fixed;
   top: 20%;
   left: 50%;
-  width: 80%;
-  min-width: 470px;
+  max-width: 58em;
+  min-width: 350px;
   height: auto;
   z-index: 2000;
   visibility: hidden;
@@ -1318,6 +1318,7 @@ input, button {
 #libvers li span, #libvers li a{
   visibility: hidden;
   position: absolute;
+  top: .3em;
   border-radius: 1em;
   text-align: center;
   width: 3rem;
