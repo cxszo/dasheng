@@ -65,17 +65,15 @@
                 url:'/data/signup',
                 type:'post',
                 data:{
-                    username:username,
-                    callphone:callphone,
-                    password:password
+                    username,
+                    callphone,
+                    password
                 },
                 success(res){
                     console.log(res)
                     alert(res.desc)
                     if(res.code == '1'){
-                        setTimeout(()=>{
-                            location.href='/index.html'
-                        }, 2e3)
+                        location.href='/index.html'
                     }
                 },
                 error(err){
