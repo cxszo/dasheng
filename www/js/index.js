@@ -10,15 +10,32 @@ var invite = (function () {
 
         },
         login(){
-            // $.ajax({
-            //     url:'/data/login',
-            //     success: res=>{
-            //         console.log(res)
-            //     }, 
-            //     error: err=>{
-            //         console.log(err)
-            //     }
-            // })
+            //获取用户的信息
+            if(!localStorage.accessToken){
+                return $('.count').show();
+            }
+            $.ajax({
+                url:'/data/user/userinfo',
+                type:'get',
+                headers:{
+                    'x-access-token': localStorage.accessToken
+                },
+                success: res=>{
+                    if(res.code == '1'){
+                        let data = res.data || {};
+                        let {callphone, headimg, username} = data;
+                        $('.count2').show().html(`<img src="${headimg}" style="border-radius:25px;width:auto;"/>${username}`);
+                        $('.count').hide();
+
+                        
+                    }else{
+                        $('.count').show();
+                    }
+                }, 
+                error: err=>{
+                    $('.count').show();
+                }
+            })
         },
         bind:function(){
             $('#toggle').click(function(){

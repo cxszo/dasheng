@@ -1,8 +1,8 @@
 
 
 var profile,
-// profile = 0;//线上
-profile = 1;//王炜本地
+profile = 0;//线上
+// profile = 1;//王炜本地
 
 
 var express = require('express');
@@ -19,6 +19,7 @@ if(profile == '1'){
 }
 //链接数据库
 if(profile == '1'){
+  // mongoose.connect('mongodb://59.110.143.111/dasheng',{useMongoClient:true});
   mongoose.connect('mongodb://127.0.0.1:27017/wangweimac',{useMongoClient:true});
 }else{
   mongoose.connect('mongodb://59.110.143.111/dasheng',{useMongoClient:true});
@@ -36,8 +37,17 @@ db.once('open', function() {
 var indexInterface = require('./interface/index');
 app.use('/data', indexInterface);
 
+var userInterface = require('./interface/users');
+app.use('/data/user', userInterface);
+
 var cdnInterface = require('./interface/cdn');
 app.use('/data/cdn', cdnInterface);
+
+var adminInterface = require('./interface/admin');
+app.use('/data/admin', adminInterface);
+
+var blogInterface = require('./interface/blog');
+app.use('/data/blog', blogInterface);
 
 
 //处理静态页面
@@ -68,5 +78,6 @@ app.listen(3000)
 
 if(profile == 1){
   let opn = require('opn')
-  opn('http://127.0.0.1:3000')
+  // opn('http://127.0.0.1:3000')
+  opn('http://192.168.0.131:3000')
 }

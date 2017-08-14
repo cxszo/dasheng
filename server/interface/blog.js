@@ -36,4 +36,3 @@ router.get('/userinfo', $middlewares,  (req, res)=>{
 
 
 module.exports = router;
-
