@@ -21,48 +21,12 @@
 					<span>回首页</span>
 				</a>
 			</div>
-			<div class="new-articleBox">
-				<span>新建文集</span>
-			</div>
-			<ul class="nav-item">
-				<li class="active">
-					<a>日记本</a>
-				</li>
-				<li>
-					<a>随笔</a>
-				</li>
-			</ul>
 		</div>
 		<div class="blog-middle">
-			<div class="article-list">
-				<div class="new-article">
-					<span>新建文章</span>
-				</div>
-				<ul id="article-list">
-					<li class='active'>
-						<span>
-							<img src="icon/ico-book.png">
-						</span>
-						<span>
-							<h3>文章标题</h3>
-							<p>描述描述描述描述描述描述描述描述描述描述</p>
-						</span>
-					</li>
-					<li class=''>
-						<span>
-							<img src="icon/ico-book.png">
-						</span>
-						<span>
-							<h3>文章标题</h3>
-							<p>描述描述描述描述描述描述描述描述描述描述</p>
-						</span>
-					</li>
-				</ul>
-			</div>
+			
 		</div>
 		<div class="blog-right">
 			<div class="edit">
-				<div class="publish">发布</div>
 				<div class="edit-header" id="edit-header"></div>
 				<div class="edit-text" id="edit-text" contenteditable=true></div>
 			</div>
@@ -74,15 +38,6 @@
 	var h = $(window).height();
 	$('.blog-content > div').height(h);//三个div高度
 	$('.edit-text').height(h-40);//编辑器的高
-	
-	//新建文章
-	$('.new-article').click(function(){
-		var _out=[];
-		_out.push('<li><span><img src="icon/ico-book.png"></span><span><h3>文章标题</h3><p>描述描述描述描述描述描述描述描述描述描述</p></span></li>');
-		$('#article-list').html(function(i, v){
-			return v + _out.join('')  
-		});
-	});
 
 	initEdit();
 
@@ -107,6 +62,7 @@
 	function bindBtnComand(){
 		var editHeader = document.getElementById('edit-header');
 		var btnConfigs = "bold|null|粗体 italic|null|斜体 strikeThrough|null|删除线 formatBlock|H1|H1 formatBlock|H2|H2 formatBlock|H3|H3 formatBlock|BLOCKQUOTE|引用 formatBlock|div|结束引用 undo|null|撤销 redo|null|重做 formatBlock|img|图片".split(" ");
+		console.log(btnConfigs)
 		//动态生成按钮
 		for(var i=0;i<btnConfigs.length;i++){
 			var a = document.createElement('a');
@@ -120,19 +76,19 @@
 		//给按钮绑定功能
 		var btns = editHeader.getElementsByTagName('a');
 		var imgs = editHeader.getElementsByTagName('img');
-		for (var i = 0,btnConfig; btnConfig = btnConfigs[i];i++) {
-			(function(btnConfig,btn){
-				var mag = btnConfig.split('|'),lab=mag[0],value= mag[1],title= mag[2];
+		for (let i = 0;i< btnConfigs.length;i++) {
+				let btnConfig = btnConfigs[i];
+				let mag = btnConfig.split('|'),lab=mag[0],value= mag[1],title= mag[2];
 				imgs[i].src= "icon/"+title+".png";
-				btn.title= title;
-				btn.onclick = function(e){
-					var aa = document.execCommand(lab,false, value);
-					console.log(aa)
+				btns[i].title= title;
+				btns[i].onclick = function(){
+					var aa = document.execCommand(lab,false,value);
 				}
-			})(btnConfig, btns[i])
+			
 		}
 
 	}
+	
 </script>
 </body>
 </html>

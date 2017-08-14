@@ -131,6 +131,8 @@
     word-break: break-all;
 }
 .container-types .lecturer-list {
+    display: flex;
+    justify-content: center;
     margin-top: 40px;
 }
 .container-types .lecturer-item {
