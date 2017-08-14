@@ -24,7 +24,7 @@ var invite = (function () {
                     if(res.code == '1'){
                         let data = res.data || {};
                         let {callphone, headimg, username} = data;
-                        $('.count2').show().html(`<img src="${headimg}" style="border-radius:25px;width:auto;"/>${username}`);
+                        $('.count2').show().html(`<img src="${headimg}"/><span>${username}</span>`);
                         $('.count').hide();
 
                         

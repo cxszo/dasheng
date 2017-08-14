@@ -16,7 +16,7 @@
 <body>
 	<!-- 头部导航模块 -->
 	<div class="header">
-		<div class="header-container" style="box-shadow: 0 1px 3px rgba(0,0,0,.1);">
+		<div class="header-container">
 			<div class="logo">
 				<a href="#" title="首页">
 					<img src="../images/index/logo_03.png" alt="" title="大圣" >
@@ -24,25 +24,31 @@
 			</div>
 			<div class="nav">
 				<ul>
+					<li>
+						<a href="/list">注册用户列表</a> 
+					</li>
 					<li class="cur">
-						<a href="#">博客</a> 
+						<a href="/blog">博客平台</a> 
 					</li>
 					<li>
-						<a href="#">前端</a> 
+						<a href="/admin">后台</a> 
 					</li>
 					<li>
-						<a href="#">后端</a> 
-					</li>
-					<li>
-						<a href="#">设计</a> 
-					</li>
-					<li>
-						<a href="#">客服</a> 
+						<a href="/cdn">9188静态资源公共库</a> 
 					</li>
 				</ul>
 			</div>
-			<div class="edit-open">
-				<a href="edit.html">写文章</a>
+			<div class="count" style="display:none;">
+				<ul>
+					<li>
+						<a href="/sign_in">登录</a>
+						/
+						<a href="/sign_up">注册</a>
+					</li>
+				</ul>
+			</div>
+			<div class="count2">
+
 			</div>
 		</div>
 	</div>
@@ -373,12 +379,6 @@
 		</ul>
 	</div>
 <script src="../js/libs/zepto.min.js"></script>
-<script>
-	(function(){
-		$('.blog-list ul li').click(function(){
-			location.href='detail.html'
-		})
-	})()
-</script>
+<script src="./js/index.js"></script>
 </body>
 </html>

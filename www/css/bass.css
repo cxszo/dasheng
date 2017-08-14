@@ -75,6 +75,22 @@
     line-height: 60px;
     color: #4D555D;
 }
+.header-container .count2{
+    float: right;
+    border-radius: 25px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    padding-top: 10px;
+}
+.header-container .count2 img{
+    border-radius: 25px;
+    width: auto;
+    float: left;
+}
+.header-container .count2 span{
+    margin: 0 10px;
+}
 .edit-open{
     position: absolute;
     right: 30px;
