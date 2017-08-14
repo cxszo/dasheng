@@ -1,12 +1,8 @@
 /*** Created by Lzs on 2017/7/14.*/
 var invite = (function () {
-    var g ={
-       
-    }
+    var g ={}
     var o = {
         render:function(){
-
-
 
         },
         login(){
@@ -25,9 +21,7 @@ var invite = (function () {
                         let data = res.data || {};
                         let {callphone, headimg, username} = data;
                         $('.count2').show().html(`<img src="${headimg}"/><span>${username}</span>`);
-                        $('.count').hide();
-
-                        
+                        $('.count').hide(); 
                     }else{
                         $('.count').show();
                     }
