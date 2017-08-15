@@ -15,7 +15,7 @@
         <DT arr="0" ds="UniqueID" en="" id="704" ln="null" sc="null" sg="1" un="0"/>
         <Cm>文章的唯一id</Cm>
       </Cl>
-      <Cl au="0" df="" nm="title" nu="1">
+      <Cl au="0" df="" nm="title" nu="0">
         <DT arr="0" ds="VarChar2" en="" id="781" ln="200" sc="null" sg="1" un="0"/>
         <Cm>文章标题</Cm>
       </Cl>
@@ -38,6 +38,65 @@
       <Cl au="0" df="" nm="comment" nu="0">
         <DT arr="1" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="1" un="0"/>
         <Cm>评论[...{userid, cdate, thumb,msg, revert:[...{userid, name, cdate, msg}] }]</Cm>
+      </Cl>
+      <Cl au="0" df="" nm="note_name" nu="0">
+        <DT arr="0" ds="VarChar2" en="" id="781" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>笔记名 用户用来分类的</Cm>
+      </Cl>
+      <Cl au="0" df="" nm="note_id" nu="0">
+        <DT arr="0" ds="Number" en="" id="780" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>笔记名id</Cm>
+      </Cl>
+      <Cl au="0" df="" nm="node_article_id" nu="0">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>笔记名下面的文章id</Cm>
+      </Cl>
+      <Cl au="0" df="" nm="tag_id" nu="0">
+        <DT arr="0" ds="VarChar2" en="" id="781" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>标签 网站需要用这个分类 对应tag表</Cm>
+      </Cl>
+      <Cl au="0" df="" nm="tag_item_id" nu="1">
+        <DT arr="0" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>小类id 对应tag表</Cm>
+      </Cl>
+      <Cl au="0" df="" nm="is_show" nu="1">
+        <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>true 开放
+false 关闭</Cm>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="blog-send">
+      <TblOpts/>
+      <Cl au="0" df="" nm="user_id" nu="0">
+        <DT arr="0" ds="UniqueID" en="" id="704" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>用户标识 </Cm>
+      </Cl>
+      <Cl au="0" df="" nm="sort" nu="0">
+        <DT arr="1" ds="BigInt" en="" id="-5" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>[15000, 15001] 用于笔记本排序</Cm>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="blog-tag">
+      <TblOpts/>
+      <Cl au="0" df="" nm="1" nu="0">
+        <DT arr="0" ds="JSON" en="" id="786" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>1 = {tag:'前端', subset:{1:'javascript', 2:'css', 3:'html5', 4:'webpack', 5:'react', 6:'vue', 7:'angular', 8:'react-native', 9:'sass', 10:'less', 11:'jquery', 12:'动画' } }</Cm>
+      </Cl>
+      <Cl au="0" df="" nm="2" nu="0">
+        <DT arr="0" ds="JSON" en="" id="786" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>2 = {tag:'后端', subset:{1:'node'} }</Cm>
+      </Cl>
+      <Cl au="0" df="" nm="3" nu="0">
+        <DT arr="0" ds="JSON" en="" id="786" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>3 = {tag:'运维', subset:{1:'nginx'}}</Cm>
+      </Cl>
+      <Cl au="0" df="" nm="4" nu="0">
+        <DT arr="0" ds="JSON" en="" id="786" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>4 = {tag:'DB', subset:{1:'mongodb', 2:'sql', 3:'oracel'}}</Cm>
       </Cl>
       <UniqueConstraints/>
       <SchTrHis/>
@@ -128,18 +187,24 @@
       <DbTableRectangleFill>HeaderFooterFill</DbTableRectangleFill>
       <svg path=""/>
     </DiaProps>
-    <TbGl bkCl="ff6666ff" sch="用户" tbl="users" x="61" y="20"/>
-    <TbGl bkCl="ff6666ff" sch="blog" tbl="blog-user" x="67" y="401"/>
-    <TbGl bkCl="ff6666ff" sch="blog" tbl="blog-article" x="311" y="407"/>
+    <TbGl bkCl="ff6666ff" sch="用户" tbl="users" x="123" y="69"/>
+    <TbGl bkCl="ff6666ff" sch="blog" tbl="blog-user" x="71" y="400"/>
+    <TbGl bkCl="ff6666ff" sch="blog" tbl="blog-article" x="413" y="399"/>
+    <TbGl bkCl="ff6666ff" sch="blog" tbl="blog-tag" x="780" y="403"/>
+    <TbGl bkCl="ff6666ff" sch="blog" tbl="blog-send" x="80" y="701"/>
     <Notes>
-      <Note bkCl="ffffffe6" x="170" y="364">无须登录</Note>
-      <Note bkCl="ffffffe6" x="337" y="368">无须登录</Note>
+      <Note bkCl="ff999900" x="80" y="359">无须登录</Note>
+      <Note bkCl="ff999900" x="420" y="359">无须登录</Note>
+      <Note bkCl="ff999900" x="780" y="360">无须登录</Note>
+      <Note bkCl="ff00ccff" x="142" y="26">需要登录</Note>
+      <Note bkCl="ff00ccff" x="92" y="662">需要登录
+</Note>
     </Notes>
     <Zones>
-      <Zone bkCl="ffffcccc" h="968" nm="blog" w="533" x="30" y="304"/>
+      <Zone bkCl="ffffcccc" h="1021" nm="blog" w="772" x="43" y="317"/>
     </Zones>
   </Dgm>
-  <RnmMgr NxRnmId="9">
+  <RnmMgr NxRnmId="13">
     <RnmCh ObjCls="Schema" ParCls="Database" ParNme="dasheng" SupCls="" SupNme="">
       <Rnm id="2" nNm="用户" oNm="用户表"/>
       <Rnm id="1" nNm="用户表" oNm="schemaA"/>
@@ -161,6 +226,18 @@
     </RnmCh>
     <RnmCh ObjCls="Column" ParCls="Table" ParNme="users" SupCls="Schema" SupNme="用户">
       <Rnm id="8" nNm="user_id" oNm="userid"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="blog-tag" SupCls="Schema" SupNme="blog">
+      <Rnm id="9" nNm="4" oNm="DB"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="blog-article" SupCls="Schema" SupNme="blog">
+      <Rnm id="10" nNm="tag_id" oNm="tag"/>
+    </RnmCh>
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="blog" SupCls="" SupNme="">
+      <Rnm id="11" nNm="blog-tag" oNm="tag"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="blog-article" SupCls="Schema" SupNme="blog">
+      <Rnm id="12" nNm="is_show" oNm="is_cancel"/>
     </RnmCh>
   </RnmMgr>
   <DbDocOptionMgr>
@@ -185,12 +262,12 @@
     <TreePath/>
     <TreePath>/Schemas (2)</TreePath>
     <TreePath>/Schemas (2)/blog</TreePath>
-    <TreePath>/Schemas (2)/blog/Tables (2)</TreePath>
+    <TreePath>/Schemas (2)/blog/Tables (4)</TreePath>
     <TreePath>/Schemas (2)/用户</TreePath>
     <TreePath>/Schemas (2)/用户/Tables (1)</TreePath>
     <TreePath>/Diagrams (1)</TreePath>
     <TreePath>/Diagrams (1)/diagramA</TreePath>
-    <TreePath>/Diagrams (1)/diagramA/Notes (2)</TreePath>
+    <TreePath>/Diagrams (1)/diagramA/Notes (5)</TreePath>
   </TreePaths>
   <SqlTexts/>
 </Db>
