@@ -11,14 +11,14 @@
 }
 .header-container{
 	overflow: hidden;
-    box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);
+    /*box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);*/
     padding-right: 10px;
     z-index: 900;
 }
 .header-container .logo{
 	float: left;
-	width: 105px;
-	margin: 0 0 0 24px;
+	width: 90px;
+	margin: 0 0 0 0;
 }
 .header-container .logo a{
 	display: block;
@@ -55,7 +55,7 @@
     display: block;
     color: #c7c7c7;
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 60px;
 }
 .header-container .count{
