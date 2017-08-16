@@ -3,10 +3,11 @@
 .header{
 	width: 100%;
     height: 60px;
-    background: #fff;
+    background: rgba(28, 24, 21,.7);
     position: fixed;
     top: 0;
     z-index: 999;
+    border-bottom: 1px #565656 solid;
 }
 .header-container{
 	overflow: hidden;
@@ -28,7 +29,7 @@
 }
 .header-container .logo a img{
 	height: 60px;
-    transform: scale(.8);
+    transform: scale(.7);
 }
 .header-container .nav{
 	float: left;
@@ -41,10 +42,10 @@
 	line-height: 60px;
 }
 .header-container .nav ul li:hover{
-     background: #ececec;
+     background: #12110f;
 }
 .header-container .nav ul li.cur{
-    background: #ececec;
+    background: #12110f;
 }
 .header-container .nav ul li.cur a{
 
@@ -52,7 +53,7 @@
 .header-container .nav ul li a{
 	padding: 0 20px;
     display: block;
-    color: #4D555D;
+    color: #c7c7c7;
     text-align: center;
     font-size: 16px;
     line-height: 60px;
@@ -73,7 +74,7 @@
     width: auto;
     padding: 0 12px;
     line-height: 60px;
-    color: #4D555D;
+    color: #c7c7c7;
 }
 .header-container .count2{
     float: right;
@@ -103,13 +104,18 @@
     border-radius: 4px;
 }
 .banner{
-	padding-top: 60px;
+	/*padding-top: 60px;*/
 }
 .banner-contain{
 	overflow: hidden;
-	height: 380px;
+	height: 480px;
 	background:url(../images/index/banner6.jpg) no-repeat center;
 	background-size: 100% 100%;
+}
+.baniframe {
+    width: 100%;
+    height: 100%;
+    border-width: 0px;
 }
 .elite-bg {
     background: url(../images/index/) center center no-repeat #f3f5f7;
