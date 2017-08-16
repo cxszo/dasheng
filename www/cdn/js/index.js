@@ -1,4 +1,4 @@
-var path = 'http://static.gs.youyuwo.com';
+var path = 'http://static.youyuwo.com';
 
 var lastInput = '';
 let df = {
