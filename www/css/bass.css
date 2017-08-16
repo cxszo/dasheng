@@ -10,7 +10,7 @@
     border-bottom: 1px #565656 solid;
 }
 .header-container{
-	overflow: hidden;
+	/*overflow: hidden;*/
     /*box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);*/
     padding-right: 10px;
     z-index: 900;
@@ -83,6 +83,8 @@
     text-align: center;
     line-height: 40px;
     padding-top: 10px;
+    color: #c7c7c7;
+    cursor: pointer;
 }
 .header-container .count2 img{
     border-radius: 25px;
@@ -91,6 +93,30 @@
 }
 .header-container .count2 span{
     margin: 0 10px;
+}
+.header-container .count3{
+    display: none;
+    position: absolute;
+    right: 30px;
+    background: rgba(28, 24, 21,.7);
+    top: 60px;
+    border-radius: 4px;
+}
+.header-container .count3 ul{
+    padding: 20px;
+}
+.header-container .count3 ul li{
+    line-height: 30px;
+    border-bottom: 1px #565656 solid;
+    padding: 0 10px;
+}
+.header-container .count3 ul li:hover{
+    background: black;
+}
+.header-container .count3 ul li a{
+    font-size: 12px;
+    color: #c7c7c7;
+    cursor: pointer;
 }
 .edit-open{
     position: absolute;

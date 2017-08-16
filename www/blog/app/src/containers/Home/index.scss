@@ -1,0 +1,22 @@
+@function A( $col ) {
+     @return $col/2+px;
+}
+
+
+/**贷款协议**/
+
+.agree{
+    .navbar-inner{text-align: center;background: #f3f3f3;line-height: A(100);font-size: A(33);}
+    p{line-height: A(40)}
+    .left{ float:left}
+    .right{ float:right}
+    .service-wrap-ele{ margin: A(40); color: #828282; border-bottom: #e6e6e6 A(1) solid; padding-bottom: A(20);}
+    .service-wrap-ele .email{ color: #3a91cf}
+    .service-wrap-ele .service-wrap-ele-box{ padding: A(8) 0; background:#f3f3f3; border:#e6e6e6 A(1) solid; margin-bottom: A(15);}
+    .service-wrap-ele .service-wrap-ele-box .service-wrap-ele-box-tt{ font-size: A(14); font-weight: 100; border-left: #3a91cf A(5) solid; height: A(14); line-height: A(16); padding-left:A(10);padding-top:A(10);}
+    .service-wrap-ele .service-wrap-ele-box .service-wrap-ele-box-list{ list-style: none; padding: A(15)}
+    .service-wrap-ele .service-wrap-ele-box .service-wrap-ele-box-list li:before{ content: ''; display:inline-block; width:A(6); height:A(6); background: #3a91cf; border-radius: A(4); vertical-align: middle;  margin-right:A(8);}
+    .service-wrap-title{ font-size: A(32); background: #2e9cf6; color: #fff; display: inline-block; padding:A(5) A(15); font-weight: 200;}
+    .update-time{ text-align:center; display: block; color: #bbb; padding-bottom: A(20);}
+
+} 

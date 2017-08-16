@@ -1,11 +1,10 @@
 .header{
     width: 100%;
     height: 60px;
-    background: rgba(28, 24, 21,.7);
+    background: #fff;
     position: fixed;
     top: 0;
     z-index: 999;
-    border-bottom: 1px #565656 solid;
 }
 .header-container{
     overflow: hidden;

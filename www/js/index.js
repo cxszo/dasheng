@@ -45,6 +45,16 @@ var invite = (function () {
                 $(this).toggleClass('i')
                 $('.about,.mask').toggleClass('hide')
             })
+            //点击头像显示退出层
+            $('.count2').click(function(){
+                $('.count3').toggle()
+            })
+             //点击退出清除登录信息
+            $('.count3 ul li:last-child').click(function(event){
+                event.preventDefault();
+                localStorage.removeItem('accessToken');
+                location.href="/";
+            })
         },
         init:function(){
             $('.about,.mask').toggleClass('hide')
