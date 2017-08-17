@@ -1,8 +1,8 @@
 
 
 var profile,
-profile = 0;//线上
-// profile = 1;//王炜本地
+// profile = 0;//线上
+profile = 1;//王炜本地
 
 
 var express = require('express');
@@ -19,8 +19,8 @@ if(profile == '1'){
 }
 //链接数据库
 if(profile == '1'){
-  // mongoose.connect('mongodb://59.110.143.111/dasheng',{useMongoClient:true});
-  mongoose.connect('mongodb://127.0.0.1:27017/wangweimac',{useMongoClient:true});
+  mongoose.connect('mongodb://59.110.143.111/dasheng',{useMongoClient:true});
+  // mongoose.connect('mongodb://127.0.0.1:27017/wangweimac',{useMongoClient:true});
 }else{
   mongoose.connect('mongodb://59.110.143.111/dasheng',{useMongoClient:true});
 }
@@ -31,7 +31,19 @@ db.on('error', console.error.bind(console, '连接错误:'));
 db.once('open', function() {
     console.log('连接成功');
 });
+//处理跨域
+app.all('*',function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
 
+  if (req.method == 'OPTIONS') {
+    res.send(200);
+  }
+  else {
+    next();
+  }
+});
 
 //接口导进来
 var indexInterface = require('./interface/index');
@@ -79,5 +91,6 @@ app.listen(3000)
 if(profile == 1){
   let opn = require('opn')
   // opn('http://127.0.0.1:3000')
-  opn('http://192.168.0.131:3000')
+  // opn('http://192.168.0.131:3000')
+  opn('http://10.0.10.2:3000')
 }

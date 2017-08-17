@@ -9,8 +9,8 @@ var stats = [];
 
 
 var profile,
-profile = 0;//线上
-// profile = 1;//王炜本地
+// profile = 0;//线上
+profile = 1;//王炜本地
 
 
 //获取列表数据

@@ -9,6 +9,7 @@ let blog_user = {
     user_id:'',
     following:[user_id, ...user_id],//关注
     followers:[user_id, ...user_id],//粉丝
+    collect:[push_article_id, ...xxx],//收藏文章列表
     love:'',//文章点赞数
     say:''//String 个人介绍
 }

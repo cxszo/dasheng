@@ -11,6 +11,9 @@
 let blog_article = {
     user_id:'', //Number 用来查作者信息
     push_article_id:'',//Number 文章id
+    blogger:'',//String 博主名
+    headimg:'',//博主头像
+    img_url:'',//文章里面的图片（可空）
     title:'',//String 文章标题
     body:'',//String 文章内容
     createAt:'',//Date 第一次发布时间
@@ -27,16 +30,20 @@ let blog_article = {
     },
     comment:[//评论
         {
-            userid:'',//评论人 根据这个查询评论人的头像 用户名
+            userid:'',//评论人id
+            name:'',//评论人名
+            headimg:'',//评论人头像
             cdate:'',//评论时间
-            thumb:'',//点赞数
+            thumb:[user_id, ...xxx],//点赞人列表
             msg:'',//评论内容
             revert:[
                 {
                     userid:'',//回复人id
                     name:'',//回复人名字
                     cdate:'',//回复时间
-                    msg:''//回复内容
+                    msg:'',//回复内容
+                    at_userid:'',//被@人id
+                    at_name:''//被@人名
                 }
             ] 
         }
