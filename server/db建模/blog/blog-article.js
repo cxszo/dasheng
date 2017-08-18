@@ -17,7 +17,14 @@ let blog_article = {
     title:'',//String 文章标题
     body:'',//String 文章内容
     createAt:'',//Date 第一次发布时间
-    love:[user_id, ...user_id],//Array 点赞的用户
+    love:[//Array 点赞的用户
+        {
+            user_id:'',//点赞人
+            name:'',//点赞人名
+            headimg:'',//点赞人头像
+            cdate:''//点赞时间
+        }
+    ],
     read:'',//Number 文章被阅读次数 自己打开的不算
     note:{
         name:'',//笔记本名字
