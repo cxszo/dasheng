@@ -3,6 +3,10 @@ import './index.scss'
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 
+import Header from '../../components/Header'
+import BlogList from './subpage/BlogList'
+import BlogHot from './subpage/BlogHot'
+import Tag from '../../components/Tag'
 class Blog extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -11,15 +15,18 @@ class Blog extends React.Component {
     render() {
         return (
             <div className="agree">
-            
-            
-                        <div className="navbar ">
-                        <div className="navbar-inner">
-                            <div className="left"></div>
-                            <div className="center">博客</div>
-                            <div className="right"></div>
+                <Header/>
+                <Tag/>
+                <div className="main">
+                    <div className="main-left">
+                        <BlogList/>
+                    </div>
+                    <div className="main-right">
+                        <div className="">
+                            <BlogHot/>
                         </div>
                     </div>
+                </div>
             </div>
             
            
