@@ -1,0 +1,26 @@
+$colorNav : #71777c;;
+.tag{
+    margin-top: 61px;
+    height: 45px;
+	background: #fff;
+    .tag-content{
+    	display: block;
+    	width: 960px;
+	    margin: auto;
+	    li:nth-child(1){
+	    	padding-left:5px;
+	    	padding-right:10px;
+	    	a{
+	    		color: #f67701;
+	    	}
+	    }
+	    li{
+	    	float: left;
+	    	line-height: 45px;
+	    	padding: 0 15px;
+	    	a{
+	    		color: $colorNav;
+	    	}
+	    }
+    }
+}
