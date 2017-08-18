@@ -828,3 +828,26 @@
      desc:'success'
  }
  */
+/**
+ * @api {post} /data/blog/authors  优秀原创作者
+ * @apiGroup blog
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} userid 用户id.
+ * @apiSuccess {String} headimg 用户头像.
+ * @apiSuccess {String} name 用户名.
+ * @apiSuccess {String} say 个人介绍.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            userid:'',
+            headimg:'',
+            name:'',
+            say:''
+         }
+     ],
+     desc:'success'
+ }
+ */
