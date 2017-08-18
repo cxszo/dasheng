@@ -1,0 +1,1 @@
+define({  "name": "Multiple Input Folder Test",  "version": "1.0.0",  "description": "Example of feeding apidoc from multiple input folder locations",  "sampleUrl": false,  "defaultVersion": "0.0.0",  "apidoc": "0.3.0",  "generator": {    "name": "apidoc",    "time": "2017-08-18T02:47:16.428Z",    "url": "http://apidocjs.com",    "version": "0.17.6"  }});

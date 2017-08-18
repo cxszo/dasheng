@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt')
 var SALT_WORK_FACTOR = 10;
 
 var UserSchema = new mongoose.Schema({
+    user_id: Number,
     username: {
         type: String,
         unique: true
@@ -13,6 +14,7 @@ var UserSchema = new mongoose.Schema({
       unique: true
     },
     password: String,
+    headimg: String,
     meta: {
         createAt: {
             type: Date,
@@ -24,6 +26,8 @@ var UserSchema = new mongoose.Schema({
         }
     }
 })
+
+
 
 
 UserSchema.pre('save', function(next) {

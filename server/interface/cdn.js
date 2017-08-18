@@ -7,10 +7,8 @@ var fs = require('fs'),
     stdout = process.stdout;
 var stats = [];
 
+let dev = require('../profile')
 
-var profile,
-profile = 0;//线上
-// profile = 1;//王炜本地
 
 
 //获取列表数据
@@ -23,7 +21,7 @@ router.get('/list', (req, res)=>{
         return false;
     }
     let uri = '/opt/cdn/libs/'
-    if(profile == '1'){
+    if(dev == '1' || dev == '2'){
         uri = '/Users/wangwei/cdn/libs/'
     }
     let files = fs.readdirSync(uri)
@@ -71,7 +69,7 @@ router.get('/list/:id', (req, res)=>{
         return false;
     }
     let uri = `/opt/cdn/libs/${charAt}/`
-    if(profile == '1'){
+    if(dev == '1' || dev == '2'){
         uri = `/Users/wangwei/cdn/libs/${charAt}/`
     }
     let version = fs.readdirSync(uri) || [];
@@ -130,7 +128,7 @@ router.get('/list/:l/:v', (req, res)=>{
         return false;
     }
     let uri = `/opt/cdn/libs/${library}/${version}/`
-    if(profile == '1'){
+    if(dev == '1' || dev == '2'){
         uri = `/Users/wangwei/cdn/libs/${library}/${version}/`
     }
     let libs = fs.readdirSync(uri) || [];
