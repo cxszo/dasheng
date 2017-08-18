@@ -181,12 +181,13 @@
  * @apiSuccessExample Success-Response:
  {
      code:'1',
-     data:{
-        1 : {tag:'前端', subset:{1:'javascript', 2:'css', 3:'html5', 4:'webpack', 5:'react', 6:'vue', 7:'angular', 8:'react-native', 9:'sass', 10:'less', 11:'jquery', 12:'动画' } },
-        2 : {tag:'后端', subset:{1:'node'} },
-        3 : {tag:'运维', subset:{1:'nginx'}},
-        4 : {tag:'DB', subset:{1:'mongodb', 2:'sql', 3:'oracel'}}
-     },
+     data:[
+        {
+            columnid: 1,
+            columnname:'前端',
+            subset:{1:'javascript', 2:'css', 3:'html5', 4:'webpack', 5:'react', 6:'vue', 7:'angular', 8:'react-native', 9:'sass', 10:'less', 11:'jquery', 12:'动画' }
+        },
+     ],
      desc:'success'
  }
 

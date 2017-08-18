@@ -63,51 +63,11 @@ var pxtorem = require("postcss-pxtorem");
      ],
      devServer:{
          proxy: {
-             '/notcontrol': {
-                 //target: 'http://hsk.gs.9188.com',
-                 //target: 'http://www.huishuaka.com',
-                  target: 'http://10.0.10.12:6969',
-                 changeOrigin: true
-             },
-             '/appapi': {
-                 target: 'http://hsk.gs.9188.com',
-                 //target: 'http://www.huishuaka.com',
-                 // target: 'http://10.0.10.94:9090',
-                 changeOrigin: true
-             },
-             '/control': {
-                 target: 'http://hsk.gs.9188.com',
-                 //target: 'http://www.huishuaka.com',
-                 // target: 'http://10.0.10.94:9090',
-                 changeOrigin: true
-             },
-             '/user': {
-                 target: 'http://hsk.gs.9188.com',
-                 //target: 'http://www.huishuaka.com',
-                 // target: 'http://10.0.10.94:9090',
-                 changeOrigin: true
-             },
-             '/credit': {
-                 target: 'http://hsk.gs.9188.com',
-                 //target: 'http://www.huishuaka.com',
-                 // target: 'http://10.0.10.94:9090',
-                 changeOrigin: true
-             },
-             '/loanweb':{
-                 target: 'http://hsk.gs.9188.com',
+             '/test':{
+                 target: 'http://10.0.10.171:8080',
                  //target:'http://www.huishuaka.com',
                  changeOrigin: true
-             },
-             '/gjj':{
-                 target: 'http://gjj_8095.gs.9188.com',
-                 //target:'http://www.huishuaka.com',
-                 changeOrigin: true
-             },
-             '/cooperation':{
-                 target: 'http://hsk.gs.9188.com',
-                 //target:'http://www.huishuaka.com',
-                 changeOrigin: true
-             },
+             }
          },
          colors: true, //终端中输出结果为彩色
          historyApiFallback: true, //不跳转

@@ -7,12 +7,16 @@ import Header from '../../components/Header'
 import BlogList from './subpage/BlogList'
 import BlogHot from './subpage/BlogHot'
 import Tag from '../../components/Tag'
+import {bloglist} from '../../fetch/BlogList/index'
+
 class Blog extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
     render() {
+        let list = bloglist();
+        console.log(list)
         return (
             <div className="agree">
                 <Header/>
