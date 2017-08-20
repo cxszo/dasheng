@@ -15,7 +15,7 @@ let list = {
             read:23,
             comment:2,
             love:146,
-            img_url:'http://upload-images.jianshu.io/upload_images/6652326-f9153b45f6f60266.png?imageMogr2/auto-orient/strip|imageView2/1/w/375/h/300'
+            img_url:'http://upload-images.jianshu.io/upload_images/1405069-69bba136f3a39e80.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/375/h/300'
         },
         {
             push_article_id:'123',
@@ -28,7 +28,7 @@ let list = {
             read:23,
             comment:2,
             love:146,
-            img_url:'http://upload-images.jianshu.io/upload_images/2176527-af452c5dec6f781d.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/375/h/300'
+            img_url:'http://upload-images.jianshu.io/upload_images/3493085-d0285d040ae52df9.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/375/h/300'
         },
         {
             push_article_id:'123',
