@@ -32,8 +32,9 @@ class Blog extends React.Component {
                     </div>
                     <div className="main-right">
                         <div className="">
-                            <BlogHot/>
+                            
                             <HotAuthor/>
+                            <BlogHot/>
                             <Tj/>
                         </div>
                     </div>
