@@ -6,6 +6,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import Header from '../../components/Header'
 import BlogList from './subpage/BlogList'
 import BlogHot from './subpage/BlogHot'
+import HotAuthor from './subpage/HotAuthor'
 import Tag from '../../components/Tag'
 
 class Blog extends React.Component {
@@ -17,14 +18,15 @@ class Blog extends React.Component {
         return (
             <div className="agree">
                 <Header/>
-                <Tag/>
                 <div className="main">
                     <div className="main-left">
+                        <Tag/>
                         <BlogList/>
                     </div>
                     <div className="main-right">
                         <div className="">
                             <BlogHot/>
+                            <HotAuthor/>
                         </div>
                     </div>
                 </div>

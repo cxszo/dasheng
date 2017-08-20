@@ -14,7 +14,18 @@ class BlogHot extends React.Component{
 	render(){
 		return (
 			<div className="bloghot">
-				热门
+				<div className="bloghot-content">
+					<p>热门标签</p>
+					<ul>
+						<li><a>架构</a></li>
+						<li><a>架构</a></li>
+						<li><a>架构</a></li>
+						<li><a>架构</a></li>
+						<li><a>架构</a></li>
+						<li><a>架构</a></li>
+						
+					</ul>
+				</div>
 			</div>
 		)
 	}

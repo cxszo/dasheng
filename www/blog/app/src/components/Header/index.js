@@ -19,7 +19,7 @@ class Header extends React.Component{
 				<div className = "header-content">
 					<div className="logo">
 						<a href="">
-							<img src={logoSrc} alt=""/>
+							{/* <img src={logoSrc} alt=""/> */}
 						</a>
 					</div>
 					<div className="nav">

@@ -2,7 +2,7 @@ import './index.scss'
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 //配置导航的title
-let tagTitle  = ['我关注的','前端','设计','后台','产品'];
+let tagTitle  = ['推荐','前端','Android','后端','人工智能','ios','产品'];
 class Tag extends React.Component{
 	constructor(props) {
         super(props);
@@ -15,6 +15,7 @@ class Tag extends React.Component{
 		return (
 			<div className = "tag">
 				<div className="tag-content">
+					<div>热门文章</div>
 					<ul>
 						{
 							tagTitle.map((v,i)=>{
