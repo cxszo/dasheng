@@ -2,14 +2,22 @@ import './index.scss'
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 //配置导航的title
-let tagTitle  = ['推荐','前端','Android','后端','人工智能','ios','产品'];
+import {blogtag} from '../../fetch/BlogTag/'
 class Tag extends React.Component{
 	constructor(props) {
         super(props);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
         this.state={
-           
+			tagTitle:[]
         }
+	}
+	componentDidMount(){
+		blogtag(tag =>{
+            this.setState({
+                tagTitle:tag.data
+			})
+        })
+		
 	}
 	render(){
 		return (
@@ -18,10 +26,11 @@ class Tag extends React.Component{
 					<div>热门文章</div>
 					<ul>
 						{
-							tagTitle.map((v,i)=>{
+							this.state.tagTitle.length == 0 ? null :
+							this.state.tagTitle.map((v,i)=>{
 								return (
 									<li key={i}>
-										<a>{v}</a>
+										<a>{v.name}</a>
 									</li>				
 								)
 							})

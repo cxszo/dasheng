@@ -9,7 +9,7 @@ class RouterMap extends React.Component {
             <Router history={hashHistory}>
                 <Route path="/" component={Index}>
                     <IndexRoute component={Home}/>
-                    <Route path='/Index' component={Home}/>
+                    <Route path='/Home' component={Home}/>
                     <Route path='/Detail/:id' component={Detail}/>
             	</Route>
             </Router>

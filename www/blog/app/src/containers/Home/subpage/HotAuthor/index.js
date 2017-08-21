@@ -1,63 +1,45 @@
 import './index.scss'
 import React from 'react'
-
+import {hotauthor} from '../../../../fetch/HotAuthor'
 class HotAuthor extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            list:[]
+        }
+    }
+    componentDidMount(){
+        hotauthor(list=>{
+            this.setState({
+                list:list.data
+            })
+        })
+    }
     render(){
         return (
             <div className="hotauthor">
             <div className="hotauthor-content">
                 <div>热门原创者</div>
                 <ul>
-                    <li>
-                        <a>
-                            <span><img src="https://dn-mhke0kuv.qbox.me/b920f74a59971c0b6ad9.jpg?imageView2/1/w/100/h/100/q/85/interlace/1"/></span>
-                            <span>
-                                <p>膜拜单车前端团队</p>
-                                <p>前端团队 @膜拜单车</p>
-                            </span>
-                            <em>+关注</em>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <span><img src="https://dn-mhke0kuv.qbox.me/b920f74a59971c0b6ad9.jpg?imageView2/1/w/100/h/100/q/85/interlace/1"/></span>
-                            <span>
-                                <p>膜拜单车前端团队</p>
-                                <p>前端团队 @膜拜单车</p>
-                            </span>
-                            <em>+关注</em>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <span><img src="https://dn-mhke0kuv.qbox.me/b920f74a59971c0b6ad9.jpg?imageView2/1/w/100/h/100/q/85/interlace/1"/></span>
-                            <span>
-                                <p>膜拜单车前端团队</p>
-                                <p>前端团队 @膜拜单车</p>
-                            </span>
-                            <em>+关注</em>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <span><img src="https://dn-mhke0kuv.qbox.me/b920f74a59971c0b6ad9.jpg?imageView2/1/w/100/h/100/q/85/interlace/1"/></span>
-                            <span>
-                                <p>膜拜单车前端团队</p>
-                                <p>前端团队 @膜拜单车</p>
-                            </span>
-                            <em>+关注</em>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <span><img src="https://dn-mhke0kuv.qbox.me/b920f74a59971c0b6ad9.jpg?imageView2/1/w/100/h/100/q/85/interlace/1"/></span>
-                            <span>
-                                <p>膜拜单车前端团队</p>
-                                <p>前端团队 @膜拜单车</p>
-                            </span>
-                            <em>+关注</em>
-                        </a>
-                    </li>
+                    {
+                        this.state.list.length == 0 ? null :
+                        this.state.list.map((v,i)=>{
+                            return (
+                                <li key={i}>
+                                    <a>
+                                        <span><img src={v.headimg}/></span>
+                                        <span>
+                                            <p>{v.name}</p>
+                                            <p>{v.say}</p>
+                                        </span>
+                                        <em>+关注</em>
+                                    </a>
+                                </li>
+                            )
+                        })
+                   
+                    
+                }
                 </ul>
             </div>
         </div>

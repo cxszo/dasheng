@@ -15,7 +15,6 @@ import HotAuthor from './subpage/HotAuthor'
 //推荐
 import Tjian from './subpage/Tjian'
 
-
 class Blog extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -28,13 +27,12 @@ class Blog extends React.Component {
                 <div className="main">
                     <div className="main-left">
                         <Tag/>
-                        <BlogList/>
+                        <BlogList />
                     </div>
                     <div className="main-right">
                         <div className="">
-                            
-                            <HotAuthor/>
                             <BlogHot/>
+                            <HotAuthor/>
                             <Tjian/>
                         </div>
                     </div>

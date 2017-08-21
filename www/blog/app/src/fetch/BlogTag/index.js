@@ -1,11 +1,11 @@
 
-//博客列表
-export let bloglist = (callback)=>{
+//博客标签
+export let blogtag = (callback)=>{
     let data = {
     	name:'liuzhishan'
     }
     var client = new XMLHttpRequest();
-    client.open("GET", "/bloglist/user_article_list.js");
+    client.open("GET", "/Blogtag/blogtag.js");
     client.onreadystatechange = handler;
     client.responseType = "json";
     client.setRequestHeader("Accept", "application/json");
