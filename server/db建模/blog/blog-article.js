@@ -31,15 +31,11 @@ let blog_article = {
         id:'',//笔记本id
         article_id:''//文章id
     },
-    tag:{
-        id:'',//文章大分类
-        item_id:''//小分类
-    },
+    tag:'',//文章大分类
+    tag_item:'',//小分类
     comment:[//评论
         {
             userid:'',//评论人id
-            name:'',//评论人名
-            headimg:'',//评论人头像
             cdate:'',//评论时间
             thumb:[user_id, ...xxx],//点赞人列表
             msg:'',//评论内容

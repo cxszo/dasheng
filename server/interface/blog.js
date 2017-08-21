@@ -1,38 +1,26 @@
 var express = require('express');
 var app = express();
 var router = express.Router();
-var User = require('../models/user')
+var BlogTag = require('../models/blog/blog_tag')//标签表
 
-var $middlewares = require('./mount-middlewares');
+var $middlewares = require('./mount-middlewares');//获取token中间件
 
-//查看注册用户列表
-router.get('/userinfo', $middlewares,  (req, res)=>{
-    var {username, password} = req.api_user;
-    let callphone = ''
-    let data = ''
-    if(/^\d*$/.test(username)){
-        callphone = username
-        data = {callphone}
-    }else{
-        data = {username}
-    }
-    //warning-   token 我没有对比密码 可能后面会有问题 
+//查看分类标签
+router.get('/tag',  (req, res)=>{
 
-    User.find(data, (err, _user)=>{
+
+    BlogTag.fetch((err, _data)=>{
         res.contentType('json');
-        let {username, callphone} = _user[0]
         res.send({
             code:'1',
-            data:{
-                headimg:'http://59.110.143.111/img/userlogo.jpg',
-                username,
-                callphone
-            },
+            data: _data,
             desc:'查询成功'
         });
         return false;
     })
 })
+// route.get('/tag', (req, res)=>{
 
+// })
 
 module.exports = router;

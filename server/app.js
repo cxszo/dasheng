@@ -13,8 +13,10 @@ let url = require('url')
 let lu = '/opt/www/';
 let dev = require('./profile')
 if(dev == '1' || dev == '2'){
-  lu = '/Users/wangwei/dasheng/www/';//王炜本地
+  lu = '/Users/wangwei/GitHub-9188/dasheng/www/';//王炜本地
 }
+
+mongoose.Promise = global.Promise;  
 //链接数据库
 if(dev == '1'){
   mongoose.connect('mongodb://127.0.0.1:27017/wangweimac',{useMongoClient:true});
@@ -88,6 +90,6 @@ app.listen(3000)
 if(dev == 1 || dev == 2){
   let opn = require('opn')
   // opn('http://127.0.0.1:3000')
-  // opn('http://192.168.0.131:3000')
-  opn('http://10.0.10.2:3000')
+  opn('http://192.168.0.131:3000')
+  // opn('http://10.0.10.2:3000')
 }
