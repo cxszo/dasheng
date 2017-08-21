@@ -1,12 +1,12 @@
 var mongoose = require('mongoose')
 
 var BlogTagSchema = new mongoose.Schema({
-    id: String,
-    name: String,
+    id: String,// 栏目id
+    name: String,// 栏目名
     subset: [
         {
-            id: String,
-            name: String
+            id: String, // 子栏目id
+            name: String// 子栏目名
         }
     ]
 })
@@ -15,7 +15,7 @@ var BlogTagSchema = new mongoose.Schema({
 BlogTagSchema.statics = {
     fetch: function(cb) {
       return this
-        .find({}, {id:1, name:1, subset:1})
+        .find({}, '-_id id name subset')
         .exec(cb)
     }
 }
