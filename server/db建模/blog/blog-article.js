@@ -9,10 +9,10 @@
 *  所有发布的文章都会进入这个表
 */
 let blog_article = {
-    user_id:'', //Number 用来查作者信息
-    push_article_id:'',//Number 文章id
-    blogger:'',//String 博主名
-    headimg:'',//博主头像
+    user_id:'', //Number 用来查作者信息博主名 博主头像
+    push_article_id:'',//Number 已发布文章id
+    note_id:'',//笔记本id
+    article_id:'',//文章id
     img_url:'',//文章里面的图片（可空）
     title:'',//String 文章标题
     body:'',//String 文章内容
@@ -26,32 +26,8 @@ let blog_article = {
         }
     ],
     read:'',//Number 文章被阅读次数 自己打开的不算
-    note:{
-        name:'',//笔记本名字
-        id:'',//笔记本id
-        article_id:''//文章id
-    },
     tag:'',//文章大分类
     tag_item:'',//小分类
-    comment:[//评论
-        {
-            userid:'',//评论人id
-            cdate:'',//评论时间
-            thumb:[user_id, ...xxx],//点赞人列表
-            msg:'',//评论内容
-            revert:[
-                {
-                    userid:'',//回复人id
-                    name:'',//回复人名字
-                    cdate:'',//回复时间
-                    msg:'',//回复内容
-                    at_userid:'',//被@人id
-                    at_name:''//被@人名
-                }
-            ] 
-        }
-    
-    ],
     is_show:true,//是否显示当前文章 true 显示 false 不显示
 }
 

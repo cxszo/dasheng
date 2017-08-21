@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "大圣网 所有接口文档",
   "title": "大圣网",
-  "url" : "http://192.168.0.131:3000",
-  "sampleUrl" : "http://192.168.0.131:3000",
+  "url" : "http://10.0.10.2:3000",
+  "sampleUrl" : "http://10.0.10.2:3000",
   "template":{
   },
   "header": {
@@ -14,5 +14,12 @@
   "footer": {
     "title": "底部",
     "filename": "footer.md"
-  }
+  },
+  "order":[
+    "导航",
+    "Index",
+    "blog",
+    "CDN",
+    "底部"
+  ]
 }

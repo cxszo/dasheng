@@ -13,5 +13,5 @@ let blog_note = {
     name:'',//note-name
     createAt:'',//创建时间
     is_show:'',//Boolean 是否删除 true 没有被删除 false 被删除（当为false时 subset里面的文章 is_show全部变成false）
-    sort:[note_article_id, ...xxx]//文集下面文章列表 （也是排序） 关联blog-note-article表
+    seq: ''//排序
 }
