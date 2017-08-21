@@ -11,11 +11,11 @@ let list = {
             name:'正了八经的',
             cdate:'1小时前',
             title:'全力以赴之前，别说自己没机遇',
-            intro:'在农业社会中，说话的技巧对大多数人来说不是刚需，沟通这件事情并不太重要。 但在现代社会，沟通能力就是一个人的核心竞争力所在。 ',
+            intro:'在农业社会中，说话的技巧对大多数人来说不是刚需，沟通这件事情并不太重要。 但在现，沟通能力就是一个人的核心竞争力所在。 ',
             read:23,
             comment:2,
             love:146,
-            img_url:'http://upload-images.jianshu.io/upload_images/6652326-f9153b45f6f60266.png?imageMogr2/auto-orient/strip|imageView2/1/w/375/h/300'
+            img_url:'http://upload-images.jianshu.io/upload_images/1405069-69bba136f3a39e80.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/375/h/300'
         },
         {
             push_article_id:'123',
@@ -28,7 +28,7 @@ let list = {
             read:23,
             comment:2,
             love:146,
-            img_url:'http://upload-images.jianshu.io/upload_images/2176527-af452c5dec6f781d.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/375/h/300'
+            img_url:'http://upload-images.jianshu.io/upload_images/3493085-d0285d040ae52df9.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/375/h/300'
         },
         {
             push_article_id:'123',

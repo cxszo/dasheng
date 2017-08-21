@@ -1,10 +1,11 @@
 .blogList{
    ul{
    	li{
+		cursor: pointer;
    		overflow: hidden;
 	    background: #fff;
 	    border-bottom: 1px #f0f0f0 solid;
-	    padding: 20px;
+	    padding: 15px 20px 15px 20px;
    		.left{
 			float: left;
 			width: 70%;
@@ -38,7 +39,7 @@
 			.title h3{ 
 				    margin: -7px 0 4px;
 				    display: inherit;
-				    font-size: 18px;
+				    font-size: 17px;
 				    font-weight: 700;
 				    line-height: 1.5;
 			}

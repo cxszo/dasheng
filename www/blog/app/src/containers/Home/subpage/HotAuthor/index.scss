@@ -1,0 +1,52 @@
+.hotauthor{
+	width:100%;
+	background: #fff;
+    overflow: hidden;
+    // margin-top: 15px;
+	.hotauthor-content{
+        div{
+            padding-left: 15px;
+            font-size: 12px;
+            line-height: 45px;
+            border-bottom:1px #f0f0f0 solid;
+        }
+		
+		ul{
+			padding: 0 15px;
+			li{
+                position: relative;
+                border-bottom:1px #f0f0f0 solid;
+                padding: 10px 0;
+				a{
+					span{
+                        display: inline-block;
+                        p{
+                            padding-left: 15px;
+                            line-height: 20px;
+                            font-size: 12px;
+                        }
+                        p:last-child{
+                             color: #969696;
+                             font-size: 12px;
+                        }
+                       
+                        img{
+                            width: 30px;
+                            height: 30px;
+                            border-radius: 50%; 
+                        }
+                    }
+                    em{
+                        cursor: pointer;
+                        display: inline-block;
+                        position: absolute;
+                        top: 25px;
+                        right: 0px;
+                        font-style: normal;
+                        color: #42c02e;
+                    }
+				}
+			}
+		}
+	}
+}

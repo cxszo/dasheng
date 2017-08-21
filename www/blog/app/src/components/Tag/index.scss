@@ -1,26 +1,33 @@
-$colorNav : #71777c;;
+$colorNav : #90979c;;
 .tag{
-    margin-top: 61px;
     height: 45px;
 	background: #fff;
+	border-bottom:1px #f0f0f0 solid; 
     .tag-content{
-    	display: block;
-    	width: 960px;
-	    margin: auto;
-	    li:nth-child(1){
-	    	padding-left:5px;
-	    	padding-right:10px;
-	    	a{
-	    		color: #f67701;
-	    	}
-	    }
-	    li{
-	    	float: left;
-	    	line-height: 45px;
-	    	padding: 0 15px;
-	    	a{
-	    		color: $colorNav;
-	    	}
-	    }
+		div{
+			float: left;
+			line-height: 45px;
+			font-size: 16px;
+			padding-left: 19px;
+		}
+		ul{
+			float: right;
+			padding-right: 9px;
+			li:nth-child(1){
+				padding-left:5px;
+				padding-right:10px;
+				a{
+					color: #ea6f5a;
+				}
+			}
+			li{
+				float: left;
+				line-height: 45px;
+				padding: 0 10px;
+				a{
+					color: $colorNav;
+				}
+			}
+		}
     }
 }
