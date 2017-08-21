@@ -13,7 +13,7 @@ import Tag from '../../components/Tag'
 // 热门作者
 import HotAuthor from './subpage/HotAuthor'
 //推荐
-import Tj from './subpage/Tj'
+import Tjian from './subpage/Tjian'
 
 
 class Blog extends React.Component {
@@ -35,7 +35,7 @@ class Blog extends React.Component {
                             
                             <HotAuthor/>
                             <BlogHot/>
-                            <Tj/>
+                            <Tjian/>
                         </div>
                     </div>
                 </div>
