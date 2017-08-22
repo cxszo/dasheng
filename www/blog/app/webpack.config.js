@@ -63,9 +63,8 @@ var pxtorem = require("postcss-pxtorem");
      ],
      devServer:{
          proxy: {
-             '/test':{
-                 //target: 'http://10.0.10.171:8080',
-                 //target:'http://www.huishuaka.com',
+             '/':{
+                 target: 'http://10.0.10.171:8080',
                  changeOrigin: true
              }
          },

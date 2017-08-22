@@ -1,13 +1,13 @@
 import './index.scss'
 import React from 'react'
-
-class Tj extends React.Component{
+let ImageSrc=require('./img/qcode.png')
+class Tjian extends React.Component{
     render(){
         return (
-            <div className="tj">
+            <div className="Tjian">
                 <a>
                     <span>
-                        <img src="http://cdn2.jianshu.io/assets/web/download-app-qrcode-0257cd2c1d094cba9caa7bdc9e5a1393.png"/>
+                        <img src={ImageSrc}/>
                     </span>
                     <span>
                         <div className="info">
@@ -20,4 +20,4 @@ class Tj extends React.Component{
         )
     }
 }
-export default Tj
+export default Tjian

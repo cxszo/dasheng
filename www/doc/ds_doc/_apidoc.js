@@ -138,7 +138,7 @@
  */
 
 /**
- * @api {post} /data/blog/list 查询首页文章列表
+ * @api {post} /data/blog/list 1.1首页-文章列表
  * @apiGroup blog
  * @apiParam {String} tag 大分类（可空）
  * @apiParam {String} tag_item 小分类（可空）
@@ -149,7 +149,7 @@
  * @apiSuccess {String} read 被阅读次数 .
  * @apiSuccess {String} love 喜欢数 .
  * @apiSuccess {String} comment 评论数 .
- * @apiSuccess {String} Blogger 博主名 .
+ * @apiSuccess {String} blogger 博主名 .
  * @apiSuccess {String} createAt 文章创建时间 .
  * @apiSuccess {String} headimg 博主头像 .
  * @apiSuccess {String} push_article_id 文章id .
@@ -176,7 +176,7 @@
  */
 
 /**
- * @api {get} /data/blog/tag 查询标签
+ * @api {get} /data/blog/tag 1.2首页-查询标签
  * @apiGroup blog
  * @apiSuccessExample Success-Response:
  {
@@ -251,7 +251,7 @@
 
  */
 /**
- * @api {get} /data/blog/read/:id 统计阅读
+ * @api {get} /data/blog/read/:id 2.2文章-统计阅读
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息（可空）
  * 
@@ -266,7 +266,7 @@
  }
  */
 /**
- * @api {post} /data/blog/article 查文章内容
+ * @api {post} /data/blog/article 2.1文章-内容
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息（可空）
  * 
@@ -277,7 +277,7 @@
  * @apiSuccess {String} read 文章被阅读数 .
  * @apiSuccess {String} love 文章被喜欢数 .
  * @apiSuccess {String} comment 文章被评论数 .
- * @apiSuccess {String} bloger 博主名 .
+ * @apiSuccess {String} blogger 博主名 .
  * @apiSuccess {Date} createAt 文章创建时间 .
  * @apiSuccess {String} headimg 博主头像 .
  * @apiSuccess {String} bloger_id 博主id .
@@ -295,7 +295,7 @@
          comment:'120',
          blogger:'娟娟新月',
          createAt:'08.12 23:12',
-         headimg:'http://1.com/1.png'
+         headimg:'http://1.com/1.png',
          blogger_id:'ad73e614982f',
          is_following:true,
          is_love:true,
@@ -308,7 +308,7 @@
 
 
 /**
- * @api {post} /data/blog/comment/create 文章评论
+ * @api {post} /data/blog/comment/create 3.1评论
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -337,7 +337,7 @@
  * 
  */
 /**
- * @api {get} /data/blog/comment/list 查看文章评论
+ * @api {get} /data/blog/comment/list 3.2评论-查看评论
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息（可空）
  * 
@@ -389,7 +389,7 @@
  */
 /**
  * 
- * @api {post} /data/blog/comment/love 点赞评论、取消点赞
+ * @api {post} /data/blog/comment/love 3.3评论-点赞、取消点赞
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -404,7 +404,7 @@
  }
  */
 /**
- * @api {post} /data/blog/article/love 喜欢、取消喜欢文章
+ * @api {post} /data/blog/article/love 2.3文章-喜欢、取消喜欢
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -417,7 +417,7 @@
  }
  */
 /**
- * @api {get} /data/blog/article/loverlist 文章喜欢人列表
+ * @api {get} /data/blog/article/loverlist 2.4文章-喜欢人列表
  * @apiGroup blog
  * 
  * @apiParam {String} id 文章id push_article_id
@@ -444,7 +444,7 @@
 
 
 /**
- * @api {get} /data/blog/comment/delete 删除评论、
+ * @api {get} /data/blog/comment/delete 3.4评论-删除评论、
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -457,7 +457,7 @@
  }
  */
 /**
- * @api {post} /data/blog/revert 回复别人
+ * @api {post} /data/blog/revert 3.5评论-回复别人
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -473,7 +473,7 @@
  }
  */
 /**
- * @api {post} /data/blog/revert/delete 删除回复
+ * @api {post} /data/blog/revert/delete 3.6评论-删除回复
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -489,7 +489,7 @@
  */
 
 /**
- * @api {post} /data/blog/follow 关注、取消关注博主
+ * @api {post} /data/blog/follow 4.1用户-关注、取消关注
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -502,7 +502,7 @@
  }
  */
 /**
- * @api {post} /data/blog/userinfo 查询用户 关注数 文章数...
+ * @api {post} /data/blog/userinfo 4.2用户-关注数、文章数...
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息 (可空)
  * 
@@ -537,7 +537,7 @@
 }
  */
 /**
- * @api {post} /data/blog/followlist 查询关注的列表、粉丝列表
+ * @api {post} /data/blog/followlist 4.3用户-关注、粉丝列表
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息 (可空)
  * 
@@ -576,7 +576,7 @@
  */
 
 /**
- * @api {post} /data/blog/user_article_list 用户文章列表 用户喜欢的文章列表
+ * @api {post} /data/blog/user_article_list 4.4用户-文章&喜欢的文章列表
  * @apiGroup blog
  * @apiParam {String} userid 博主userid
  * @apiParam {String} love (可空) 空查发布文章列表 非空查喜欢的文章列表
@@ -617,7 +617,7 @@
  */
 
 /**
- * @api {post} /data/blog/user_say 编辑个人介绍
+ * @api {post} /data/blog/user_say 4.5用户-编辑个人介绍
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息 (可空)
  * 
@@ -629,7 +629,7 @@
 }
  */
 /**
- * @api {post} /data/blog/user_collect_list 收藏的文章列表
+ * @api {post} /data/blog/user_collect_list 4.6用户-收藏的文章列表
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息 (可空)
  * 
@@ -667,7 +667,7 @@
  * 
  */
 /**
- * @api {post} /data/blog/collect 收藏文章、取消收藏文章
+ * @api {post} /data/blog/collect 2.5文章-收藏、取消收藏
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -683,7 +683,7 @@
  */
 
 /**
- * @api {post} /data/blog/note_sort 排序文集、排序文章
+ * @api {post} /data/blog/note_sort 5.2写-排序文集、文章
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -699,7 +699,7 @@
  */
 
 /**
- * @api {post} /data/blog/note/list 查询自己文集列表
+ * @api {post} /data/blog/note/list 5.1写-查询自己文集列表
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -719,7 +719,7 @@
  }
  */
 /**
- * @api {post} /data/blog/note/articlelist 根据文集id查文章列表
+ * @api {post} /data/blog/note/articlelist 5.3写-拿文集id查文章列表
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -744,7 +744,7 @@
  */
 
 /**
- * @api {post} /data/blog/note/article 根据文章id查文章
+ * @api {post} /data/blog/note/article 5.4写-拿文章id查文章
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -768,7 +768,7 @@
  */
 
 /**
- * @api {post} /data/blog/note/act 删除, 新建, 重命名文集
+ * @api {post} /data/blog/note/act 5.5写-删除,新建,重命名文集
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -787,7 +787,7 @@
 
 
  /**
- * @api {post} /data/blog/note/article/act 删除文章, 取消发布, 恢复文章， 彻底删除
+ * @api {post} /data/blog/note/article/act 5.6写-删除, 取消发布, 恢复， 彻底删除
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -803,7 +803,7 @@
  }
  */
 /**
- * @api {post} /data/blog/article/save 发布文章，保存文章
+ * @api {post} /data/blog/article/save 5.7写-发布文章，保存文章
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -825,7 +825,7 @@
  }
  */
   /**
- * @api {post} /data/blog/note/article/create 新增文章
+ * @api {post} /data/blog/note/article/create 5.8写-新增文章
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -848,7 +848,7 @@
 
 
 /**
- * @api {post} /data/blog/note/article/settag 设置文章标签
+ * @api {post} /data/blog/note/article/settag 5.9写-设置文章标签
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -867,10 +867,9 @@
 
  
 /**
- * @api {post} /data/blog/note/dustbin 查询回收站列表
+ * @api {post} /data/blog/note/dustbin 6.1查询回收站列表
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
- * 
  * 
  * @apiSuccess {Number} code 1成功.
  * @apiSuccess {String} article_id 文章id.
@@ -888,7 +887,7 @@
  }
  */
 /**
- * @api {post} /data/blog/authors  优秀原创作者
+ * @api {get} /data/blog/authors 1.3首页-优秀原创作者
  * @apiGroup blog
  * 
  * @apiSuccess {Number} code 1成功.

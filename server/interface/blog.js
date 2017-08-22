@@ -1,38 +1,38 @@
 var express = require('express');
 var app = express();
 var router = express.Router();
-var User = require('../models/user')
+var BlogTag = require('../models/blog/blog_tag')//标签表
+// var BlogTag = require('../models/blog/blog_tag')//标签表
+var BlogUser = require('../models/blog/blog_user')//博客用户表
 
-var $middlewares = require('./mount-middlewares');
 
-//查看注册用户列表
-router.get('/userinfo', $middlewares,  (req, res)=>{
-    var {username, password} = req.api_user;
-    let callphone = ''
-    let data = ''
-    if(/^\d*$/.test(username)){
-        callphone = username
-        data = {callphone}
-    }else{
-        data = {username}
-    }
-    //warning-   token 我没有对比密码 可能后面会有问题 
+var $middlewares = require('./mount-middlewares');//获取token中间件
 
-    User.find(data, (err, _user)=>{
+//查看分类标签
+router.get('/tag',  (req, res)=>{
+    BlogTag.fetch((err, _data)=>{
         res.contentType('json');
-        let {username, callphone} = _user[0]
         res.send({
             code:'1',
-            data:{
-                headimg:'http://59.110.143.111/img/userlogo.jpg',
-                username,
-                callphone
-            },
+            data: _data,
             desc:'查询成功'
         });
         return false;
     })
 })
+router.get('/authors', (req, res)=>{
+    BlogUser.fetch((err, _data)=>{
+        res.contentType('json');
+        res.send({
+            code:'1',
+            data: _data,
+            desc:'查询成功'
+        });
+        return false;
+    })
+})
+// router.get('/tag', (req, res)=>{
 
+// })
 
 module.exports = router;

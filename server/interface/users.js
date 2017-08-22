@@ -20,11 +20,11 @@ router.get('/userinfo', $middlewares,  (req, res)=>{
 
     User.find(data, (err, _user)=>{
         res.contentType('json');
-        let {username, callphone} = _user[0]
+        let {username, callphone, headimg} = _user[0]
         res.send({
             code:'1',
             data:{
-                headimg:'http://59.110.143.111/img/userlogo.jpg',
+                headimg,
                 username,
                 callphone
             },

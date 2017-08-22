@@ -3,6 +3,10 @@ var app = express();
 var router = express.Router();
 var qs = require("querystring");
 var User = require('../models/user')
+var Increment = require('../models/blog/increment')
+var BlogUser = require('../models/blog/blog_user')
+var BlogNote = require('../models/blog/blog_note')
+
 var jwt = require('jsonwebtoken');
 
 var bcrypt = require('bcrypt')
@@ -62,14 +66,38 @@ router.post('/signup', (req, res)=>{
                             res.send(response);
                             return false;
                         }else{
-                            var user = new User({username, callphone, password});
-                            user.save((err, __user)=>{
-                                if(err) return console.log(err)
-                                var response = {code:1,desc:'注册成功'};
-                                res.contentType('json');//返回的数据类型
-                                res.send(response);//给客户端返回一个json格式的数据
-                                return false;
-                            })
+                                Increment.findOneAndUpdate({"type":"userid"},{$inc:{id:1}},{new: true}, (err, inc)=>{
+                                    if(err)return false;
+                                    let user_id = inc.id;
+                                    var user = new User({username, callphone, password, user_id});
+                                    user.save((err, __user)=>{
+                                        if(err) return console.log(err)
+                                        var response = {code:1,desc:'注册成功'};
+                                        res.contentType('json');//返回的数据类型
+                                        res.send(response);//给客户端返回一个json格式的数据
+                                        return false;
+                                    })
+
+                                    //注册的同时帮创建 博客用户表 博客写文章表创建一条用户的数据
+                                    var blogUser = new BlogUser({
+                                        user_id,following: [],followers: [],collect: [],likelist: [],articlenum: [],love: 0,say: '',sex: ''
+                                    })
+                                    blogUser.save();
+                                    Increment.findOneAndUpdate({"type":"noteid"},{$inc:{id:2}},{new: true}, (err, noteInc)=>{
+                                        if(err)return false;
+
+                                        let note_id = noteInc.id;
+                                        BlogNote.insertMany([
+                                            {
+                                                user_id,id: note_id-1,name: '笔记本',is_show: true,seq: 0
+                                            },
+                                            {
+                                                user_id,id: note_id,name: '日记',is_show: true,seq: 1
+                                            }
+                                            ], function(err, docs){
+                                        });
+                                    })
+                                })
                         }
                     })
                 }

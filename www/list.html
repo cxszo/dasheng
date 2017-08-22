@@ -26,10 +26,9 @@
         <thead>
             <tr>
                 <th>用户名</th>
-                <th>密  码</th>
+                <th>userid</th>
                 <th>手机号</th>
                 <th>创建时间</th>
-                <th>更新时间</th>
             </tr>
         </thead>
         <tbody id='tbody'>
@@ -53,10 +52,9 @@
                         let meta  = item.meta || '';
                         _out.push(`<tr>
                             <td>${item.username || '--'}</td>
-                            <td>${item.password || '--'}</td>
+                            <td>${item.user_id || '--'}</td>
                             <td>${item.callphone || '--'}</td>
                             <td>${meta.createAt || '--'}</td>
-                            <td>${meta.updateAt || '--'}</td>
                         </tr>`)
                     })
                     $('#tbody').html(_out.join(''))

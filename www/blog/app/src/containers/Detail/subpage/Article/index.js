@@ -2,53 +2,104 @@ import './index.scss'
 
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-
+import {article} from '../../../../fetch/Article/'
+let txSrc = require('./img/ico-tx.png')
 class Article extends React.Component{
 	  constructor(props, context) {
         super(props, context);
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
-    }
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+		this.state = {
+			data:''
+		}
+	}
+	componentDidMount(){
+		article(data=>{
+			console.log(data)
+			this.setState({
+				data:data.data
+			})
+		})
+		
+	}
 	render(){
 		return (
 			<div className="blog-list blog-detail"> 
 				<div className="blog-detail-title">
-					<span>文章标题《权力的游戏》-21世纪罪名的电影之作</span>
+					<span>{this.state.data.title}</span>
 				</div>
 				<div className="blog-detail-contain">
 					<div className="blog-detail-msg">
 						<span>
-							
+							<img src={this.state.data.headimg}/>
 						</span>
 						<span>
-							<p>袁涛</p>
-							<p>电影 话题的优秀回答者</p>
+							<p>{this.state.data.bloger}</p>
+							<p>
+								<em>{this.state.data.createAt}</em>
+								<em>阅读{this.state.data.read}</em>
+								<em>喜欢{this.state.data.love}</em>
+								<em>评论{this.state.data.comment}</em>
+							</p>
 						</span>
 					</div>
 					<div className="blog-detail-p">
-						<p>
-							这里面有一个逻辑，中国票房大爆炸的近5年来，我们经历了很多瞠目结舌的票房纪录。
-						</p>
-						<p>
-							第一个10亿级别的记录是12年《泰囧》的12亿（随便提一句他的导演是个演员出身）；然后长达31个月之后，《捉妖记》把这个数字提高了一倍达到24个亿；再然后仅仅7个月之后《美人鱼》（随便提一句他的导演也是个演员出身）把这个数字再次提高10个亿，提升幅度在40%，达到34个亿。
-						</p>
-						<p>
-							我一直认为这些票房记录电影没有太大的好坏差别之分，都是达到了当时最吸引观众的效果，燃起了社会话题，动员了当时能够动员的所有观众。数字的差别体现的就是我国广义电影观众的基本人数。这个人数随着银幕数的增加和年轻人的涌入，逐年在提高。就看是哪部电影引爆了观众热情而已。所以12年到15年的31个月，这个人数增长了一倍；15年到16年春节的短短7个月，不会有翻天覆地的变化，所以这个人数增长了40%，我觉得这个逻辑是非常合理的。
-						</p>
-						<p>
-							然后就是《战狼2》（他的导演也是演员出身，包括再往前的姜文和赵薇）它距离《美人鱼》过去了18个月。这个数字介于7个月和31个月之间，按照比例计算增长幅度大概在70%左右——比《美人鱼》增长70%，也就是最终票房在58亿。
-						</p>
-						<p>
-							如果观影人数增加的曲线是相对平滑的，《战狼2》的最终票房将在58亿。但是我一度认为在人数增长到目前这个基数的情况下，增长会适量放缓，依据是最近两年的总票房增长已经不像之前达到每年30%以上了，说明增长趋势慢了下来。所以在《战狼2》第一个周末票房出来之后，超越《美人鱼》已经不成问题了。我预测把增长的部分打了对折加了一点票价因素，认为它的票房将达到48个亿。
-						</p>
-						<p>
-							一部总票房50亿的电影，口碑很好，周末又有7-8个亿的票房，说明他炸出了很多基本不看国产电影的观众，甚至很多基本不看电影的观众（比如我父母）。那这个观众动员的效果就不是短期的，因为这部分观众对时间窗口不敏感，他们的补充观影会是一个漫长的时间窗口，在这个效应的配合下也会鼓动一部分早期观众继续2刷、3刷。它的票房就不会迅速衰落。对比同样在暑假档的《捉妖记》，它的票房在第18天之后——也就是周末票房跌到7000万的时候，它的累计票房是18亿——也就是说在此之后它又拿了6个亿，是它先前18亿的三分之一。如果参照《美人鱼》那18天之后就没有多少了。我认为暑假档和春节档的档期特征不一样，《捉妖记》也许更有参考价值。
-						</p>
-						<p>
-							在这个逻辑中，如果我们认为暑假的长尾效应是累计票房的三分之一，那《战狼2》的票房就会到66个亿；如果我们认为6个亿不应该参考比例，而是暑假长尾的一个绝对数字，那就是56个亿；如果我们折中认为6个亿是一个绝对数字，但是需要乘上观影人数增长的系数，那就大概是62个亿；如果我们认为在很长一段时间没有好莱坞大片之后，9月份蜂拥而至《敦刻尔克》、《蜘蛛侠》、《猩球崛起》（说实话这3部电影在北美表现都很不理想）等会大幅侵占《战狼2》的长尾，那最后也会在58亿左右。
-						</p>
+						<p>{this.state.data.body}</p>
 					</div>
-					<div className="blog-detail-time">
-						<p>编辑于2017-08-10</p>
+				</div>
+				<div className = 'detail-comment-box'>
+					{/* 发表评论 */}
+					<div className="new-comment">
+						<a className='touxiang'>
+							<img src = {txSrc}/>
+						</a>
+						<div className="sign-container">
+							<a href="" className="btn btn-sign">登录</a> 
+							<span>后发表评论</span>
+						</div>
+					</div>
+					<div className="comment">
+						<div className="comment-author">
+							<div className="author">
+								<a>
+									<img src=""/>
+								</a>
+								<div className="info">
+									<p>安娜ing</p>
+									<p>7楼 · 2017.08.22 12:33</p>
+								</div>
+							</div>
+							<div className="wrap">
+								<p>感觉我就是题主说的那一类人，什么都想学，什么都想要，焦虑症…</p>
+								<div className="tool">
+									<a>
+										<i></i>
+										<span>14人点赞</span>
+									</a>
+									<a>
+									<i></i>
+										<span>回复</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div className="sub-comment-list">
+							<div className="comment-item">
+								<p>
+									<a></a>
+									<span>
+										<a></a>
+										<img src=''/>
+									</span>
+								</p>
+								<div className="">
+									<span>2017.08.22 13:16</span>
+									<a>
+										<i></i>
+										<span>回复</span>
+									</a>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
