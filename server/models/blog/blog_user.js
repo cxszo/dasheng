@@ -7,11 +7,16 @@ var BlogUserSchema = new mongoose.Schema({
     collect: Array,//收藏文章列表
     likelist: Array,//喜欢文章列表
     articlenum: Array,//已发布的文章
-    love: String,//文章点赞数
+    love: Number,//文章点赞数
     say: String,//String 个人介绍
     sex: String//性别 1男 2女
-})
+}, { versionKey: false })
 
+
+
+BlogUserSchema.pre('save', (next)=>{
+    next()
+})
 
 BlogUserSchema.statics = {
     fetch: function(cb) {

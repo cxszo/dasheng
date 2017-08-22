@@ -27,7 +27,7 @@ var BlogArticleSchema = new mongoose.Schema({
     tag: String,//文章大分类
     tag_item: String,//小分类
     is_show:true,//是否显示当前文章 true 显示 false 不显示
-})
+}, { versionKey: false })
 
 
 BlogArticleSchema.statics = {
