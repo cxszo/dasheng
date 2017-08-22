@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 
 var BlogNoteSchema = new mongoose.Schema({
-    userid: String,
+    user_id: String,
     id: String,//note-id
     name: String,//note-name
     createAt: {//创建时间
@@ -10,7 +10,7 @@ var BlogNoteSchema = new mongoose.Schema({
     },
     is_show: Boolean,// 是否删除 true 没有被删除 false 被删除（当为false时 subset里面的文章 is_show全部变成false）
     seq: Number//排序
-})
+}, { versionKey: false })
 
 
 BlogNoteSchema.statics = {

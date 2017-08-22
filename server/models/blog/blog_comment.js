@@ -2,13 +2,13 @@ var mongoose = require('mongoose')
 
 var BlogCommentSchema = new mongoose.Schema({
     push_article_id: String,//发布的文章id
-    userid: String,//评论人id
+    user_id: String,//评论人id
     cdate: String,//评论时间
     thumb: Array,//点赞人列表
     msg: String,//评论内容
     revert:[
         {
-            userid: String,//回复人id
+            user_id: String,//回复人id
             name: String,//回复人名字
             cdate: Date,//回复时间
             msg: String,//回复内容
@@ -17,7 +17,7 @@ var BlogCommentSchema = new mongoose.Schema({
         }
     ] 
 
-})
+}, { versionKey: false })
 
 
 BlogCommentSchema.statics = {

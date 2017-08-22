@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 
 var BlogNoteArticleSchema = new mongoose.Schema({
-    userid: String,
+    user_id: String,
     article_id: String,//文章id
     note_id: String,// 父级笔记本id
     title: String,// 文章标题
@@ -21,7 +21,7 @@ var BlogNoteArticleSchema = new mongoose.Schema({
     tar_item: String,//小分类
     seq_in_nb: Number,//排序
     history: Array//先不做放着 
-})
+}, { versionKey: false })
 
 
 BlogNoteArticleSchema.statics = {

@@ -21,7 +21,12 @@ mongoose.Promise = global.Promise;
 if(dev == '1'){
   mongoose.connect('mongodb://127.0.0.1:27017/wangweimac',{useMongoClient:true});
 }else{
-  mongoose.connect('mongodb://59.110.143.111/dasheng',{useMongoClient:true});
+  const options = {
+    user : "wangwei",
+    pass : "wsxy/.0",
+    useMongoClient:true
+  }
+  mongoose.connect('mongodb://59.110.143.111/dasheng', options);
 }
 
 var db = mongoose.connection
@@ -91,5 +96,5 @@ if(dev == 1 || dev == 2){
   let opn = require('opn')
   // opn('http://127.0.0.1:3000')
   // opn('http://192.168.0.131:3000')
-  opn('http://10.0.10.2:3000')
+  // opn('http://10.0.10.2:3000')
 }

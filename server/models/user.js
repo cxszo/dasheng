@@ -2,6 +2,7 @@
 var mongoose = require('mongoose')
 var bcrypt = require('bcrypt')
 var SALT_WORK_FACTOR = 10;
+var headimg_default = ['323.jpg', '344.jpg', '3545.jpg', '5656.jpeg', '878.jpg', '8980.jpg', '9887.jpg'];
 
 var UserSchema = new mongoose.Schema({
     user_id: Number,
@@ -25,7 +26,7 @@ var UserSchema = new mongoose.Schema({
             default: Date.now()
         }
     }
-})
+}, { versionKey: false })
 
 
 
@@ -38,6 +39,8 @@ UserSchema.pre('save', function(next) {
   else {
     this.meta.updateAt = Date.now()
   }
+  //注册的时候 默认帮用户设置一个默认头像
+  this.headimg = 'http://ov0zo91tq.bkt.clouddn.com/headimg/default/'+headimg_default[Math.floor(Math.random()*8)]
 
   bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
     if (err) return next(err)
@@ -69,6 +72,12 @@ UserSchema.statics = {
     return this
       .findOne({_id: id})
       .exec(cb)
+  },
+  findUserList: function(cb){
+    return this
+    .find({}, '-_id -__v')
+    .sort('meta.updateAt')
+    .exec(cb)
   }
 }
 

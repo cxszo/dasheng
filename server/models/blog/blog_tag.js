@@ -9,7 +9,7 @@ var BlogTagSchema = new mongoose.Schema({
             name: String// 子栏目名
         }
     ]
-})
+}, { versionKey: false })
 
 
 BlogTagSchema.statics = {
