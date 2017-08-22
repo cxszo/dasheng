@@ -10,23 +10,29 @@
 	    background: #fff;
 	    overflow: hidden;
 	    border-radius: 2px;
-	    box-shadow: 0 1px 3px rgba(0,0,0,.1);
 	    box-sizing: border-box;
 	    font-size: 16px;
-	    font-weight: 700;
+		font-weight: 700;
+		span{
+			font-size: 20px;
+		}
     }
     .blog-detail-contain {
 	    padding: 20px;
 	    background: #fff;
 	    overflow: hidden;
 	    border-radius: 2px;
-	    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+		border-bottom:1px #f1f1f1 solid;
 	    box-sizing: border-box;
 	    .blog-detail-msg {
 		    overflow: hidden;
 		    margin-bottom: 20px;
 		   span:nth-child(1) {
-			    float: left;
+				float: left;
+				width: 48px;
+				height: 48px;
+				border-radius: 50%;
+				border: 1px #ccc solid;
 			}
 			span:nth-child(2) {
 				float: left;
@@ -43,6 +49,59 @@
 		    margin-top: 1em;
 		    font-size: 14px;
 		    color: #8590a6;
+		}
+	}
+	.detail-comment-box{
+		padding-top: 60px;
+		.new-comment{
+			position: relative;
+			margin-left: 48px;
+			a.touxiang{
+				position: absolute;
+				left: -48px;
+				margin-right: 5px;
+				width: 38px;
+				height: 38px;
+				vertical-align: middle;
+				display: inline-block;
+				img{
+					width: 100%;
+					height: 100%;
+					border: 1px solid #ddd;
+					border-radius: 50%;
+				}
+			}
+			.sign-container{
+				text-align: center;
+				padding: 10px 15px;
+				box-sizing: border-box;
+				width: 100%;
+				height: 120px;
+				line-height: 100px;
+				font-size: 13px;
+				border: 1px solid #dcdcdc;
+				border-radius: 4px;
+				background-color: hsla(0,0%,71%,.1);
+				resize: none;
+				display: inline-block;
+				vertical-align: top;
+				outline-style: none;
+					.btn-sign{
+						width: 78px;
+						margin: 11px 10px 0 0;
+						padding: 7px 18px;
+						font-size: 16px;
+						border: none;
+						border-radius: 20px;
+						color: #fff!important;
+						background-color: #3194d0;
+						outline: none;
+					}
+					span{
+						font-size: 14px;
+						
+					}
+			}
 		}
 	}
 }

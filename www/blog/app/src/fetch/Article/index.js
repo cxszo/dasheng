@@ -1,11 +1,11 @@
 
-//博客列表
-export let bloglist = (callback)=>{
+//文章详情
+export let article =(callback)=>{
     let data = {
     	name:'liuzhishan'
     }
     var client = new XMLHttpRequest();
-    client.open("GET", "/bloglist/user_article_list.js");
+    client.open("GET", "/article/index.js");
     client.onreadystatechange = handler;
     client.responseType = "json";
     client.setRequestHeader("Accept", "application/json");
@@ -18,7 +18,8 @@ export let bloglist = (callback)=>{
       if (this.status === 200) {
         callback(this.response)
       } else {
-        console.log(new Error(this.statusText));
+        reject(new Error(this.statusText));
       }
     };
+
 }
