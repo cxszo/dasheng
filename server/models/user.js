@@ -14,6 +14,14 @@ var UserSchema = new mongoose.Schema({
       type: Number,
       unique: true
     },
+    /*
+    1 普通用户
+    2 管理员
+    */
+    role: {
+      type: Number,
+      default: 1
+    },
     password: String,
     headimg: String,
     meta: {

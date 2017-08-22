@@ -149,7 +149,7 @@
  * @apiSuccess {String} read 被阅读次数 .
  * @apiSuccess {String} love 喜欢数 .
  * @apiSuccess {String} comment 评论数 .
- * @apiSuccess {String} Blogger 博主名 .
+ * @apiSuccess {String} blogger 博主名 .
  * @apiSuccess {String} createAt 文章创建时间 .
  * @apiSuccess {String} headimg 博主头像 .
  * @apiSuccess {String} push_article_id 文章id .
@@ -277,7 +277,7 @@
  * @apiSuccess {String} read 文章被阅读数 .
  * @apiSuccess {String} love 文章被喜欢数 .
  * @apiSuccess {String} comment 文章被评论数 .
- * @apiSuccess {String} bloger 博主名 .
+ * @apiSuccess {String} blogger 博主名 .
  * @apiSuccess {Date} createAt 文章创建时间 .
  * @apiSuccess {String} headimg 博主头像 .
  * @apiSuccess {String} bloger_id 博主id .
@@ -295,7 +295,7 @@
          comment:'120',
          blogger:'娟娟新月',
          createAt:'08.12 23:12',
-         headimg:'http://1.com/1.png'
+         headimg:'http://1.com/1.png',
          blogger_id:'ad73e614982f',
          is_following:true,
          is_love:true,
@@ -887,7 +887,7 @@
  }
  */
 /**
- * @api {post} /data/blog/authors 1.3首页-优秀原创作者
+ * @api {get} /data/blog/authors 1.3首页-优秀原创作者
  * @apiGroup blog
  * 
  * @apiSuccess {Number} code 1成功.
