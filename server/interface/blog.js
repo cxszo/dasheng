@@ -20,8 +20,19 @@ router.get('/tag',  (req, res)=>{
         return false;
     })
 })
+//王炜-warning  这个接口可以静态化
 router.get('/authors', (req, res)=>{
-    BlogUser.fetch((err, _data)=>{
+    BlogUser.find({}, '_id ').sort({love:-1}).limit(2)
+    // .populate('user_object_id', '-_id headimg')
+
+    .populate({
+        path: 'user_object_id',
+        // match: { age: { $gte: 21 }},
+        select: '-_id headimg',
+        // options: { limit: 5 },
+        // model: 'modelName'
+    })
+    .exec((err, _data)=>{
         res.contentType('json');
         res.send({
             code:'1',

@@ -1,8 +1,8 @@
 var mongoose = require('mongoose')
 
 var BlogNoteSchema = new mongoose.Schema({
-    user_id: String,
-    id: String,//note-id
+    user_id: Number,
+    id: Number,//note-id
     name: String,//note-name
     createAt: {//创建时间
         type: Date,

@@ -16,20 +16,27 @@ router.get('/userinfo', $middlewares,  (req, res)=>{
     }else{
         data = {username}
     }
-    //warning-   token 我没有对比密码 可能后面会有问题 
+    //王炜-warning   token 我没有对比密码 可能后面会有问题 
 
     User.find(data, (err, _user)=>{
         res.contentType('json');
-        let {username, callphone, headimg} = _user[0]
-        res.send({
-            code:'1',
-            data:{
-                headimg,
-                username,
-                callphone
-            },
-            desc:'查询成功'
-        });
+        let {username, callphone, headimg} = _user[0] || '';
+        if(username){
+            res.send({
+                code:'1',
+                data:{
+                    headimg,
+                    username,
+                    callphone
+                },
+                desc:'查询成功'
+            });
+        }else{
+            res.send({
+                code:'0',
+                desc:'不存在该用户'//token 有效但是 数据库里面没有该用户
+            });
+        }
         return false;
     })
 })
