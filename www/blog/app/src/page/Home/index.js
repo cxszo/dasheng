@@ -1,0 +1,55 @@
+import './index.scss'
+
+import React from 'react'
+import PureRenderMixin from 'react-addons-pure-render-mixin'
+// 头部
+import Header from '../../components/Header'
+// 列表
+import BlogList from './subpage/BlogList'
+// 标签小类别
+import BlogHot from './subpage/BlogHot'
+//标签大类别
+import Tag from '../../components/Tag'
+// 热门作者
+import HotAuthor from './subpage/HotAuthor'
+//推荐
+import Tjian from './subpage/Tjian'
+
+class Blog extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    }
+    componentDidMount(){
+        // 博客列表
+        let {bloglistData,actions} = this.props;
+        actions.getListData();
+        
+    }
+    render() {
+        let {bloglistData,actions}=this.props;
+        let _BlogList = bloglistData.data|| [];
+        return (
+            <div className="agree">
+                <Header/>
+                <div className="main">
+                    <div className="main-left">
+                        <Tag/>
+                        <BlogList data={_BlogList}/>
+                    </div>
+                    <div className="main-right">
+                        <div className="">
+                            <BlogHot/>
+                            <HotAuthor/>
+                            <Tjian/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
+        )
+    }
+}
+
+export default Blog

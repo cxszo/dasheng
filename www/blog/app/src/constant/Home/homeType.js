@@ -1,0 +1,2 @@
+
+export const BLOGLIST_DATA = 'BLOGLIST_DATA'
