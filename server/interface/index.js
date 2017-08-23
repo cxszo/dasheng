@@ -7,6 +7,7 @@ var Increment = require('../models/blog/increment')
 var BlogUser = require('../models/blog/blog_user')
 var BlogNote = require('../models/blog/blog_note')
 
+var cf = require('../config/g')
 var jwt = require('jsonwebtoken');
 
 var bcrypt = require('bcrypt')
@@ -72,30 +73,37 @@ router.post('/signup', (req, res)=>{
                                     var user = new User({username, callphone, password, user_id});
                                     user.save((err, __user)=>{
                                         if(err) return console.log(err)
-                                        var response = {code:1,desc:'注册成功'};
+                                        var accessToken = jwt.sign({
+                                            username, password
+                                        }, cf.token_key, { expiresIn: '24h' });
+                                        var response = {code:1,data:{accessToken},desc:'注册成功'};
                                         res.contentType('json');//返回的数据类型
                                         res.send(response);//给客户端返回一个json格式的数据
+
+
+
+
+                                        //注册的同时帮创建 博客用户表 博客写文章表创建一条用户的数据
+                                        var blogUser = new BlogUser({
+                                            user_id,user_object_id:user,following: [],followers: [],collect: [],likelist: [],articlenum: [],love: 0,say: '',sex: ''
+                                        })
+                                        // user_object_id
+                                        blogUser.save();
+                                        Increment.findOneAndUpdate({"type":"noteid"},{$inc:{id:2}},{new: true}, (err, noteInc)=>{
+                                            if(err)return false;
+
+                                            let note_id = noteInc.id;
+                                            BlogNote.insertMany([
+                                                {
+                                                    user_id,id: note_id-1,name: '笔记本',is_show: true,seq: 0
+                                                },
+                                                {
+                                                    user_id,id: note_id,name: '日记',is_show: true,seq: 1
+                                                }
+                                                ], function(err, docs){
+                                            });
+                                        })
                                         return false;
-                                    })
-
-                                    //注册的同时帮创建 博客用户表 博客写文章表创建一条用户的数据
-                                    var blogUser = new BlogUser({
-                                        user_id,following: [],followers: [],collect: [],likelist: [],articlenum: [],love: 0,say: '',sex: ''
-                                    })
-                                    blogUser.save();
-                                    Increment.findOneAndUpdate({"type":"noteid"},{$inc:{id:2}},{new: true}, (err, noteInc)=>{
-                                        if(err)return false;
-
-                                        let note_id = noteInc.id;
-                                        BlogNote.insertMany([
-                                            {
-                                                user_id,id: note_id-1,name: '笔记本',is_show: true,seq: 0
-                                            },
-                                            {
-                                                user_id,id: note_id,name: '日记',is_show: true,seq: 1
-                                            }
-                                            ], function(err, docs){
-                                        });
                                     })
                                 })
                         }
@@ -145,7 +153,7 @@ router.post('/signin', (req, res)=>{
                         if(isMatch){
                             var accessToken = jwt.sign({
                                 username, password
-                            }, 'wangwei', { expiresIn: '24h' });
+                            }, cf.token_key, { expiresIn: '24h' });
                             response = {code:'1',data:{accessToken}, desc:'登录成功'};
                         }
                         res.send(response);
@@ -166,7 +174,7 @@ router.post('/signin', (req, res)=>{
                         if(isMatch){
                             var accessToken = jwt.sign({
                                 username, password
-                            }, 'wangwei', { expiresIn: '24h' });
+                            }, cf.token_key, { expiresIn: '24h' });
                             response = {code:'1',data:{accessToken}, desc:'登录成功'};
                         }
                         res.send(response);
