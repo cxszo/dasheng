@@ -64,12 +64,12 @@ class Article extends React.Component{
 									<img src={txSrc}/>
 								</a>
 								<div className="info">
-									<p>安娜ing</p>
+									<p>安娜</p>
 									<p>7楼 · 2017.08.22 12:33</p>
 								</div>
 							</div>
 							<div className="wrap">
-								<p>感觉我就是题主说的那一类人，什么都想学，什么都想要，焦虑症…</p>
+								<p>太精彩的文章。语言干净，内容丰满。有营养。学习了，对沟通，演讲和表达都受益了。太精彩的文章。语言干净，内容丰满。有营养。学习了，对沟通，演讲和表达都受益了。真的好棒！</p>
 								<div className="tool">
 									<a>
 										<i></i>
@@ -77,25 +77,41 @@ class Article extends React.Component{
 									</a>
 									<a>
 									<i></i>
-										<span>回复</span>
+										<span>6人回复</span>
 									</a>
 								</div>
 							</div>
 						</div>
 						<div className="sub-comment-list">
 							<div className="comment-item">
-								<p>
-									<a></a>
+								<p className="comment-item-desc">
+									<a>道长是一名思维贩子</a>
 									<span>
-										<a></a>
-										<img src=''/>
+										<a>@鞭蓉</a>
+										谢谢这么高的评价，这篇文章的确花了些时间。还需要努力，大家都加油！
 									</span>
 								</p>
-								<div className="">
+								<div className="comment-item-time">
 									<span>2017.08.22 13:16</span>
 									<a>
 										<i></i>
-										<span>回复</span>
+										<em>回复</em>
+									</a>
+								</div>
+							</div>
+							<div className="comment-item">
+								<p className="comment-item-desc">
+									<a>道长是一名思维贩子</a>
+									<span>
+										<a>@鞭蓉</a>
+										谢谢这么高的评价，这篇文章的确花了些时间。还需要努力，大家都加油！
+									</span>
+								</p>
+								<div className="comment-item-time">
+									<span>2017.08.22 13:16</span>
+									<a>
+										<i></i>
+										<em>回复</em>
 									</a>
 								</div>
 							</div>

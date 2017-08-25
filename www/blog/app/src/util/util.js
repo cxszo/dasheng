@@ -8,9 +8,9 @@ let Util={
 	post(url,data,successCallback,failCallback){
 		let options={};
 		options.headers={
-			'Content-type':'multpart/form-data'
+			'Content-type':'application/x-www-form-urlencoded'
 		}
-		options.body=JSON.stringify(data);
+		options.body='tag_item=2_1';
 		options.method='POST';
 		this.timeout(3e3,fetch(url,options)).then(res=>{
 			if(res.ok){
@@ -30,6 +30,27 @@ let Util={
 		client.onreadystatechange = handler;
 		client.responseType = "json";
 		client.setRequestHeader("Accept", "application/json");
+		client.send();
+	
+		function handler() {
+		  if (this.readyState !== 4) {
+				return;
+		  }
+		  if (this.status === 200) {
+				successCallback(this.response);
+		  } else {
+			// console.log(new Error(this.statusText));
+				failCallback(this.statusText);
+		  }
+		};
+	},
+	ajaxPost(url,data,successCallback,failCallback){
+		var client = new XMLHttpRequest();
+		client.open("POST", url);
+		client.onreadystatechange = handler;
+		client.responseType = "json";
+		client.setRequestHeader("Accept", "application/json");
+		client.setRequestHeader("Content-type","application/x-www-form-urlencoded"); 
 		client.send();
 	
 		function handler() {

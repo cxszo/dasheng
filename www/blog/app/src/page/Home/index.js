@@ -21,26 +21,34 @@ class Blog extends React.Component {
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
     }
     componentDidMount(){
-        // 博客列表
-        let {bloglistData,actions} = this.props;
-        actions.getListData();
-        
+        let {bloglistData,blogtitleData,blogauthorData,actions} = this.props;
+        actions.getListData();// 博客列表
+        actions.getTitleData();//博客标题
+        actions.getAuthorData();//热门原创作者
     }
     render() {
-        let {bloglistData,actions}=this.props;
-        let _BlogList = bloglistData.data|| [];
+        // 博客列表
+        let {bloglistData,blogtitleData,blogauthorData,actions}=this.props;
+        let _BlogList = bloglistData.data || [];
+        //博客标题
+        let Blogtitle_1 = blogtitleData.data ||[];
+        let Blogtitle_2_0 = Blogtitle_1[0] || '';
+        let subset = Blogtitle_2_0.subset || '';
+        //热门原创作者
+        let Blogauthor = blogauthorData.data || [];
+        console.log(this.props)
         return (
             <div className="agree">
                 <Header/>
                 <div className="main">
                     <div className="main-left">
-                        <Tag/>
+                        <Tag data={Blogtitle_1}/>
                         <BlogList data={_BlogList}/>
                     </div>
                     <div className="main-right">
                         <div className="">
-                            <BlogHot/>
-                            <HotAuthor/>
+                            <BlogHot data={subset}/>
+                            <HotAuthor data={Blogauthor}/>
                             <Tjian/>
                         </div>
                     </div>

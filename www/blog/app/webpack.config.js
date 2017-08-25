@@ -52,9 +52,9 @@ var pxtorem = require("postcss-pxtorem");
          new HtmlWebpackPlugin({
              template: __dirname + '/src/index.html'
          }),
-         // new webpack.ProvidePlugin({
-         //     $: 'jquery'
-         // }),
+         new webpack.ProvidePlugin({
+             $: 'jquery'
+         }),
 
          // 可在业务 js 代码中使用 __DEV__ 判断是否是dev模式（dev模式下可以提示错误、测试报告等, production模式不提示）
          new webpack.DefinePlugin({

@@ -5,15 +5,17 @@ import {connect} from 'react-redux'
 
 import * as HomeActions from '../../action/Home'
 
-const BlogWrap=({bloglistData,actions})=>{
-	return <div>
-		<Blog bloglistData={bloglistData} actions={actions}/>
-	</div>
-}
-const mapStateToProps=state=>{
-	console.log(state)
-	return {bloglistData:state.BlogList}
-}
+const BlogWrap=props=>(
+	<Blog {...props} />
+)
+
+const mapStateToProps=state=>({
+
+	bloglistData:state.BlogList.bloglist,
+	blogtitleData:state.BlogList.blogtitle,
+	blogauthorData:state.BlogList.blogauthor
+	
+})
 
 const mapDispatchToProps=dispatch=>({
 	actions:bindActionCreators(HomeActions,dispatch)
