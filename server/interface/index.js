@@ -1,7 +1,6 @@
 var express = require('express');
 var app = express();
 var router = express.Router();
-var qs = require("querystring");
 var User = require('../models/user')
 var Increment = require('../models/blog/increment')
 var BlogUser = require('../models/blog/blog_user')
@@ -16,7 +15,7 @@ var SALT_WORK_FACTOR = 10;
 
 //signup
 router.post('/signup', (req, res)=>{
-    req.addListener("data",function(data){
+        var param = req.body;
         /*
         *   注册通过规则
         *   用户名必须是中文 切 2-6位
@@ -27,7 +26,6 @@ router.post('/signup', (req, res)=>{
         *
         */
         var filterName = /(齐天大圣|王炜|习近平|毛泽东|周恩来|操|干他娘|干她娘|妈逼)/;//设置敏感词语
-        var param = qs.parse(data+'');//转换成json对象
         
         let {username, callphone, password} = param;
         password = Buffer.from(password, 'base64').toString()//对应atob
@@ -111,7 +109,6 @@ router.post('/signup', (req, res)=>{
                 }
             })
         }
-    });
 })
 
 
@@ -123,8 +120,7 @@ router.post('/signin', (req, res)=>{
     *   return {code:1, desc:'用户名不对'}
     *   code 1成功 -1账号不对  -2密码格式不对 
     */
-    req.addListener("data", function(data){
-        var param = qs.parse(data+'');//转换成json对象
+        var param = req.body;
         let {username, password} = param;
         password = Buffer.from(password, 'base64').toString()//对应atob
         if( !/^[\u4E00-\u9FA5]{2,6}$/.test(username) && !/^1[3|4|5|7|8]\d{9}$/.test(username) ){//用户
@@ -182,7 +178,6 @@ router.post('/signin', (req, res)=>{
                 }
             })
         }
-    });
 })
 
 

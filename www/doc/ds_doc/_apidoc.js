@@ -138,12 +138,13 @@
  */
 
 /**
- * @api {post} /data/blog/list 1.1首页-文章列表
+ * @api {post} /data/blog/list 1.1首页-文章列表√
  * @apiGroup blog
  * @apiParam {String} tag 大分类（可空）
  * @apiParam {String} tag_item 小分类（可空）
  * @apiParam {String} seek 用户手动搜索内容（可空）
  * 
+ * @apiSuccess {String} userid 作者id.
  * @apiSuccess {String} title 文章标题 .
  * @apiSuccess {String} intro 文章简介 .
  * @apiSuccess {String} read 被阅读次数 .
@@ -159,6 +160,7 @@
     code:1,
     data:[
         {
+            userid:'',
             title:'千万不要试探人性，人的恶连佛都度不了',
             intro:'好友是幼师，带着一群四五岁的小孩子。班上有个姑娘长得乖，表现力也棒，表演节目她很爱选那个小姑娘...',
             read:'1142',
@@ -176,7 +178,7 @@
  */
 
 /**
- * @api {get} /data/blog/tag 1.2首页-查询标签
+ * @api {get} /data/blog/tag 1.2首页-查询标签√ 
  * @apiGroup blog
  * @apiSuccessExample Success-Response:
  {
@@ -266,7 +268,7 @@
  }
  */
 /**
- * @api {post} /data/blog/article 2.1文章-内容
+ * @api {post} /data/blog/article 2.1文章-内容√
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息（可空）
  * 
@@ -274,33 +276,38 @@
  * 
  * @apiSuccess {String} title 文章标题 .
  * @apiSuccess {String} body 文章内容 .
- * @apiSuccess {String} read 文章被阅读数 .
- * @apiSuccess {String} love 文章被喜欢数 .
- * @apiSuccess {String} comment 文章被评论数 .
- * @apiSuccess {String} blogger 博主名 .
+ * @apiSuccess {Number} read 文章被阅读数 .
+ * @apiSuccess {Number} love 文章被喜欢数 .
+ * @apiSuccess {Object} blogger 博主信息 .
  * @apiSuccess {Date} createAt 文章创建时间 .
- * @apiSuccess {String} headimg 博主头像 .
- * @apiSuccess {String} bloger_id 博主id .
  * @apiSuccess {Boolean} is_following 是否关注过博主 . true 已关注 false 未关注
  * @apiSuccess {Boolean} is_love 是否点击喜欢 . true 点过 false 未点过
  * @apiSuccess {Boolean} is_collect 是否收藏过 . true 已收藏 false 未收藏
+ * @apiSuccess {Boolean} is_me 作者是否是自己 . true 是 false 不是
+ * @apiSuccess {Boolean} article_id 写-文章id . 只有is_me是true的时候才会返回
  * @apiSuccessExample Success-Response:
  {
      code:'1',
      data:{
          title:'千万不要试探人性，人的恶连佛都度不了',
          body:'好友是幼师，带着一群四五岁的小孩子。班上有个姑娘长得乖，表现力...',
-         read:'1142',
-         love:'183',
-         comment:'120',
-         blogger:'娟娟新月',
+         blogger:{
+             name:'',//作者名
+             id:'',//作者id
+             headimg:'',//作者头像
+             love:'',//文章获得总喜欢数
+             followers:'',//被关注数
+             say:'',//个人介绍
+             sex: ''//男女 1男 2女
+         },
+         read:1142,
+         love:183,
          createAt:'08.12 23:12',
-         headimg:'http://1.com/1.png',
-         blogger_id:'ad73e614982f',
          is_following:true,
          is_love:true,
          is_collect:true,
-
+         is_me: true,
+         article_id:''
      },
      desc:'success'
  }
@@ -337,7 +344,7 @@
  * 
  */
 /**
- * @api {get} /data/blog/comment/list 3.2评论-查看评论
+ * @api {post} /data/blog/comment/list 3.2评论-查看评论
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息（可空）
  * 
@@ -417,7 +424,7 @@
  }
  */
 /**
- * @api {get} /data/blog/article/loverlist 2.4文章-喜欢人列表
+ * @api {post} /data/blog/article/loverlist 2.4文章-喜欢人列表
  * @apiGroup blog
  * 
  * @apiParam {String} id 文章id push_article_id
@@ -444,7 +451,7 @@
 
 
 /**
- * @api {get} /data/blog/comment/delete 3.4评论-删除评论、
+ * @api {post} /data/blog/comment/delete 3.4评论-删除评论、
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -887,7 +894,7 @@
  }
  */
 /**
- * @api {get} /data/blog/authors 1.3首页-优秀原创作者
+ * @api {get} /data/blog/authors 1.3首页-优秀原创作者√ 
  * @apiGroup blog
  * 
  * @apiSuccess {Number} code 1成功.
@@ -895,6 +902,8 @@
  * @apiSuccess {String} headimg 用户头像.
  * @apiSuccess {String} name 用户名.
  * @apiSuccess {String} say 个人介绍.
+ * @apiSuccess {String} sex 性别.1男 2女 可能为空
+ * @apiSuccess {String} love 喜欢数.
  * @apiSuccessExample Success-Response:
  {
      code:'1',
@@ -903,7 +912,9 @@
             userid:'',
             headimg:'',
             name:'',
-            say:''
+            say:'',
+            sex:'',
+            love: 0
          }
      ],
      desc:'success'

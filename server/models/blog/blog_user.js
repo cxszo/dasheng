@@ -7,7 +7,7 @@ var BlogUserSchema = new Schema({
     followers: [{ type: Schema.Types.ObjectId, ref: 'user' }],//粉丝
     collect: [{ type: Schema.Types.ObjectId, ref: 'BlogArticle' }],//收藏文章列表
     likelist: [{ type: Schema.Types.ObjectId, ref: 'BlogArticle' }],//喜欢文章列表
-    love: Number,//文章点赞数
+    love: Number,//文章被点赞数
     say: String//String 个人介绍
 }, { versionKey: false })
 

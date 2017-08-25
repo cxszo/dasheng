@@ -10,8 +10,12 @@ var mongoose = require('mongoose')
 let fs = require('fs')
 var qs = require("querystring");
 let url = require('url')
+var bodyParse = require('body-parser')
+
 let lu = '/opt/www/';
 let dev = require('./profile')
+
+
 if(dev == '1' || dev == '2'){
   lu = '/Users/wangwei/GitHub-9188/dasheng/www/';//王炜本地
 }
@@ -35,6 +39,8 @@ db.on('error', console.error.bind(console, '连接错误:'));
 db.once('open', function() {
     console.log('连接成功');
 });
+
+app.use(bodyParse.urlencoded({extended: false}))
 //处理跨域
 app.all('*',function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
