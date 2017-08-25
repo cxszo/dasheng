@@ -5,40 +5,30 @@ var User = require('../models/user')
 
 var $middlewares = require('./mount-middlewares');
 
-//查看注册用户列表
+//查看用户信息
 router.get('/userinfo', $middlewares,  (req, res)=>{
-    var {username, password} = req.api_user;
-    let callphone = ''
-    let data = ''
-    if(/^\d*$/.test(username)){
-        callphone = username
-        data = {callphone}
-    }else{
-        data = {username}
-    }
-    //王炜-warning   token 我没有对比密码 可能后面会有问题 
-
-    User.find(data, (err, _user)=>{
+    let api_user = req.api_user || '后端数据异常'
+    if(typeof req.api_user === 'object'){
+        let {username, callphone, headimg} = api_user;
         res.contentType('json');
-        let {username, callphone, headimg} = _user[0] || '';
-        if(username){
-            res.send({
-                code:'1',
-                data:{
-                    headimg,
-                    username,
-                    callphone
-                },
-                desc:'查询成功'
-            });
-        }else{
-            res.send({
-                code:'0',
-                desc:'不存在该用户'//token 有效但是 数据库里面没有该用户
-            });
-        }
+        res.send({
+            code:'1',
+            data:{
+                headimg,
+                username,
+                callphone
+            },
+            desc:'查询成功'
+        });
         return false;
-    })
+    }else{
+        res.contentType('json');
+        res.send({
+            code:'0',
+            desc: api_user
+        });
+        return false;
+    }
 })
 
 
