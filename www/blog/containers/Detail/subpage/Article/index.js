@@ -61,7 +61,7 @@ class Article extends React.Component{
 						<div className="comment-author">
 							<div className="author">
 								<a>
-									<img src=""/>
+									<img src={txSrc}/>
 								</a>
 								<div className="info">
 									<p>安娜ing</p>

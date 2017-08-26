@@ -1,12 +1,12 @@
 var express = require('express');
 var app = express();
 var router = express.Router();
-var qs = require("querystring");
 var User = require('../models/user')
 var Increment = require('../models/blog/increment')
 var BlogUser = require('../models/blog/blog_user')
 var BlogNote = require('../models/blog/blog_note')
 
+var cf = require('../config/g')
 var jwt = require('jsonwebtoken');
 
 var bcrypt = require('bcrypt')
@@ -15,7 +15,7 @@ var SALT_WORK_FACTOR = 10;
 
 //signup
 router.post('/signup', (req, res)=>{
-    req.addListener("data",function(data){
+        var param = req.body;
         /*
         *   注册通过规则
         *   用户名必须是中文 切 2-6位
@@ -26,7 +26,6 @@ router.post('/signup', (req, res)=>{
         *
         */
         var filterName = /(齐天大圣|王炜|习近平|毛泽东|周恩来|操|干他娘|干她娘|妈逼)/;//设置敏感词语
-        var param = qs.parse(data+'');//转换成json对象
         
         let {username, callphone, password} = param;
         password = Buffer.from(password, 'base64').toString()//对应atob
@@ -72,30 +71,37 @@ router.post('/signup', (req, res)=>{
                                     var user = new User({username, callphone, password, user_id});
                                     user.save((err, __user)=>{
                                         if(err) return console.log(err)
-                                        var response = {code:1,desc:'注册成功'};
+                                        var accessToken = jwt.sign({
+                                            username, password
+                                        }, cf.token_key, { expiresIn: '24h' });
+                                        var response = {code:1,data:{accessToken},desc:'注册成功'};
                                         res.contentType('json');//返回的数据类型
                                         res.send(response);//给客户端返回一个json格式的数据
+
+
+
+
+                                        //注册的同时帮创建 博客用户表 博客写文章表创建一条用户的数据
+                                        var blogUser = new BlogUser({
+                                            user_id,user_object_id:user,following: [],followers: [],collect: [],likelist: [],articlenum: [],love: 0,say: '',sex: ''
+                                        })
+                                        // user_object_id
+                                        blogUser.save();
+                                        Increment.findOneAndUpdate({"type":"noteid"},{$inc:{id:2}},{new: true}, (err, noteInc)=>{
+                                            if(err)return false;
+
+                                            let note_id = noteInc.id;
+                                            BlogNote.insertMany([
+                                                {
+                                                    user_id,id: note_id-1,name: '笔记本',is_show: true,seq: 0
+                                                },
+                                                {
+                                                    user_id,id: note_id,name: '日记',is_show: true,seq: 1
+                                                }
+                                                ], function(err, docs){
+                                            });
+                                        })
                                         return false;
-                                    })
-
-                                    //注册的同时帮创建 博客用户表 博客写文章表创建一条用户的数据
-                                    var blogUser = new BlogUser({
-                                        user_id,following: [],followers: [],collect: [],likelist: [],articlenum: [],love: 0,say: '',sex: ''
-                                    })
-                                    blogUser.save();
-                                    Increment.findOneAndUpdate({"type":"noteid"},{$inc:{id:2}},{new: true}, (err, noteInc)=>{
-                                        if(err)return false;
-
-                                        let note_id = noteInc.id;
-                                        BlogNote.insertMany([
-                                            {
-                                                user_id,id: note_id-1,name: '笔记本',is_show: true,seq: 0
-                                            },
-                                            {
-                                                user_id,id: note_id,name: '日记',is_show: true,seq: 1
-                                            }
-                                            ], function(err, docs){
-                                        });
                                     })
                                 })
                         }
@@ -103,7 +109,6 @@ router.post('/signup', (req, res)=>{
                 }
             })
         }
-    });
 })
 
 
@@ -115,8 +120,7 @@ router.post('/signin', (req, res)=>{
     *   return {code:1, desc:'用户名不对'}
     *   code 1成功 -1账号不对  -2密码格式不对 
     */
-    req.addListener("data", function(data){
-        var param = qs.parse(data+'');//转换成json对象
+        var param = req.body;
         let {username, password} = param;
         password = Buffer.from(password, 'base64').toString()//对应atob
         if( !/^[\u4E00-\u9FA5]{2,6}$/.test(username) && !/^1[3|4|5|7|8]\d{9}$/.test(username) ){//用户
@@ -145,7 +149,7 @@ router.post('/signin', (req, res)=>{
                         if(isMatch){
                             var accessToken = jwt.sign({
                                 username, password
-                            }, 'wangwei', { expiresIn: '24h' });
+                            }, cf.token_key, { expiresIn: '24h' });
                             response = {code:'1',data:{accessToken}, desc:'登录成功'};
                         }
                         res.send(response);
@@ -166,7 +170,7 @@ router.post('/signin', (req, res)=>{
                         if(isMatch){
                             var accessToken = jwt.sign({
                                 username, password
-                            }, 'wangwei', { expiresIn: '24h' });
+                            }, cf.token_key, { expiresIn: '24h' });
                             response = {code:'1',data:{accessToken}, desc:'登录成功'};
                         }
                         res.send(response);
@@ -174,7 +178,6 @@ router.post('/signin', (req, res)=>{
                 }
             })
         }
-    });
 })
 
 

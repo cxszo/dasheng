@@ -1,9 +1,9 @@
 var mongoose = require('mongoose')
 
 var BlogNoteArticleSchema = new mongoose.Schema({
-    user_id: String,
-    article_id: String,//文章id
-    note_id: String,// 父级笔记本id
+    user_id: Number,
+    article_id: Number,//文章id
+    note_id: Number,// 父级笔记本id
     title: String,// 文章标题
     body: String,// 文章内容
     createAt: {// 创建时间

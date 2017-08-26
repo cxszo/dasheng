@@ -57,7 +57,8 @@
     </div>
     <script src="js/libs/zepto.min.js"></script>
     <script>
-        $('button').click(()=>{
+
+        function signup(){
             let username = $('#username').val(),
             callphone = $('#callphone').val(),
             password = btoa($('#password').val());
@@ -70,9 +71,10 @@
                     password
                 },
                 success(res){
-                    console.log(res)
                     alert(res.desc)
                     if(res.code == '1'){
+                        accessToken = res.data.accessToken
+                        localStorage.setItem('accessToken', accessToken)
                         location.href='/index.html'
                     }
                 },
@@ -80,7 +82,16 @@
                     console.log(err)
                 }
             })
-        })
+
+        }
+        $('body').bind('keypress', function(event) {  
+            if (event.keyCode == "13") {              
+                event.preventDefault();   
+                signup()
+            }  
+        }); 
+
+        $('button').click(signup)
     </script>
 </body>
 

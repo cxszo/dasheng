@@ -23,7 +23,11 @@ var UserSchema = new mongoose.Schema({
       default: 1
     },
     password: String,
-    headimg: String,
+    headimg: String,//注册的时候 默认帮用户设置一个默认头像
+    sex: {//性别 1男 2女
+      type: String,
+      default: ''
+    },
     meta: {
         createAt: {
             type: Date,
@@ -47,9 +51,8 @@ UserSchema.pre('save', function(next) {
   else {
     this.meta.updateAt = Date.now()
   }
-  //注册的时候 默认帮用户设置一个默认头像
-  this.headimg = 'http://ov0zo91tq.bkt.clouddn.com/headimg/default/'+headimg_default[Math.floor(Math.random()*8)]
 
+  this.headimg = 'http://ov0zo91tq.bkt.clouddn.com/headimg/default/'+headimg_default[Math.floor(Math.random()*8)];
   bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
     if (err) return next(err)
     bcrypt.hash(user.password, salt, function(err, hash) {

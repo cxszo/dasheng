@@ -56,7 +56,7 @@
 
     <script src="js/libs/zepto.min.js"></script>
     <script>
-        $('#signin').click(()=>{
+        function signin(){
             let username = $('#username').val(),
                 password = btoa($('#password').val());
             $.ajax({
@@ -79,7 +79,16 @@
                     console.error(err)
                 }
             })
-        })
+
+        }
+        $('body').bind('keypress', function(event) {  
+            if (event.keyCode == "13") {              
+                event.preventDefault();   
+                signin()
+            }  
+        });
+
+        $('#signin').click(signin)
         
     </script>
 </body>

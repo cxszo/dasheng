@@ -1,0 +1,83 @@
+.blogList{
+   ul{
+   	li{
+		cursor: pointer;
+   		overflow: hidden;
+	    background: #fff;
+	    border-bottom: 1px #f0f0f0 solid;
+	    padding: 15px 20px 15px 20px;
+   		.left{
+			float: left;
+			width: 70%;
+			.left-content{
+				.author {
+				    font-size: 13px;
+				    line-height: 30px;
+				    overflow: hidden;
+				    a{
+				    	float: left;
+				    	color: #333;
+				    	text-decoration: none;
+				    	font-size: 13px;
+					    img{
+					    	width: 30px;
+					    	height: 30px;
+					    	border-radius: 50%;
+					    	margin-right: 10px;
+					    }
+				    }
+				    .name{
+				    	.time{
+							margin-left: 10px;
+							display: inline-block;
+						    color: #969696;
+						    font-size: 13px;
+				    	}
+				    }
+				}
+			}
+			.title h3{ 
+				    margin: -7px 0 4px;
+				    display: inherit;
+				    font-size: 17px;
+				    font-weight: 700;
+				    line-height: 1.5;
+			}
+			.intro p{
+				margin: 0 0 8px;
+			    font-size: 14px;
+			    line-height: 24px;
+			}
+			.tj{
+				em{
+					margin-right: 10px;
+					cite{
+						position: relative;
+						img{
+							width: 20px;
+							height: 20px;
+							top: 5px;
+    						position: relative;
+						}		
+					}
+					span{
+						color: #b2bac2
+					}
+
+				}
+			}
+   		}
+   		.right{
+			float: right;
+			position: relative;
+			.right-content{
+				width: 150px;
+				height: 120px;
+				position: absolute;
+				right: 0;
+				top: 25px;
+			}
+   		}
+   	}
+   }
+}

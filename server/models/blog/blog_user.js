@@ -1,15 +1,14 @@
 var mongoose = require('mongoose')
-
-var BlogUserSchema = new mongoose.Schema({
-    user_id: String,
-    following: Array,//关注
-    followers: Array,//粉丝
-    collect: Array,//收藏文章列表
-    likelist: Array,//喜欢文章列表
-    articlenum: Array,//已发布的文章
-    love: Number,//文章点赞数
-    say: String,//String 个人介绍
-    sex: String//性别 1男 2女
+var Schema = mongoose.Schema
+var BlogUserSchema = new Schema({
+    user_id: Number,//给用户看的
+    user_object_id: { type: Schema.Types.ObjectId, ref: 'user' },//后端用的用户唯一id
+    following: [{ type: Schema.Types.ObjectId, ref: 'user' }],//关注
+    followers: [{ type: Schema.Types.ObjectId, ref: 'user' }],//粉丝
+    collect: [{ type: Schema.Types.ObjectId, ref: 'BlogArticle' }],//收藏文章列表
+    likelist: [{ type: Schema.Types.ObjectId, ref: 'BlogArticle' }],//喜欢文章列表
+    love: Number,//文章被点赞数
+    say: String//String 个人介绍
 }, { versionKey: false })
 
 

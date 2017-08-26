@@ -1,0 +1,15 @@
+.main{
+    max-width: 960px;
+    overflow: hidden;
+    padding-top: 65px;
+    margin: auto;
+    .main-left{
+        float: left;
+        width: 72.5%;
+
+    }
+     .main-right{
+        float: right;
+        width: 26%;
+    }
+}
