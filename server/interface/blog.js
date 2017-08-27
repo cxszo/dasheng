@@ -1,7 +1,8 @@
 var express = require('express');
 var app = express();
 var router = express.Router();
-var U = require('../util')
+var Util = require('../util')
+var ResCode = require('../config/resCode')
 var BlogTag = require('../models/blog/blog_tag')//标签表
 var BlogUser = require('../models/blog/blog_user')//博客用户表
 var BlogArticle = require('../models/blog/blog_article')//已发布文章
@@ -11,7 +12,7 @@ var BlogNote = require('../models/blog/blog_note')//文集
 var Increment = require('../models/blog/increment')//自增
 
 var $middlewares = require('./mount-middlewares');//获取token中间件
-
+var async = require('async')
 
 // 1.1首页-文章列表 王炜-warning  没有做分页
 router.post('/list', (req, res)=>{
@@ -57,7 +58,6 @@ router.post('/list', (req, res)=>{
                     userid,title,intro,read,love,comment,blogger,createAt,headimg,push_article_id,img_url
                 }
             })
-            console.log(resData)
             res.send({
                 code:'1',
                 data: resData,
@@ -222,8 +222,7 @@ router.post('/article', $middlewares, (req, res)=>{
                         BlogUser.find({user_id})
                         .exec((err, guestData)=>{
                             if(err)console.log(err)
-                            if(U.check_cb(guestData) == 1){
-                                console.log(guestData)
+                            if(Util.check_cb(guestData) == 1){
                                 let {collect, likelist } = guestData[0] || '';//作者信息
                                 collect = collect || [];//收藏人列表
                                 likelist = likelist || [];//喜欢的文章列表
@@ -275,7 +274,7 @@ router.get('/read/:id', $middlewares, (req, res)=>{
         res.contentType('json');
         res.send({
             code:'-1',
-            desc:'统计失败'
+            desc:'文章id没有传'
         });
         return false;
     }
@@ -283,61 +282,269 @@ router.get('/read/:id', $middlewares, (req, res)=>{
     BlogArticle.find({push_article_id: id})
     .exec((err, _data)=>{
         if(err)console.log(err);
-
-        if(U.check_cb(_data) == '1'){
+        if(Util.check_cb(_data) == '1'){
             let {user_id} = _data[0] || '';
             if(typeof api_user === 'object'){
                 cUser_id = api_user.user_id || '';
                 if(user_id == cUser_id){
                     res.contentType('json');
                     res.send({
-                        code:'1',
-                        desc:'自己的文章不统计'
+                        code:'-1',
+                        desc:'查看自己的文章不统计'
                     });
                     return false;
                 }
             }
-        }
-
-        BlogArticle.findOneAndUpdate({"push_article_id": id},{$inc:{read:1}},{new: true}, (err, inc)=>{
+            BlogArticle.findOneAndUpdate({"push_article_id": id},{$inc:{read:1}},{new: true}, (err, inc)=>{
+                res.contentType('json');
+                res.send({
+                    code:'1',
+                    data:{read: inc.read || ''},
+                    desc:'已更新'
+                });
+                return false;
+            })
+        }else{//文章找不到
             res.contentType('json');
             res.send({
-                code:'1',
-                data:{read: inc.read || ''},
-                desc:'已更新'
+                code:'-2',
+                desc:'找不到当前文章'
             });
             return false;
-        })
+        }
     })
 
     
 })
 // 2.3文章-喜欢、取消喜欢
-router.post('/article/love', (req, res)=>{
-    res.contentType('json');
-    res.send({
-        code:'-1',
-        desc:'待开发'
+router.post('/article/love', $middlewares, (req, res)=>{
+    var api_user = req.api_user || '';
+    let articleId = req.body.id || '';
+    if(typeof api_user == 'string'){//用户未登录 或者不存在该用户
+        res.contentType('json');
+        res.send({
+            code: ResCode.unlogin.c,
+            desc: api_user
+        });
+        return false;
+    }
+    if( articleId == '' ){//文章id 没传
+        res.contentType('json');
+        res.send({
+            code: '-1',
+            desc: '请传入文章id'
+        });
+        return false;
+    }
+    
+    async.waterfall([
+        //【第一步】 find 先检测文章id 可靠性
+        (callback)=>{
+            BlogArticle.findOne({push_article_id: articleId, is_show: true}, '_id love')
+            .exec((err, _data)=>{
+                if(err)console.log(err);
+
+                let resData = _data || '';
+                let id = resData._id || '';
+                let love = resData.love || [];
+                if(id === ''){
+                    res.contentType('json');
+                    res.send({
+                        code: ResCode.nofound.c,
+                        desc: ResCode.nofound.d+'文章'
+                    });
+                    return false;
+                }
+                callback(null, id, love);
+            })
+        },
+        //【第二步】 find 用户喜欢的文章列表
+        (id, love, callback)=> {
+            let article_objectid = id;//文章的_id
+            BlogUser.findOne({user_id: api_user.user_id}, '-_id likelist')
+            .exec((err, _data)=>{
+                if(err)console.log(err);
+                let resData = _data || '';
+                let likelist = resData.likelist || '';
+                if(likelist === ''){
+                    res.contentType('json');
+                    res.send({
+                        code: ResCode.nofound.c,
+                        desc: ResCode.nofound.d+'用户信息'
+                    });
+                    return false;
+                }
+                let article_objectid_index = likelist.indexOf(article_objectid)
+                if(article_objectid_index>=0){//取消喜欢
+                    likelist.splice(article_objectid_index, 1)
+                    let love_index = '-1';
+                    love.map((item, index)=>{
+                        if(item.user_id == api_user.user_id){
+                            love_index = index;
+                        }
+                    })
+                    if(love_index != '-1'){//王炜-warning 这里 按理说肯定不等于-1  或者不等于-1的时候应该在log里面记录一下
+                        love.splice(love_index, 1)
+                    }
+                    callback(null, likelist, love, '取消');
+                }else{//添加喜欢
+                    likelist.push(article_objectid)
+                    love.unshift({
+                        user_id: api_user.user_id,//点赞人
+                        name: api_user.username,//点赞人名
+                        headimg: api_user.headimg,//点赞人头像
+                        cdate: Date.now()
+                    })
+                    callback(null, likelist, love, '添加');
+                }
+            })
+        },
+        //【第三步】update-用户表 添加、删除喜欢
+        (id, love, act, callback)=>{
+            BlogUser.update({user_id: api_user.user_id}, {$set:{likelist: id}})
+            .exec((err)=>{
+                if(err)console.log(err);
+                callback(null, love, act);
+            })
+        },
+        //【第四步】update-文章表 添加、删除喜欢 王炜-warning 这个地方有点蛋疼 文章的喜欢人列表是用Array存入数据库的 查询该用户有木有点过喜欢 得map 遍历查 很浪费性能 后面得优化
+        (love, act, callback)=>{
+            BlogArticle.update({push_article_id: articleId, is_show: true}, {$set:{love: love}})
+            .exec((err)=>{
+                if(err)console.log(err);
+                callback(null, act);
+            })
+        }
+    ], function (err, act) {//response
+        res.contentType('json');
+        res.send({
+            code: ResCode.success.c,
+            desc: act+ResCode.success.d
+        });
     });
-    return false;
+   
 })
-// 2.4文章-喜欢人列表
-router.post('/article/loverlist', (req, res)=>{
-    res.contentType('json');
-    res.send({
-        code:'-1',
-        desc:'待开发'
-    });
-    return false;
+// 2.4文章-喜欢人列表 王炜-warning 没有考虑分页
+router.get('/article/loverlist/:id', (req, res)=>{
+    let articleId = req.params.id || '';
+    if( articleId == '' ){//文章id 没传
+        res.contentType('json');
+        res.send({
+            code: '-1',
+            desc: '请传入文章id'
+        });
+        return false;
+    }
+    async.waterfall([
+        (callback)=>{
+            BlogArticle.findOne({push_article_id: articleId}, '-_id love')
+            .exec((err, _data)=>{
+                if(err) console.log(err);
+                let resData = _data || '';
+                let love = resData.love || '';
+                if(love === ''){
+                    res.contentType('json');
+                    res.send({
+                        code: ResCode.nofound.c,
+                        desc: ResCode.nofound.d+'文章'
+                    });
+                    return false;
+                }
+                callback(null, love)
+            })
+        }
+    ], (err, love)=>{
+        res.contentType('json');
+        res.send({
+            code: ResCode.success.c,
+            data: love,
+            desc: ResCode.success.d
+        });
+        return false;
+    })
 })
 // 2.5文章-收藏、取消收藏
-router.post('/collect', (req, res)=>{
-    res.contentType('json');
-    res.send({
-        code:'-1',
-        desc:'待开发'
+router.post('/collect', $middlewares, (req, res)=>{
+    var api_user = req.api_user || '';
+    let articleId = req.body.id || '';
+    if(typeof api_user == 'string'){//用户未登录 或者不存在该用户
+        res.contentType('json');
+        res.send({
+            code: ResCode.unlogin.c,
+            desc: api_user
+        });
+        return false;
+    }
+    if( articleId == '' ){//文章id 没传
+        res.contentType('json');
+        res.send({
+            code: '-1',
+            desc: '请传入文章id'
+        });
+        return false;
+    }
+    
+    async.waterfall([
+        //第一步 find 先检测文章id 可靠性
+        (callback)=>{
+            BlogArticle.findOne({push_article_id: articleId, is_show: true}, '_id')
+            .exec((err, _data)=>{
+                if(err)console.log(err);
+
+                let resData = _data || '';
+                let id = resData._id || '';
+
+                if(id == ''){
+                    res.contentType('json');
+                    res.send({
+                        code: ResCode.nofound.c,
+                        desc: ResCode.nofound.d+'文章'
+                    });
+                    return false;
+                }
+                callback(null, id);
+            })
+        },
+        //第二步 find 用户喜欢的文章列表
+        (id, callback)=> {
+            let article_objectid = id;//文章的_id
+            BlogUser.findOne({user_id: api_user.user_id}, '-_id collect')
+            .exec((err, _data)=>{
+                if(err)console.log(err);
+                let resData = _data || '';
+                let collect = resData.collect || '';
+                if(collect === ''){//[] == '' 所以得用===
+                    res.contentType('json');
+                    res.send({
+                        code: ResCode.nofound.c,
+                        desc: ResCode.nofound.d+'用户信息'
+                    });
+                    return false;
+                }
+                let article_objectid_index = collect.indexOf(article_objectid)
+                if(article_objectid_index>=0){//取消喜欢
+                    collect.splice(article_objectid_index, 1)
+                    callback(null, collect, '取消');
+                }else{//添加喜欢
+                    collect.push(article_objectid)
+                    callback(null, collect, '添加');
+                }
+            })
+        },
+        (id, act, callback)=>{//update 添加、删除喜欢
+            BlogUser.update({user_id: api_user.user_id}, {$set:{collect: id}})
+            .exec((err)=>{
+                if(err)console.log(err);
+                callback(null, act);
+            })
+        }
+    ], function (err, act) {//response
+        res.contentType('json');
+        res.send({
+            code: ResCode.success.c,
+            desc: act+ResCode.success.d
+        });
     });
-    return false;
 })
 // 3.1评论
 router.post('/comment/create', (req, res)=>{
@@ -394,13 +601,90 @@ router.post('/revert/delete', (req, res)=>{
     return false;
 })
 // 4.1用户-关注、取消关注
-router.post('/follow', (req, res)=>{
-    res.contentType('json');
-    res.send({
-        code:'-1',
-        desc:'待开发'
-    });
-    return false;
+router.get('/follow/:id', $middlewares, (req, res)=>{
+    var pre_user_id = req.params.id || '';//别人的id
+    var api_user = req.api_user || '';//本人的登录信息
+    if( pre_user_id == '' ){//别人的id 没传 王炜-warning 做不做这个判断其实无所谓 因为如果没有:id 也进不来 会返回404
+        res.contentType('json');
+        res.send({
+            code: '-1',
+            desc: '请传入被关注者的id'
+        });
+        return false;
+    }
+    //没有登录
+    if(typeof api_user === 'string'){
+        res.contentType('json');
+        res.send({
+            code: ResCode.unlogin.c,
+            desc: api_user
+        });
+        return false;
+    }
+
+
+    var { user_id } = api_user || '';//本人id
+
+
+    async.waterfall([
+        //【第一步】findOne 查被关注人的 _id
+        (callback)=>{
+            BlogUser.findOne({user_id: pre_user_id}, '_id')
+            .exec((err, _data)=>{
+                if(err) console.log(err);
+                let resData = _data || '';
+                let _id = resData._id || '';
+
+                if(_id === ''){
+                    res.contentType('json');
+                    res.send({
+                        code: ResCode.nofound.c,
+                        desc: ResCode.nofound.d+'被关注的人'
+                    });
+                    return false;
+                }
+                callback(null, _id)
+            })
+        },
+        //【第二步】findOne 查用户的关注列表
+        (_id, callback)=>{
+            BlogUser.findOne({user_id}, '-_id following')
+            .exec((err, _data)=>{
+                if(err) console.log(err);
+                let resData = _data || '';
+                let following = resData.following || [];
+
+                let _id_index = following.indexOf(_id);
+                let act = '';
+                if(_id_index=='-1'){
+                    following.unshift(_id)
+                    act = '关注';
+                }else{
+                    following.splice(_id_index, 1)
+                    act = '取消';
+                }
+
+                callback(null, following, act)
+            })
+        },
+        //【第三步】update 
+        (following, act, callback)=>{
+            BlogUser.update({user_id}, {$set:{following}})
+            .exec((err)=>{
+                if(err) console.log(err);
+                callback(null, act)
+            })
+        },
+    ], (err, act)=>{
+        res.contentType('json');
+        res.send({
+            code: ResCode.success.c,
+            desc: act+ResCode.success.d
+        });
+        return false;
+    })
+
+    
 })
 
 // 4.2用户-关注数、文章数

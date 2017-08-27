@@ -13,7 +13,7 @@ let url = require('url')
 var bodyParse = require('body-parser')
 
 let lu = '/opt/www/';
-let dev = require('./profile')
+let dev = require('./config/profile')
 
 
 if(dev == '1' || dev == '2'){
@@ -23,7 +23,15 @@ if(dev == '1' || dev == '2'){
 mongoose.Promise = global.Promise;  
 //链接数据库
 if(dev == '1'){
-  mongoose.connect('mongodb://127.0.0.1:27017/wangweimac',{useMongoClient:true});
+  let options = {
+    useMongoClient:true,
+    server: {
+      auto_reconnect: true,//是否自动重连接
+      poolSize: 10//是连接池大小
+    }
+  }
+
+  mongoose.connect('mongodb://127.0.0.1:27017/wangweimac',options);
 }else{
   const options = {
     user : "wangwei",

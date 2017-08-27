@@ -86,3 +86,12 @@ app.post('/data/register', (req, res)=>{
 
   
 })
+
+
+
+res.contentType('json');
+res.send({
+    code:'-1',
+    desc:'待开发'
+});
+return false;

@@ -4,7 +4,7 @@ var app = express();
 var router = express.Router();
 var jwt = require('jsonwebtoken');//用来创建和确认用户信息摘要
 
-var cf =require('../config/g')
+var $global =require('../config/global')
 var User = require('../models/user')
 
 // 检查用户会话
@@ -14,7 +14,7 @@ module.exports = function(req, res, next) {
   // 解析 token
   if (accessToken) {
     // 确认token
-    jwt.verify(accessToken, cf.token_key, function(err, decoded) {
+    jwt.verify(accessToken, $global.token_key, function(err, decoded) {
       if (err) {
         req.api_user = 'token过期,请重新登录';
         next();

@@ -6,7 +6,7 @@ var Increment = require('../models/blog/increment')
 var BlogUser = require('../models/blog/blog_user')
 var BlogNote = require('../models/blog/blog_note')
 
-var cf = require('../config/g')
+var $global = require('../config/global')
 var jwt = require('jsonwebtoken');
 
 var bcrypt = require('bcrypt')
@@ -73,7 +73,7 @@ router.post('/signup', (req, res)=>{
                                         if(err) return console.log(err)
                                         var accessToken = jwt.sign({
                                             username, password
-                                        }, cf.token_key, { expiresIn: '24h' });
+                                        }, $global.token_key, { expiresIn: '24h' });
                                         var response = {code:1,data:{accessToken},desc:'注册成功'};
                                         res.contentType('json');//返回的数据类型
                                         res.send(response);//给客户端返回一个json格式的数据
@@ -149,7 +149,7 @@ router.post('/signin', (req, res)=>{
                         if(isMatch){
                             var accessToken = jwt.sign({
                                 username, password
-                            }, cf.token_key, { expiresIn: '24h' });
+                            }, $global.token_key, { expiresIn: '24h' });
                             response = {code:'1',data:{accessToken}, desc:'登录成功'};
                         }
                         res.send(response);
@@ -170,7 +170,7 @@ router.post('/signin', (req, res)=>{
                         if(isMatch){
                             var accessToken = jwt.sign({
                                 username, password
-                            }, cf.token_key, { expiresIn: '24h' });
+                            }, $global.token_key, { expiresIn: '24h' });
                             response = {code:'1',data:{accessToken}, desc:'登录成功'};
                         }
                         res.send(response);
