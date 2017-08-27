@@ -1,0 +1,85 @@
+.tab{
+    .title{
+        margin-bottom: 20px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 0;
+        list-style: none;
+        li{
+            line-height: 20px;
+            position: relative;
+            display: inline-block;
+            padding: 8px 0;
+            margin-bottom: -1px;
+            a{
+                padding: 13px 20px;
+                font-size: 15px;
+                font-weight: 700;
+                color: #969696;
+                line-height: 25px;
+            }
+        }
+        li.active{
+            border-bottom: 2px solid #646464;
+        }
+    }
+    .wrap{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li{
+            position: relative;
+            width: 100%;
+            margin: 0 0 17px;
+            padding: 0 2px 17px 0;
+            border-bottom: 1px solid #f0f0f0;
+            word-wrap: break-word;
+            overflow: hidden;
+            .wrap-content{
+                .author{
+                    margin-bottom: 14px;
+                    font-size: 13px;
+                    overflow: hidden;
+                    .ico{
+                        float: left;
+                        width: 32px;
+                        height: 32px;
+                        cursor: pointer;
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin: 0 5px 0 0;
+                        color: #333;
+                        img{
+                            border-radius: 50%;
+                        }
+                    }
+                    .name{
+                        display: inline-block;
+                        vertical-align: middle;
+                        line-height: 32px;
+                        a{
+                            color: #333;
+                        }
+                        span{
+                            display: inline-block;
+                            padding-left: 5px;
+                            color: #969696;
+                            font-size: 13px;
+                        }
+                    }
+                }
+                .biaoti{
+                    margin: -7px 0 4px;
+                    display: inherit;
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 1.5;
+                }
+                .abstract{
+                    margin: 0 0 8px;
+                    font-size: 13px;
+                    line-height: 24px;
+                }
+            }
+        }
+    }
+}

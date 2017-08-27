@@ -10,7 +10,9 @@ let Util={
 		options.headers={
 			'Content-type':'application/x-www-form-urlencoded'
 		}
-		options.body='tag_item=2_1';
+		let _data = $.param(data);
+		console.log(_data);
+		options.body=_data;
 		options.method='POST';
 		this.timeout(3e3,fetch(url,options)).then(res=>{
 			if(res.ok){

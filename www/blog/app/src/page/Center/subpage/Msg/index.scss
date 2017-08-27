@@ -1,0 +1,47 @@
+.msg-header{
+    overflow: hidden;
+    margin-bottom: 20px;
+    span{
+        display: inline-block;
+        float: left;
+    }
+    .ico{
+        width: 80px;
+        height: 80px;
+        img{
+            border-radius: 50%;
+        }
+    }
+    .text{
+        margin-left: 20px;
+        .title{
+            display: inline;
+            font-size: 21px;
+            font-weight: 700;
+            vertical-align: middle;
+        }
+        .info{
+            margin-top: 5px;
+            font-size: 14px;
+            em{
+                display: inline-block;
+                line-height: 20px;
+                div{
+                    font-size: 12px;
+                    margin: 0 7px 6px 0;
+                    padding: 0 7px 0 0;
+                    border-right: 1px solid #f0f0f0;
+                    a{
+                        display: block;
+                    }
+                    a:first-child{
+                        color: #333;
+                    }
+                    a:last-child{
+                        color: #969696;
+                    }
+                }
+            }
+        }
+    }
+}

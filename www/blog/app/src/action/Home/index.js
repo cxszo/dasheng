@@ -4,7 +4,7 @@ import {Util} from '../../util/util.js'
 export const getListData = param =>{
     let _data = {"name1":"value1","name2":"value2"}
     return dispatch =>{
-        Util.post('http://10.0.10.2:3000/data/blog/list',_data,(data)=>{
+        Util.ajaxGet('/bloglist/user_article_list.js',(data)=>{
                 dispatch(bloglistData(data))
             },(err)=>{
                 console.log(err)

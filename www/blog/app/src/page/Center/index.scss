@@ -1,0 +1,18 @@
+.center-wrap{
+    width: 935px;
+    padding: 0 16px;
+    margin: 0 auto;
+    margin-top: 105px;
+    height: 600px;
+    overflow: hidden;
+    .left{
+        float: left;
+        width:65%;
+        height: 600px;
+    }
+    .right{
+        float: right;
+        width:30%;
+        height: 600px;
+    }
+}
