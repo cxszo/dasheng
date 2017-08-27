@@ -253,7 +253,7 @@
 
  */
 /**
- * @api {get} /data/blog/read/:id 2.2文章-统计阅读
+ * @api {get} /data/blog/read/:id 2.2文章-统计阅读√
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息（可空）
  * 
@@ -411,12 +411,11 @@
  }
  */
 /**
- * @api {post} /data/blog/article/love 2.3文章-喜欢、取消喜欢
+ * @api {post} /data/blog/article/love 2.3文章-喜欢、取消喜欢√
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} id 文章id push_article_id
- * @apiParam {String} act 操作  1喜欢  2取消喜欢
  * @apiSuccessExample Success-Response:
  {
      code:'1',
@@ -424,7 +423,7 @@
  }
  */
 /**
- * @api {post} /data/blog/article/loverlist 2.4文章-喜欢人列表
+ * @api {get} /data/blog/article/loverlist/:id 2.4文章-喜欢人列表√
  * @apiGroup blog
  * 
  * @apiParam {String} id 文章id push_article_id
@@ -496,12 +495,11 @@
  */
 
 /**
- * @api {post} /data/blog/follow 4.1用户-关注、取消关注
+ * @api {get} /data/blog/follow/:id 4.1用户-关注、取消关注√
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
- * @apiParam {String} act 操作  1关注  2取消关注
- * @apiParam {String} userid 博主userid
+ * @apiParam {String} id 博主userid
  * @apiSuccessExample Success-Response:
  {
      code:'1',
@@ -674,14 +672,13 @@
  * 
  */
 /**
- * @api {post} /data/blog/collect 2.5文章-收藏、取消收藏
+ * @api {post} /data/blog/collect 2.5文章-收藏、取消收藏√
  * @apiGroup blog
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} id 文章id push_article_id
- * @apiParam {String} act 操作  1收藏  2取消收藏
  * 
- * @apiSuccess {Number} code 1收藏成功 否则收藏失败.
+ * @apiSuccess {Number} code 1收藏、取消成功 .
  * @apiSuccessExample Success-Response:
  {
      code:'1',
