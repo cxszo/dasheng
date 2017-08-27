@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "bcrypt": "^1.0.2",
-    "express": "^4.15.3",
-    "mongoose": "^4.11.5"
-  }
-}

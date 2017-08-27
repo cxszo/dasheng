@@ -13,7 +13,7 @@ let url = require('url')
 var bodyParse = require('body-parser')
 
 let lu = '/opt/www/';
-let dev = require('./profile')
+let dev = require('./config/profile')
 
 
 if(dev == '1' || dev == '2'){

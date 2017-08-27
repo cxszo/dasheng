@@ -7,7 +7,7 @@ var fs = require('fs'),
     stdout = process.stdout;
 var stats = [];
 
-let dev = require('../profile')
+let dev = require('../config/profile')
 
 
 
