@@ -93,10 +93,10 @@ router.post('/signup', (req, res)=>{
                                             let note_id = noteInc.id;
                                             BlogNote.insertMany([
                                                 {
-                                                    user_id,id: note_id-1,name: '笔记本',is_show: true,seq: 0
+                                                    user_id,id: note_id-1,name: '随笔',is_show: true,seq: 1
                                                 },
                                                 {
-                                                    user_id,id: note_id,name: '日记',is_show: true,seq: 1
+                                                    user_id,id: note_id,name: '日记',is_show: true,seq: 0
                                                 }
                                                 ], function(err, docs){
                                             });

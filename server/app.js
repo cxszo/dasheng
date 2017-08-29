@@ -24,11 +24,11 @@ mongoose.Promise = global.Promise;
 //链接数据库
 if(dev == '1'){
   let options = {
-    useMongoClient:true,
-    server: {
-      auto_reconnect: true,//是否自动重连接
-      poolSize: 10//是连接池大小
-    }
+    useMongoClient:true
+    // server: {
+    //   auto_reconnect: true,//是否自动重连接
+    //   poolSize: 10//是连接池大小
+    // }
   }
 
   mongoose.connect('mongodb://127.0.0.1:27017/wangweimac',options);
