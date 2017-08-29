@@ -2,50 +2,50 @@ import './index.scss'
 
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-import {article} from '../../../../fetch/Article/'
+import Author from '../Author/'
 let txSrc = require('./img/ico-tx.png')
 class Article extends React.Component{
 	  constructor(props, context) {
         super(props, context);
 		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
 		this.state = {
-			data:''
+			
 		}
 	}
 	componentDidMount(){
-		article(data=>{
-			console.log(data)
-			this.setState({
-				data:data.data
-			})
-		})
 		
 	}
 	render(){
+		
 		return (
+			<div>
+			{
+			this.props.data.length == '' ? null :
 			<div className="blog-list blog-detail"> 
 				<div className="blog-detail-title">
-					<span>{this.state.data.title}</span>
+					<span>{this.props.data.title}</span>
 				</div>
 				<div className="blog-detail-contain">
 					<div className="blog-detail-msg">
 						<span>
-							<img src={this.state.data.headimg}/>
+							<img src={this.props.data.headimg}/>
 						</span>
 						<span>
-							<p>{this.state.data.bloger}</p>
+							<p>{this.props.data.blogger.name}<a className="gz">+关注</a></p>
 							<p>
-								<em>{this.state.data.createAt}</em>
-								<em>阅读{this.state.data.read}</em>
-								<em>喜欢{this.state.data.love}</em>
-								<em>评论{this.state.data.comment}</em>
+								<em>{this.props.data.createAt.substring(0,10)}</em>
+								<em>阅读{this.props.data.read}</em>
+								<em>喜欢{this.props.data.love}</em>
+								<em>评论{this.props.data.comment}</em>
+								<em>赞赏{this.props.data.comment}</em>
 							</p>
 						</span>
 					</div>
 					<div className="blog-detail-p">
-						<p>{this.state.data.body}</p>
+						<p>{this.props.data.body}</p>
 					</div>
 				</div>
+				<Author/>
 				<div className = 'detail-comment-box'>
 					{/* 发表评论 */}
 					<div className="new-comment">
@@ -119,6 +119,8 @@ class Article extends React.Component{
 					</div>
 				</div>
 			</div>
+			}
+		</div>
 		)
 	}
 }

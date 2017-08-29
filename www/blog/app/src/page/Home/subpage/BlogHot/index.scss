@@ -13,6 +13,12 @@
 		}
 		ul{
 			padding: 15px;
+			li.cur{
+				background: #ea6f5a;
+				a{
+					color: #fff;
+				}
+			}
 			li{
 				float: left;
 				margin-right: 12px;

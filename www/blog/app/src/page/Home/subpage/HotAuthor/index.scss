@@ -17,22 +17,38 @@
                 position: relative;
                 border-bottom:1px #f0f0f0 solid;
                 padding: 10px 0;
-				a{
+                overflow: hidden;
+				a{  
+                    overflow: hidden;
+                    span:last-child{
+                        width: 72%;
+                    }
 					span{
                         display: inline-block;
+                        overflow: hidden;
+                        float: left;
                         p{
                             padding-left: 15px;
                             line-height: 20px;
                             font-size: 12px;
                         }
+                        p:first-child{
+                            padding-top: 5px;
+                            margin-right: 60px;
+                            font-size: 14px;
+                            display: block;
+                        }
                         p:last-child{
                              color: #969696;
+                             height: 24px;
+                             overflow: hidden;
+                             margin-top: 2px;
                              font-size: 12px;
                         }
                        
                         img{
-                            width: 40px;
-                            height: 40px;
+                            width: 48px;
+                            height: 48px;
                             border-radius: 50%;
                             border: 1px #ddd solid; 
                         }

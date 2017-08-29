@@ -2,9 +2,9 @@ import * as types from '../../constant/Home/homeType.js'
 import {Util} from '../../util/util.js'
 // 博客列表
 export const getListData = param =>{
-    let _data = {"name1":"value1","name2":"value2"}
+   let _param = param || {};
     return dispatch =>{
-        Util.ajaxGet('/bloglist/user_article_list.js',(data)=>{
+        Util.post('http://10.0.10.2:3000/data/blog/list',_param,(data)=>{
                 dispatch(bloglistData(data))
             },(err)=>{
                 console.log(err)
@@ -19,8 +19,9 @@ const bloglistData=data=>({
 })
 //博客一级标题
 export const getTitleData = param =>{
+ 
     return dispatch =>{
-        Util.ajaxGet('/Blogtag/blogtag.js',(data)=>{
+        Util.ajaxGet('http://10.0.10.2:3000/data/blog/tag',(data)=>{
             dispatch(titleData(data))
             },(err)=>{
                 console.log(err)
@@ -33,10 +34,27 @@ const titleData = data =>({
     data
 })
 
+//博客二级标题
+export const getTitleData_2 = param =>{
+    
+       return dispatch =>{
+           Util.ajaxGet('http://10.0.10.2:3000/data/blog/tag/'+param,(data)=>{
+               dispatch(titleData_2(data))
+               },(err)=>{
+                   console.log(err)
+               }
+           )
+       }
+   }
+   const titleData_2 = data =>({
+       type: types.TITLE_DATA_2,
+       data
+   })
+
 //热门原作者
 export const getAuthorData = param =>{
     return dispatch =>{
-        Util.ajaxGet('/HotAuthor/hotauthor1.js',(data)=>{
+        Util.ajaxGet('http://10.0.10.2:3000/data/blog/authors',(data)=>{
             dispatch(authorData(data))
         },(error)=>{
             console.log(error)

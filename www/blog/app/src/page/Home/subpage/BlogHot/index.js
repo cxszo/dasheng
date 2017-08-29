@@ -4,10 +4,23 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 class BlogHot extends React.Component{
 	constructor(props) {
 		super(props);
+		this.state={
+			turnOff:100
+        }
 		
 	}
 	componentDidMount(){
 		
+	}
+	handleClick(i){
+		let data = {
+			tag_item:i
+		}
+		this.setState({
+			turnOff:i
+		})
+		let {actions} = this.props;
+		actions.getListData(data);
 	}
 	render(){
 		return (
@@ -19,7 +32,7 @@ class BlogHot extends React.Component{
 							this.props.data.length == 0 ? null :
 							this.props.data.map((v,i)=>{
 								return (
-									<li key ={i}><a href="">{v.name}</a></li>
+									<li key ={i} onClick={this.handleClick.bind(this,i)} className={i==this.state.turnOff?'cur':''}><a>{v.name}</a></li>
 								)
 							})
 						}

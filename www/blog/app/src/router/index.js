@@ -4,7 +4,7 @@ import {syncHistoryWithStore} from 'react-router-redux'
 
 import Index from '../page'
 import Blog from '../container/Home'
-import Detail from '../page/Detail'
+import Detail from '../container/Detail'
 import Center from '../page/Center'
 class RouterMap extends React.Component {
     render() {

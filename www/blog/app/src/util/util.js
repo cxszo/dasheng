@@ -46,6 +46,22 @@ let Util={
 		  }
 		};
 	},
+	getPara(name, url) {
+		var para = (typeof url == 'undefined') ? window.location.search : url;
+		para = para.split('?');
+		para = (typeof para[1] == 'undefined') ? para[0] : para[1];
+		para = para.split('&');
+		for (var i = 0; para[i]; i++) {
+			para[i] = para[i].split('=');
+			if (para[i][0] == name) {
+				try { // 防止FF等decodeURIComponent异常
+					return para[i][1]
+				} catch (e) {
+				}
+			}
+		}
+		return '';
+	},
 	ajaxPost(url,data,successCallback,failCallback){
 		var client = new XMLHttpRequest();
 		client.open("POST", url);
@@ -67,18 +83,14 @@ let Util={
 		  }
 		};
 	},
-	isLogin(param,fn){
-		let obj;
-		Cookie.getCookie('accessToken',token=>{
-			Cookie.getCookie('appId',appId=>{
-				let pa={accessToken:token,appId:appId};
-				obj=Object.assign({},param,pa);
-				if(typeof fn==='function'){
-					fn(obj);
-				}
-			})
-		})
-		if(typeof fn!=='function') return obj
+	isLogin(params){
+		let accessToken = localStorage.getItem('accessToken') || ''; 
+		if(accessToken){
+			return Object.assign({},params,{accessToken})
+		}else{
+			return false
+		}
+		
 	}
 }
 let Cookie = {

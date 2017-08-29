@@ -28,7 +28,7 @@ class HotAuthor extends React.Component{
                                             <p>{v.name}</p>
                                             <p>{v.say}</p>
                                         </span>
-                                        <em>+关注</em>
+                                        {/* <em>+关注</em> */}
                                     </a>
                                 </li>
                             )

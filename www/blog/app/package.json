@@ -4,7 +4,7 @@
   "description": "",
   "main": "",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --host 192.168.2.101 --hot --open --port 8081",
+    "start": "webpack-dev-server --progress --colors --host 10.0.10.171 --hot --open --port 8081",
     "ww": "webpack-dev-server --progress --colors --host 192.168.0.131 --hot --open --port 8084",
     "ww1": "webpack-dev-server --progress --colors --host 10.0.10.2 --hot --open --port 8084",
     "dev1": "webpack-dev-server --port 3002 --hot --host 10.0.10.171 --open",

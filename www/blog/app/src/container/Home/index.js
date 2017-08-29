@@ -10,11 +10,10 @@ const BlogWrap=props=>(
 )
 
 const mapStateToProps=state=>({
-
 	bloglistData:state.BlogList.bloglist,
 	blogtitleData:state.BlogList.blogtitle,
+	blogtitleData_2:state.BlogList.blogtitle_2,
 	blogauthorData:state.BlogList.blogauthor
-	
 })
 
 const mapDispatchToProps=dispatch=>({

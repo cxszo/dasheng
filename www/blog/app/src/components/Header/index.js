@@ -35,19 +35,22 @@ class Header extends React.Component{
 							}
 						</ul>
 					</div>
-					<div className="login-count">
-						<ul>
-							<li>
-								<a href="../../sign_in.html">登录</a>
-								<a href="../../sign_in.html">注册</a>
-							</li>
-							
-						</ul>
-					</div>
-					<div className="count2" style={{display:'none'}}>
-						<span>Simple</span>
-						<img src='https://dn-mhke0kuv.qbox.me/gDKsHYPSIAdunI1Xzbv7IAE?imageView2/1/w/100/h/100/q/85/interlace/1' alt=""/>
-					</div>
+					{
+						this.props.isLogin == false ? 
+						<div className="login-count">
+							<ul>
+								<li>
+									<a href="http://10.0.10.171:8081/sign_in">登录</a>
+									<a href="http://10.0.10.171:8081/sign_up">注册</a>
+								</li>
+								
+							</ul>
+						</div>
+						:
+						<div className="count2">
+							<a><img src='http://upload.jianshu.io/users/upload_avatars/1717877/aa3777f3ee0f.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120' alt=""/></a>
+						</div>
+					}	
 					<div className="search">
 						<input placeholder="搜索大圣"/>
 						<img src="https://gold-cdn.xitu.io/v3/static/img/juejin-search-icon.6f8ba1b.svg" alt=""/>

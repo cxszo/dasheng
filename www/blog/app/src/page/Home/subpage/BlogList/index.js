@@ -2,6 +2,7 @@ import'./index.scss'
 import React from 'react'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
+import NoData from '../../../../components/NoData/'
 class BlogList extends React.Component{
 	constructor(props) {
 		super(props);
@@ -9,8 +10,10 @@ class BlogList extends React.Component{
            
 		}
 	}
-	toSrc(){
-		hashHistory.push("/Detail/1234")
+	toSrc(i){
+		let {actions} = this.props;
+		hashHistory.push("/Detail/"+i);
+
     }
     componentDidMount(){
         
@@ -20,10 +23,10 @@ class BlogList extends React.Component{
 			<div className="blogList">
 				<ul>
 					{
-                        this.props.data.length == 0 ?  null :
+                        this.props.data.length == 0 ?  <NoData/> :
 						this.props.data.map((v,i)=>{
 							return (
-								<li key = {i} onClick={this.toSrc.bind(this)}>
+								<li key = {i} onClick={this.toSrc.bind(this,v.push_article_id)}>
 									<div className = "left">
 										<div className="left-content">
 											<div className="author">
@@ -31,8 +34,8 @@ class BlogList extends React.Component{
 											        <img src={v.headimg} alt="96"/>
 												  </a>      
 												  <div className="name">
-											        <a className="blue-link" href="">{v.name}</a>
-											        <span className="time">{v.cdate}</span>
+											        <a className="blue-link" href="">{v.blogger}</a>
+											        <span className="time">{v.createAt.substring(0,10)}</span>
 											      </div>
 											</div>
 											<div className="title">
