@@ -138,8 +138,8 @@
  */
 
 /**
- * @api {post} /data/blog/list 1.1首页-文章列表√
- * @apiGroup blog
+ * @api {post} /data/blog/list 1.1文章列表√
+ * @apiGroup blogStartPage
  * @apiParam {String} tag 大分类（可空）
  * @apiParam {String} tag_item 小分类（可空）
  * @apiParam {String} seek 用户手动搜索内容（可空）
@@ -176,76 +176,32 @@
     desc:'success'
 }
  */
-
 /**
- * @api {get} /data/blog/tag 1.2首页-查询标签√ 
- * @apiGroup blog
+ * @api {get} /data/blog/tag 1.2查询大标签√ 
+ * @apiGroup blogStartPage
  * @apiSuccessExample Success-Response:
  {
      code:'1',
      data:[
         {
             id:'1',
-            name:'推荐',
-            subset:[
-                {id:'1', name:'javascript'},
-
-            ]
-        },
-        {
-            id:'1',
-            name:'推荐',
-            subset:[
-                {id:'2_1', name:'javascript'},
-                {id:'3_1', name:'node'},
-                {id:'4_1', name:'mongodb'},
-                {id:'5_1', name:'nginx'},
-
-            ]
+            name:'推荐'
         },
         {
             id:'2',
-            name:'前端',
-            subset:[
-                {id:'2_1', name:'javascript'},
-                {id:'2_2', name:'css'},
-                {id:'2_3', name:'html5'},
-                {id:'2_4', name:'webpack'},
-                {id:'2_5', name:'react'},
-                {id:'2_6', name:'vue'},
-                {id:'2_7', name:'angular'},
-                {id:'2_8', name:'react-native'},
-                {id:'2_9', name:'sass'},
-                {id:'2_10', name:'less'},
-                {id:'2_11', name:'jquery'},
-                {id:'2_12', name:'动画'}
-            ]
+            name:'前端'
         },
         {
             id:'3',
-            name:'后端',
-            subset:[
-                {id:'3_1', name:'node'},
-
-            ]
+            name:'后端'
         },
         {
             id:'4',
-            name:'DB',
-            subset:[
-                {id:'4_1', name:'mongodb'},
-                {id:'4_2', name:'sql'},
-                {id:'4_3', name:'oracel'},
-
-            ]
+            name:'DB'
         },
         {
             id:'5',
-            name:'运维',
-            subset:[
-                {id:'5_1', name:'nginx'}
-
-            ]
+            name:'运维'
         },
      ],
      desc:'success'
@@ -253,8 +209,52 @@
 
  */
 /**
- * @api {get} /data/blog/read/:id 2.2文章-统计阅读√
- * @apiGroup blog
+ * @api {get} /data/blog/tag/:id 1.3查询小标签√ 
+ * @apiGroup blogStartPage
+ * 
+ * @apiParam {String} id 大标签id
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {id:'2_1', name:'javascript'},
+         {id:'3_1', name:'node'},
+         {id:'4_1', name:'mongodb'},
+         {id:'5_1', name:'nginx'},
+     ],
+     desc:'success'
+ }
+ */
+/**
+ * @api {get} /data/blog/authors 1.4优秀原创作者√ 
+ * @apiGroup blogStartPage
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} userid 用户id.
+ * @apiSuccess {String} headimg 用户头像.
+ * @apiSuccess {String} name 用户名.
+ * @apiSuccess {String} say 个人介绍.
+ * @apiSuccess {String} sex 性别.1男 2女 可能为空
+ * @apiSuccess {String} love 喜欢数.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            userid:'',
+            headimg:'',
+            name:'',
+            say:'',
+            sex:'',
+            love: 0
+         }
+     ],
+     desc:'success'
+ }
+ */
+/**
+ * @api {get} /data/blog/read/:id 2.2统计阅读√
+ * @apiGroup blogArticle
  * @apiHeader {String} x-access-token 登录信息（可空）
  * 
  * @apiParam {String} id 文章id  ->push_article_id
@@ -268,8 +268,8 @@
  }
  */
 /**
- * @api {post} /data/blog/article 2.1文章-内容√
- * @apiGroup blog
+ * @api {post} /data/blog/article 2.1内容√
+ * @apiGroup blogArticle
  * @apiHeader {String} x-access-token 登录信息（可空）
  * 
  * @apiParam {String} id 文章id push_article_id
@@ -284,7 +284,7 @@
  * @apiSuccess {Boolean} is_love 是否点击喜欢 . true 点过 false 未点过
  * @apiSuccess {Boolean} is_collect 是否收藏过 . true 已收藏 false 未收藏
  * @apiSuccess {Boolean} is_me 作者是否是自己 . true 是 false 不是
- * @apiSuccess {Boolean} article_id 写-文章id . 只有is_me是true的时候才会返回
+ * @apiSuccess {Boolean} article_id 文章id . 只有is_me是true的时候才会返回
  * @apiSuccessExample Success-Response:
  {
      code:'1',
@@ -316,7 +316,7 @@
 
 /**
  * @api {post} /data/blog/comment/create 3.1评论
- * @apiGroup blog
+ * @apiGroup blogComment
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} push_article_id 文章id
@@ -344,8 +344,8 @@
  * 
  */
 /**
- * @api {post} /data/blog/comment/list 3.2评论-查看评论
- * @apiGroup blog
+ * @api {post} /data/blog/comment/list 3.2查看评论
+ * @apiGroup blogComment
  * @apiHeader {String} x-access-token 登录信息（可空）
  * 
  * @apiParam {String} id 文章id  push_article_id
@@ -396,8 +396,8 @@
  */
 /**
  * 
- * @api {post} /data/blog/comment/love 3.3评论-点赞、取消点赞
- * @apiGroup blog
+ * @api {post} /data/blog/comment/love 3.3点赞、取消点赞
+ * @apiGroup blogComment
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} id 文章id push_article_id
@@ -411,8 +411,8 @@
  }
  */
 /**
- * @api {post} /data/blog/article/love 2.3文章-喜欢、取消喜欢√
- * @apiGroup blog
+ * @api {post} /data/blog/article/love 2.3喜欢、取消喜欢√
+ * @apiGroup blogArticle
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} id 文章id push_article_id
@@ -423,8 +423,8 @@
  }
  */
 /**
- * @api {get} /data/blog/article/loverlist/:id 2.4文章-喜欢人列表√
- * @apiGroup blog
+ * @api {get} /data/blog/article/loverlist/:id 2.4喜欢人列表√
+ * @apiGroup blogArticle
  * 
  * @apiParam {String} id 文章id push_article_id
  * 
@@ -450,8 +450,8 @@
 
 
 /**
- * @api {post} /data/blog/comment/delete 3.4评论-删除评论、
- * @apiGroup blog
+ * @api {post} /data/blog/comment/delete 3.4删除评论、
+ * @apiGroup blogComment
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} id 文章id push_article_id
@@ -463,8 +463,8 @@
  }
  */
 /**
- * @api {post} /data/blog/revert 3.5评论-回复别人
- * @apiGroup blog
+ * @api {post} /data/blog/revert 3.5回复别人
+ * @apiGroup blogComment
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} id 文章id push_article_id
@@ -479,8 +479,8 @@
  }
  */
 /**
- * @api {post} /data/blog/revert/delete 3.6评论-删除回复
- * @apiGroup blog
+ * @api {post} /data/blog/revert/delete 3.6删除回复
+ * @apiGroup blogComment
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} id 文章id push_article_id
@@ -495,8 +495,8 @@
  */
 
 /**
- * @api {get} /data/blog/follow/:id 4.1用户-关注、取消关注√
- * @apiGroup blog
+ * @api {get} /data/blog/follow/:id 4.1关注、取消关注√
+ * @apiGroup blogUser
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} id 博主userid
@@ -507,11 +507,11 @@
  }
  */
 /**
- * @api {post} /data/blog/userinfo 4.2用户-关注数、文章数...
- * @apiGroup blog
+ * @api {get} /data/blog/userinfo/:id 4.2关注数、文章数...√
+ * @apiGroup blogUser
  * @apiHeader {String} x-access-token 登录信息 (可空)
  * 
- * @apiParam {String} userid 博主userid
+ * @apiParam {String} id 博主userid
  * 
  * @apiSuccess {String} userid 被查看人的用户id
  * @apiSuccess {String} headimg 用户头像
@@ -531,7 +531,7 @@
         headimg: 'xxx',
         name: 'Sir电影',
         following: 15,
-        follower: 72167,
+        followers: 72167,
         articlenum: 1479,
         love: 81009,
         is_follow:false,
@@ -542,18 +542,18 @@
 }
  */
 /**
- * @api {post} /data/blog/followlist 4.3用户-关注、粉丝列表
- * @apiGroup blog
+ * @api {post} /data/blog/followlist 4.3关注、粉丝列表√
+ * @apiGroup blogUser
  * @apiHeader {String} x-access-token 登录信息 (可空)
  * 
- * @apiParam {String} userid 博主userid
+ * @apiParam {String} id 博主userid
  * @apiParam {String} act 操作  1关注  2粉丝
  * 
  * @apiSuccess {String} userid 被查看人的用户id
  * @apiSuccess {String} headimg 用户头像
  * @apiSuccess {String} name 用户名
  * @apiSuccess {Number} following 关注数
- * @apiSuccess {Number} follower 粉丝数
+ * @apiSuccess {Number} followers 粉丝数
  * @apiSuccess {Number} articlenum 发布的文章数
  * @apiSuccess {Number} love 获得的喜欢数
  * @apiSuccess {Boolean} is_follow 自己是否也关注了
@@ -581,9 +581,9 @@
  */
 
 /**
- * @api {post} /data/blog/user_article_list 4.4用户-文章&喜欢的文章列表
- * @apiGroup blog
- * @apiParam {String} userid 博主userid
+ * @api {post} /data/blog/user_article_list 4.4文章&喜欢的文章列表√
+ * @apiGroup blogUser
+ * @apiParam {String} id 博主userid
  * @apiParam {String} love (可空) 空查发布文章列表 非空查喜欢的文章列表
  * 
  * @apiSuccess {String} push_article_id 文章id
@@ -622,8 +622,8 @@
  */
 
 /**
- * @api {post} /data/blog/user_say 4.5用户-编辑个人介绍
- * @apiGroup blog
+ * @api {post} /data/blog/user_say 4.5编辑个人介绍√
+ * @apiGroup blogUser
  * @apiHeader {String} x-access-token 登录信息 (可空)
  * 
  * @apiParam {String} say 个人介绍内容
@@ -634,8 +634,8 @@
 }
  */
 /**
- * @api {post} /data/blog/user_collect_list 4.6用户-收藏的文章列表
- * @apiGroup blog
+ * @api {post} /data/blog/user_collect_list 4.6收藏的文章列表√
+ * @apiGroup blogUser
  * @apiHeader {String} x-access-token 登录信息 (可空)
  * 
  * @apiSuccess {String} push_article_id 文章id
@@ -672,8 +672,8 @@
  * 
  */
 /**
- * @api {post} /data/blog/collect 2.5文章-收藏、取消收藏√
- * @apiGroup blog
+ * @api {post} /data/blog/collect 2.5收藏、取消收藏√
+ * @apiGroup blogArticle
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} id 文章id push_article_id
@@ -686,9 +686,596 @@
  }
  */
 
+
 /**
- * @api {post} /data/blog/note_sort 5.2写-排序文集、文章
- * @apiGroup blog
+ * @api {post} /data/blog/notebooks 5.1 新增文集
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} seq 排序标识 这里写死传 -1
+ * @apiParam {String} name 文章名
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {post} /data/blog/notebooks/:id/soft_destroy 5.2 删除文集
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} id 文集id
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {put} /data/blog/notebooks/:id 5.3 修改文集名
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} id 文集id
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {get} /data/blog/notebooks 5.4 文集列表
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {post} /data/blog/notebooks/update_seq 5.5 排序文集
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} seq 排序标识 这里写死传 -1
+ * @apiParam {String} name 文章名
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+
+
+/**
+ * @api {post} /data/blog/notes 6.1 新增文章
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} seq 排序标识 这里写死传 -1
+ * @apiParam {String} name 文章名
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {post} /data/blog/notes/:id/soft_destroy 6.2 删除文章
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} seq 排序标识 这里写死传 -1
+ * @apiParam {String} name 文章名
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {post} /data/blog/notes/update_seq 6.3 排序文章
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} seq 排序标识 这里写死传 -1
+ * @apiParam {String} name 文章名
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {get} /data/blog/notes 6.4 文章列表
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} seq 排序标识 这里写死传 -1
+ * @apiParam {String} name 文章名
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {put} /data/blog/notes/:id 6.5 保存文章
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} id 文章id
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {post} /data/blog/notes/:id/publicize 6.6 发布文章
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} id 文章id
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {post} /data/blog/notes/:id/privatize 6.7 设为私有
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} id 文章id
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+
+/**
+ * @api {get} /data/blog/notes/:id/content 6.8 文章内容
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} id 文章id
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {DELETE} /data/blog/notes/:id 7.1 销毁文章
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} id 文章id
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {post} /data/blog/notes/:id/put_back 7.2 恢复文章
+ * @apiGroup blogWrite
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiParam {String} id 文章id
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @api {get} /data/blog/list 8.1查询自己文集列表√
+ * @apiGroup discard
+ * @apiHeader {String} x-access-token 登录信息
+ * 
+ * @apiSuccess {Number} code 1成功.
+ * @apiSuccess {String} name 文集名.
+ * @apiSuccess {String} id 文集id.
+ * @apiSuccess {String} is_show 是否显示.true显示
+ * @apiSuccess {String} seq 排序. 小的排在前面
+ * @apiSuccess {String} createAt 创建时间.
+ * @apiSuccessExample Success-Response:
+ {
+     code:'1',
+     data:[
+         {
+            "id": 150025,
+            "name": "笔记本",
+            "is_show": true,
+            "seq": 0,
+            "createAt": "2017-08-23T09:31:40.388Z"
+        }
+     ]
+     desc:'success'
+ }
+ */
+/**
+ * @api {post} /data/blog/note_sort 8.2排序文集、文章
+ * @apiGroup discard
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {Array} sort 排序  exmp [start_point, end_point]
@@ -701,30 +1288,9 @@
      desc:'success'
  }
  */
-
 /**
- * @api {post} /data/blog/note/list 5.1写-查询自己文集列表
- * @apiGroup blog
- * @apiHeader {String} x-access-token 登录信息
- * 
- * @apiSuccess {Number} code 1成功.
- * @apiSuccess {String} name 文集名.
- * @apiSuccess {String} note_id 文集id.
- * @apiSuccessExample Success-Response:
- {
-     code:'1',
-     data:[
-         {
-             name:'',
-             note_id:''
-         }
-     ]
-     desc:'success'
- }
- */
-/**
- * @api {post} /data/blog/note/articlelist 5.3写-拿文集id查文章列表
- * @apiGroup blog
+ * @api {post} /data/blog/articlelist 8.3拿文集id查文章列表
+ * @apiGroup discard
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} note_id 文集id 
@@ -748,8 +1314,8 @@
  */
 
 /**
- * @api {post} /data/blog/note/article 5.4写-拿文章id查文章
- * @apiGroup blog
+ * @api {post} /data/blog/article 8.4拿文章id查文章
+ * @apiGroup discard
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} note_id 文集id 
@@ -772,8 +1338,8 @@
  */
 
 /**
- * @api {post} /data/blog/note/act 5.5写-删除,新建,重命名文集
- * @apiGroup blog
+ * @api {post} /data/blog/act 8.5删除,新建,重命名文集
+ * @apiGroup discard
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} note_id 文集id （act）
@@ -791,8 +1357,8 @@
 
 
  /**
- * @api {post} /data/blog/note/article/act 5.6写-删除, 取消发布, 恢复， 彻底删除
- * @apiGroup blog
+ * @api {post} /data/blog/article/act 8.6删除, 取消发布, 恢复， 彻底删除
+ * @apiGroup discard
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} note_id 文集id 
@@ -807,8 +1373,8 @@
  }
  */
 /**
- * @api {post} /data/blog/article/save 5.7写-发布文章，保存文章
- * @apiGroup blog
+ * @api {post} /data/blog/article/save 8.7发布文章，保存文章
+ * @apiGroup discard
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} note_id 文集id
@@ -828,23 +1394,35 @@
      desc:'success'
  }
  */
+
+
   /**
- * @api {post} /data/blog/note/article/create 5.8写-新增文章
- * @apiGroup blog
+ * @api {post} /data/blog/article/create 8.8新增文章√
+ * @apiGroup discard
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} note_id 文集id 
- * @apiParam {String} act 1头部新增 2下方新增
+ * @apiParam {Number} seq_in_nb 排序
+ * @apiParam {String} title 文章标题
  * 
  * @apiSuccess {Number} code 1成功.
- * apiSuccess {String} article_id 文章id.
- * apiSuccess {String} name 标题.
+ * @apiSuccess {String} article_id 文章id.
+ * @apiSuccess {String} title 标题.
+ * @apiSuccess {String} content 内容.
+ * @apiSuccess {Number} seq_in_nb 位置编号.
+ * @apiSuccess {Number} note_id 文集id.
+ * @apiSuccess {String} note_type 编辑器类型.
  * @apiSuccessExample Success-Response:
  {
      code:'1',
      data:{
         article_id:'',
-        name:'',
+        title:'',
+        content:'',
+        seq_in_nb: 5,
+        note_id: '',
+        note_type: ''
+        
      },
      desc:'success'
  }
@@ -852,8 +1430,8 @@
 
 
 /**
- * @api {post} /data/blog/note/article/settag 5.9写-设置文章标签
- * @apiGroup blog
+ * @api {post} /data/blog/article/settag 8.9设置文章标签
+ * @apiGroup discard
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiParam {String} note_id 文集id
@@ -871,8 +1449,8 @@
 
  
 /**
- * @api {post} /data/blog/note/dustbin 6.1查询回收站列表
- * @apiGroup blog
+ * @api {post} /data/blog/dustbin 8.9.1查询回收站列表
+ * @apiGroup discard
  * @apiHeader {String} x-access-token 登录信息
  * 
  * @apiSuccess {Number} code 1成功.
@@ -887,33 +1465,6 @@
         name:'',
         date:'',
      },
-     desc:'success'
- }
- */
-/**
- * @api {get} /data/blog/authors 1.3首页-优秀原创作者√ 
- * @apiGroup blog
- * 
- * @apiSuccess {Number} code 1成功.
- * @apiSuccess {String} userid 用户id.
- * @apiSuccess {String} headimg 用户头像.
- * @apiSuccess {String} name 用户名.
- * @apiSuccess {String} say 个人介绍.
- * @apiSuccess {String} sex 性别.1男 2女 可能为空
- * @apiSuccess {String} love 喜欢数.
- * @apiSuccessExample Success-Response:
- {
-     code:'1',
-     data:[
-         {
-            userid:'',
-            headimg:'',
-            name:'',
-            say:'',
-            sex:'',
-            love: 0
-         }
-     ],
      desc:'success'
  }
  */
