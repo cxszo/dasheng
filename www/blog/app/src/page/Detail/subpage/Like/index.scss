@@ -1,17 +1,25 @@
+
+.like-box{
+    text-align: center;
+    padding-top: 50px;
 .like{
-    overflow: hidden;
-    width: 198px;
-    height: 57px;
-    border-radius: 54px;
-    line-height: 57px;
-    margin: 0 auto;
-    margin-top: 40px;
-    border: 1px #ea6f5a solid;
+    display: inline-block;
         .like-group{
-            padding: 13px 0 15px;
-            font-size: 0;
-            border: 1px solid #ea6f5a;
-            border-radius: 40px;
+            padding: 13px 0 15px !important;
+            font-size: 0 !important;
+            border: 1px solid #ea6f5a !important;
+            border-radius: 40px !important;
+        }
+        .cur{
+            background: #ea6f5a;
+            a{
+                color:#fff !important;
+            }
+            .modal-wrap {
+                
+                border-left: 1px solid #fff !important;
+                
+            }
         }
         .btn {
             display: inline-block;
@@ -65,4 +73,6 @@
             }
         
     }
+}
+
 }

@@ -10,7 +10,9 @@ const BlogDetailWrap=props=>(
 )
 
 const mapStateToProps=state=>({
-	blogdetailData:state.BlogDetail.blogdetail
+	blogdetailData:state.BlogDetail.blogdetail,
+	bloglikeData:state.BlogDetail.bloglike,
+	blogcollectData:state.BlogDetail.blogcollect
 })
 
 const mapDispatchToProps=dispatch=>({

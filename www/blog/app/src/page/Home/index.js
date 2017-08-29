@@ -32,7 +32,7 @@ class Blog extends React.Component {
         actions.getAuthorData();//热门原创作者
        
         //检测登录
-        let accessToken= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IuWQrOa1tyIsInBhc3N3b3JkIjoibG92ZW1lIiwiaWF0IjoxNTAzOTExMjE0LCJleHAiOjE1MDM5OTc2MTR9.0V8vRG3In8Rgl76xsu9sdQX7_5B4COm5DATTfxG1_PM';
+        let accessToken= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IuWQrOa1tyIsInBhc3N3b3JkIjoibG92ZW1lIiwiaWF0IjoxNTA0MDAzNTg3LCJleHAiOjE1MDQwODk5ODd9.IGCQnNxfN_MBVDKU9gmBMBETQBEdJ__xeFboipTlgTs';
         localStorage.setItem('accessToken',accessToken);
         if(Util.isLogin()){
             this.setState({
