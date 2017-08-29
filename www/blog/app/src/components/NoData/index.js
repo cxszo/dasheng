@@ -6,7 +6,7 @@ class NoData extends React.Component{
     render(){
         return (
             <div className="nodata">
-              暂无数据
+              暂无文章哟~
             </div>
         )
     }
