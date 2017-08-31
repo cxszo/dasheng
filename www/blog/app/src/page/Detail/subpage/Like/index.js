@@ -9,59 +9,57 @@ class Like extends React.Component{
         super(props);
         this.state ={
             turnoff : false,
-            off:'2',
             islogin: false
         }
 
     }
     handler(){
-        let {bloglikeData} = this.props.data;
-        let {actions} = this.props.actions;
-
-        console.log(bloglikeData)
-        console.log(actions)
-        if(this.state.turnoff==true){
-            this.setState({
-                turnoff : false,
-                off:'2'
-            })
-        }
+        let {actions} = this.props;
+        //检测登录
         if(Util.isLogin()){
             this.setState({
                 islogin:true
             })
         }
-        let data = {
-            id:this.props.id
-        }
-
-        let _data = Object.assign({},data,Util.isLogin())
-        // actions.getLike(_data);
-        
-        // if(bloglikeData.code == '1'){
-        //     this.setState({
-        //         turnoff:true,
-        //         off:'1'
-        //     })
-        // }else{
-        //     alert(bloglikeData.desc)
-        // }
-        // actions.getDetailData(_data);
+        let data = {id:this.props.id};//订单ID
+        let _data = Object.assign({},data,Util.isLogin());//组装订单id和accessToken
+        actions.getLike(_data);//触发接口
+       
+        actions.getLoveList(data);//喜欢列表
     }
     componentDidMount(){
+      
+    }
+    componentWillReceiveProps(nextProps){
+        //默认去详情接口的是否喜欢状态
+       let is_love = nextProps.is_love;
+        if(is_love == true){
+            this.setState({
+                turnoff:true
+            })
+        }else{
+            this.setState({
+                turnoff:false
+            })
+        }
+    }
+    handlerShow(){
+        let {actions} = this.props;
+        actions.getLove(true);//显示喜欢列表
+      
     }
     render(){
         return (
             <div className="like-box">
             <div className="like">
-                <div className={this.state.off == '1' ? 'btn like-group cur' :'btn like-group'}>
+                <div className={this.state.turnoff == true ? 'btn like-group cur' :'btn like-group'}>
                     <div className="btn-like">
                         <a onClick={this.handler.bind(this)}>
                             <i className="iconfont ic-like"></i>喜欢
                         </a>
                     </div> 
-                    <div className="modal-wrap">
-                        <a>{this.props.data.love}</a>
+                    <div className="modal-wrap" onClick={this.handlerShow.bind(this)}>
+                        <a>{this.props.love}</a>
                     </div>
                 </div>
             </div>

@@ -26,7 +26,7 @@ class BlogList extends React.Component{
                         this.props.data.length == 0 ?  <NoData/> :
 						this.props.data.map((v,i)=>{
 							return (
-								<li key = {i} onClick={this.toSrc.bind(this,v.push_article_id)}>
+								<li key = {i} onClick={this.toSrc.bind(this,v.slug)}>
 									<div className = "left">
 										<div className="left-content">
 											<div className="author">

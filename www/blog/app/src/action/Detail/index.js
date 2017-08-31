@@ -5,8 +5,9 @@ import {Util} from '../../util/util.js'
 export const getDetailData = param =>{
     let _param = param || {};
      return dispatch =>{
-         Util.post('http://10.0.10.2:3000/data/blog/article',_param,(data)=>{
-                 dispatch(blogDetailData(data))
+         Util.post('http://59.110.143.111/data/blog/article',_param,(data)=>{
+            dispatch(blogDetailData(data))
+                 
              },(err)=>{
                  console.log(err)
              }
@@ -22,7 +23,7 @@ export const getDetailData = param =>{
  export const getLike= param =>{
     let _param = param || {};
      return dispatch =>{
-         Util.post('http://10.0.10.2:3000/data/blog/article/love',_param,(data)=>{
+         Util.post('http://59.110.143.111/data/blog/article/love',_param,(data)=>{
                  dispatch(blogLike(data))
              },(err)=>{
                  console.log(err)
@@ -39,7 +40,7 @@ export const getDetailData = param =>{
   export const getCollect= param =>{
     let _param = param || {};
      return dispatch =>{
-         Util.post('http://10.0.10.2:3000/data/blog/collect',_param,(data)=>{
+         Util.post('http://59.110.143.111/data/blog/collect',_param,(data)=>{
                  dispatch(blogCollect(data))
              },(err)=>{
                  console.log(err)
@@ -50,5 +51,43 @@ export const getDetailData = param =>{
  }
  const blogCollect=data=>({
          type: types.COLLECT,
+         data
+ })
+ //喜欢列表
+ export const getLoveList= param =>{
+    
+     return dispatch =>{
+         Util.ajaxGet('http://59.110.143.111/data/blog/article/loverlist/'+param.id+'',(data)=>{
+                 dispatch(blogLoveList(data))
+             },(err)=>{
+                 console.log(err)
+             }
+         )
+         
+     }
+ }
+ const blogLoveList=data=>({
+         type: types.LOVELIST,
+         data
+ })
+//喜欢列表是否显示层
+  export const getLove= param =>({
+    type: types.LOVEMASK,
+    data:param
+ })
+ //点击关注
+ export const getGz= param =>{
+     return dispatch =>{
+         Util.ajaxGet('http://59.110.143.111/data/blog/follow/'+param.id+'?accessToken='+param.accessToken,(data)=>{
+                 dispatch(blogGZ(data))
+             },(err)=>{
+                 console.log(err)
+             }
+         )
+         
+     }
+ }
+ const blogGZ=data=>({
+         type: types.GUANZHU,
          data
  })
