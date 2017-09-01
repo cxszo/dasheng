@@ -16,7 +16,8 @@ const mapStateToProps=state=>({
 	bloglovelistData:state.BlogDetail.bloglovelist,
 	loveMask:state.BlogDetail.loveMask,
 	guanZhu:state.BlogDetail.guanZhu,
-	isFinish:state.BlogDetail.isFinish
+	isFinish:state.BlogDetail.isFinish,
+	bloglogin:state.BlogDetail.bloglogin
 })
 
 const mapDispatchToProps=dispatch=>({

@@ -91,3 +91,18 @@ export const getDetailData = param =>{
          type: types.GUANZHU,
          data
  })
+ //账户信息
+export const getLoginData = param =>{
+    return dispatch =>{
+        Util.ajaxGet('http://59.110.143.111/data/user/userinfo/?accessToken='+param.accessToken,(data)=>{
+            dispatch(blogLogin(data))
+        },(err)=>{
+            console.log(err)
+        }
+    )
+    }  
+}
+const blogLogin=data=>({
+    type: types.LOGIN_DATA,
+    data
+})

@@ -27,12 +27,14 @@
                 display: inline-block;
                 line-height: 20px;
                 div{
+                    cursor: pointer;
                     font-size: 12px;
                     margin: 0 7px 6px 0;
                     padding: 0 7px 0 0;
                     border-right: 1px solid #f0f0f0;
                     a{
                         display: block;
+                        text-align: center;
                     }
                     a:first-child{
                         color: #333;

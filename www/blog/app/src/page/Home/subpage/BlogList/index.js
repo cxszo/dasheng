@@ -10,9 +10,14 @@ class BlogList extends React.Component{
            
 		}
 	}
-	toSrc(i){
+	toDeatilSrc(i){
 		let {actions} = this.props;
 		hashHistory.push("/Detail/"+i);
+
+	}
+	toCenterSrc(i){
+		let {actions} = this.props;
+		hashHistory.push("/Center/"+i);
 
     }
     componentDidMount(){
@@ -26,11 +31,11 @@ class BlogList extends React.Component{
                         this.props.data.length == 0 ?  <NoData/> :
 						this.props.data.map((v,i)=>{
 							return (
-								<li key = {i} onClick={this.toSrc.bind(this,v.slug)}>
+								<li key = {i}>
 									<div className = "left">
 										<div className="left-content">
 											<div className="author">
-											      <a className="avatar" target="_blank" href="">
+											      <a className="avatar" target="_blank" onClick={this.toCenterSrc.bind(this,v.userid)}>
 											        <img src={v.headimg} alt="96"/>
 												  </a>      
 												  <div className="name">
@@ -38,7 +43,7 @@ class BlogList extends React.Component{
 											        <span className="time">{v.createAt.substring(0,10)}</span>
 											      </div>
 											</div>
-											<div className="title">
+											<div className="title" onClick={this.toDeatilSrc.bind(this,v.slug)}>
 												<h3>{v.title}</h3>
 											</div>
 											<div className="intro">

@@ -25,24 +25,37 @@ class Blog extends React.Component {
         }
     }
     componentDidMount(){
-        let {bloglistData,blogtitleData,blogtitleData_2,blogauthorData,actions} = this.props;
+        let {bloglistData,blogtitleData,bloglogin,blogtitleData_2,blogauthorData,actions} = this.props;
+        this.isLogin();//用户信息
         actions.getListData();// 博客列表
         actions.getTitleData();//博客标题1
         actions.getTitleData_2('1');//博客标题2
         actions.getAuthorData();//热门原创作者
-       
-        //检测登录
-        let accessToken= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjE4NTAxNjI5NjY3IiwicGFzc3dvcmQiOiIxMjM0NTYiLCJpYXQiOjE1MDQxNjUxNTAsImV4cCI6MTUwNDI1MTU1MH0.3w8AkkUNRSiUZgc8SSquNXVEw4Bygkfbi0S9yxnM8xM';
+      
+    }
+    isLogin(){
+        let {actions} = this.props;
+        let accessToken= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjE4NTAxNjI5NjY3IiwicGFzc3dvcmQiOiIxMjM0NTYiLCJpYXQiOjE1MDQyNTE2ODcsImV4cCI6MTUwNDMzODA4N30.iBmgzumgJZY2jYPVD-U0omw0iowwJm6-db4zyPCCt3Q';
         localStorage.setItem('accessToken',accessToken);
-        if(Util.isLogin()){
-            this.setState({
-                islogin:true
-            })
-        }
+         //检测登录 有误Token,没有的话去登陆
+         let local_accessToken = localStorage.getItem('accessToken') || '';
+         if(!!local_accessToken){
+             let data = {
+                 accessToken: local_accessToken
+             }
+             actions.getLoginData(data);//查询登陆个人信息
+             this.setState({
+                 islogin:true
+             })
+         }else{
+             this.setState({
+                 islogin:false
+             })
+         }
     }
     render() {
         // 博客列表
-        let {bloglistData,blogtitleData,blogtitleData_2,blogauthorData,actions}=this.props;
+        let {bloglistData,blogtitleData,blogtitleData_2,bloglogin,blogauthorData,actions}=this.props;
         let _BlogList = bloglistData.data || [];
         //博客标题1
         let Blogtitle_1 = blogtitleData.data || [];
@@ -50,10 +63,11 @@ class Blog extends React.Component {
         let Blogtitle_2 = blogtitleData_2.data || [];
         //热门原创作者
         let Blogauthor = blogauthorData.data || [];
-        console.log(this.props)
+        //个人信息
+        let Login_data = bloglogin.data || [];
         return (
             <div className="agree">
-                <Header isLogin={this.state.islogin}/>
+                <Header isLogin={this.state.islogin} data ={Login_data}/>
                 <div className="main">
                     <div className="main-left">
                         <Tag data={Blogtitle_1} actions={actions}/>

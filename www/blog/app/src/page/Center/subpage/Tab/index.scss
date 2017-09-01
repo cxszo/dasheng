@@ -5,6 +5,7 @@
         font-size: 0;
         list-style: none;
         li{
+            cursor: pointer;
             line-height: 20px;
             position: relative;
             display: inline-block;
@@ -27,6 +28,7 @@
         padding: 0;
         list-style: none;
         li{
+           
             position: relative;
             width: 100%;
             margin: 0 0 17px;
@@ -78,6 +80,12 @@
                     margin: 0 0 8px;
                     font-size: 13px;
                     line-height: 24px;
+                }
+                .meta{
+                    a{
+                        margin-right:5px;
+                        font-size: 12px;
+                    }
                 }
             }
         }

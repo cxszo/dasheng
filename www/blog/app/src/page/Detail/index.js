@@ -21,6 +21,7 @@ class Detail extends React.Component{
 	}
 	componentDidMount(){
 		this.init();
+		this.islogn();
 	}
 	componentWillReceiveProps(nextProps){
 		let {isFinish} = nextProps;
@@ -43,13 +44,30 @@ class Detail extends React.Component{
 		let _data = Object.assign({},data,Util.isLogin())
 		actions.getDetailData(_data);//详情信息
 		actions.getLoveList(data);//喜欢列表
-		// actions.getLike(_data);//喜欢
-		// actions.getCollect(_data);//收藏
+
+	}
+	islogn(){
+		let {actions} =this.props;				
+		let local_accessToken = localStorage.getItem('accessToken') || '';		
+		if(!!local_accessToken){
+            let data = {
+                accessToken: local_accessToken
+            }
+            actions.getLoginData(data);//查询登陆个人信息
+            this.setState({
+                islogin:true
+            })
+        }else{
+            this.setState({
+                islogin:false
+            })
+        }
 	}
 	render(){
+		
 		//详情信息
 		let id = this.props.params.id || '';
-		let {blogdetailData,bloglikeData,loveMask,bloglovelistData,blogcollectData,actions}=this.props;
+		let {blogdetailData,bloglikeData,bloglogin,loveMask,bloglovelistData,blogcollectData,actions}=this.props;
 		let detail = blogdetailData.data || [];
 		let love = detail.love || '0';//喜欢数
 		let is_love = detail.is_love || '';//是否自己的喜欢
@@ -58,10 +76,11 @@ class Detail extends React.Component{
 		let collect = blogcollectData || [];//点击收藏
 		let like = bloglikeData || [];//点击喜欢
 		let bloglovelist= bloglovelistData.data || [];//喜欢列表
-	
+		
+		let login_data= bloglogin.data || [];
 		return (
 			<div>
-				<Header isLogin={this.state.islogin}/>
+				<Header isLogin={this.state.islogin} data = {login_data}/>
 				<Article data = {detail} actions = {actions} is_following ={is_following} id={id}/>
 				<Like data = {like} love={love} is_love={is_love}  actions = {actions} id={id}/>
 				{/* <Comment/> */}

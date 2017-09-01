@@ -6,7 +6,8 @@ const initialState = {
     bloglovelist:'',
     loveMask:false,
     guanZhu:'',
-    isFinish:false
+    isFinish:false,
+    bloglogin:''
 }
 export default  function BlogDetail(state=initialState,action){
     switch(action.type){
@@ -32,6 +33,10 @@ export default  function BlogDetail(state=initialState,action){
         
         case types.GUANZHU:
         return Object.assign({},state,{guanZhu:action.data})
+        break;
+
+        case types.LOGIN_DATA:
+        return Object.assign({},state,{bloglogin:action.data})
         break;
 
         default:

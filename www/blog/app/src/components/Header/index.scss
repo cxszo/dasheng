@@ -113,8 +113,10 @@ $colorNav : #969696;;
 
         }
         .count2{
+            position: relative;
             float: right;
-            a{
+            cursor: pointer;
+            .count2-msg{
                 display: inline-block;
                 position: relative;
                 width: 40px;
@@ -126,7 +128,7 @@ $colorNav : #969696;;
                     border-radius: 50%;
                 }
             }
-            :before {
+            .count2-msg:before {
                 content: "";
                 position: absolute;
                 top: 18px;
@@ -140,6 +142,9 @@ $colorNav : #969696;;
                 line-height: 60px;
                 margin-right: 10px;
                 color: #696e71;
+            }
+            .hide{
+                display: none;
             }
         }
         .edit{
