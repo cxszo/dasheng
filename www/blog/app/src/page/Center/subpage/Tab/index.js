@@ -44,8 +44,8 @@ class Tab extends React.Component{
         return(
             <div className="tab">
                 <div className="title">
-                    <li onClick = {this.love.bind(this)} className={this.state.class1Off?'active':''}><a>文章列表</a></li>
-                    <li onClick = {this.hot.bind(this)} className={this.state.class2Off?'active':''}><a>热门文章</a></li>
+                    <li onClick = {this.love.bind(this)} className={this.state.class1Off?'active':''}><a>文章列表34</a></li>
+                    <li onClick = {this.hot.bind(this)} className={this.state.class2Off?'active':''}><a>热门文章23</a></li>
                 </div>
                 <div className="wrap">
                     <ul>

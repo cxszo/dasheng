@@ -1,9 +1,12 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-
+import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import './index.scss'
 
 class Introduce extends React.Component{
+    toLike(i){
+        hashHistory.push("/Center/"+i+"/likes");
+    }
     render(){
         return(
             <div className="introduce">
@@ -17,7 +20,7 @@ class Introduce extends React.Component{
                             <a>我关注的专题/文集</a>
                         </li>
                         <li>
-                            <a>我喜欢的文章</a>
+                            <a onClick = {this.toLike.bind(this,this.props.data.userid)}>我喜欢的文章</a>
                         </li>
                     </ul>
                 </div>

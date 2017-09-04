@@ -5,10 +5,10 @@ import './index.scss'
 
 import Header from '../../components/Header/'
 import Msg from './subpage/Msg/'
-import TabF from './subpage/TabF/'
+import TabL from './subpage/TabL/'
 import Introduce from './subpage/Introduce/'
 let local_accessToken = localStorage.getItem('accessToken') || '';
-class Following extends React.Component{
+class Likes extends React.Component{
     constructor(props){
         super(props)
         this.state ={
@@ -68,7 +68,7 @@ class Following extends React.Component{
                 <div className="center-wrap">
                     <div className= "left">
                        <Msg data = {msg}/>
-                       <TabF data ={article} actions={actions}/>
+                       <TabL data ={article} actions={actions}/>
                     </div>
                     <div className='right'>
                         <Introduce data ={article}/>
@@ -78,4 +78,4 @@ class Following extends React.Component{
         )
     }
 }
-export default Following
+export default Likes

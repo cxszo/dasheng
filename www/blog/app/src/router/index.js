@@ -8,6 +8,7 @@ import Detail from '../container/Detail'
 import Center from '../container/Center/index'
 import Following from '../container/Center/following'
 import Followers from '../container/Center/followers'
+import Likes from '../container/Center/Likes'
 class RouterMap extends React.Component {
     render() {
         return (
@@ -19,6 +20,7 @@ class RouterMap extends React.Component {
                     <Route path='/Center/:id' component={Center}/>
                     <Route path='/Center/:id/Following' component={Following}/>
                     <Route path='/Center/:id/followers' component={Followers}/>
+                    <Route path='/Center/:id/likes' component={Likes}/>
             	</Route>
             </Router>
         )

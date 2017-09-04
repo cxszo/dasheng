@@ -71,7 +71,7 @@ class Center extends React.Component{
                        <Tab data ={article} actions={actions}/>
                     </div>
                     <div className='right'>
-                        <Introduce/>
+                        <Introduce data ={article}/>
                     </div>
                 </ div>
             </div>

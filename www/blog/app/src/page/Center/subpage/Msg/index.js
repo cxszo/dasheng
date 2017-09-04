@@ -11,6 +11,9 @@ class Msg extends React.Component{
     toFollowers(i){
         hashHistory.push("/Center/"+i+"/followers");
     }
+    toCenter(i){
+        hashHistory.push("/Center/"+i+"");
+    }
     render(){
         return(
             <div className="msg-header">
@@ -33,12 +36,13 @@ class Msg extends React.Component{
                         <em>
                             <div>
                                 <a>{this.props.data.articlenum}</a>
-                                <a>文章</a>
+                                <a  onClick={this.toCenter.bind(this,this.props.data.userid)}>文章</a>
                             </div>
                         </em>
                        
                     </p>
                 </span>
+                <a className="like">+关注</a>
         </div>
         )
     }
