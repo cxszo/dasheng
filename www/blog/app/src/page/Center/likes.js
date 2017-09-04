@@ -71,7 +71,7 @@ class Likes extends React.Component{
                        <TabL data ={article} actions={actions}/>
                     </div>
                     <div className='right'>
-                        <Introduce data ={article}/>
+                        <Introduce id = {this.props.params.id}/>
                     </div>
                 </ div>
             </div>

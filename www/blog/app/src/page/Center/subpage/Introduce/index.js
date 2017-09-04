@@ -14,13 +14,19 @@ class Introduce extends React.Component{
                     <div>
                         <span>个人介绍</span>
                         <em>编辑</em>
+                        <textarea/>
+                        <p>
+                            <cite className="save">保存</cite>
+                            <cite className="cancel">取消</cite>
+                        </p>
                     </div>
+                    
                     <ul>
                         <li>
                             <a>我关注的专题/文集</a>
                         </li>
                         <li>
-                            <a onClick = {this.toLike.bind(this,this.props.data.userid)}>我喜欢的文章</a>
+                            <a className="cur" onClick = {this.toLike.bind(this,this.props.id)}>我喜欢的文章</a>
                         </li>
                     </ul>
                 </div>

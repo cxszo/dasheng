@@ -1,7 +1,7 @@
 .introduce{
     .jieshao{
         div{
-            padding: 20px 0;
+            padding: 20px 0 10px 0;
             overflow: hidden;
             border-bottom: 1px solid #f0f0f0;
             span{
@@ -14,6 +14,37 @@
                 float: right;
                 font-size: 13px;
                 color: #969696;
+                cursor: pointer;
+            }
+            textarea{
+                width: 92%;
+                height: 80px;
+                border: 1px #e7e5e5 solid;
+                border-radius: 4px;
+                padding: 10px;
+                outline: none;
+                font-size: 14px;
+                color: #707070;
+                background: #fafafa;
+            }
+            p{
+                cursor: pointer;
+                margin-top: 10px;
+                cite.save{
+                    border-radius:40px;
+                    display: inline-block;
+                    padding: 5px 20px;
+                    font-size: 14px;
+                    border: 1px solid rgba(59,194,29,.7);
+                    color: #42c02e!important;
+                }
+                cite.cancel{
+                    margin-left: 10px;
+                    font-size: 14px;
+                    color: #969696;
+                    line-height: 34px;
+                    vertical-align: middle;
+                }
             }
         }
         ul{
@@ -28,6 +59,9 @@
                     font-size: 14px;
                     color: #333;
                     line-height: 30px;
+                }
+                a.cur{
+                    
                 }
             }
         }
