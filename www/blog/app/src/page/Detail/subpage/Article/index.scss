@@ -26,7 +26,10 @@
 	    box-sizing: border-box;
 	    .blog-detail-msg {
 		    overflow: hidden;
-		    margin-bottom: 20px;
+			margin-bottom: 20px;
+			img.ico-detail{
+				border-radius: 50%;
+			}
 		   span:nth-child(1) {
 				float: left;
 				width: 48px;

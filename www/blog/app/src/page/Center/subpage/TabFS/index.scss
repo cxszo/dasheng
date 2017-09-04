@@ -1,0 +1,83 @@
+.tab{
+    .title{
+        margin-bottom: 20px;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 0;
+        list-style: none;
+        li{
+            cursor: pointer;
+            line-height: 20px;
+            position: relative;
+            display: inline-block;
+            padding: 8px 0;
+            margin-bottom: -1px;
+            a{
+                padding: 13px 20px;
+                font-size: 15px;
+                font-weight: 700;
+                color: #969696;
+                line-height: 25px;
+            }
+        }
+        li.active{
+            border-bottom: 2px solid #646464;
+        }
+    }
+    .wrap{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li{
+            overflow: hidden;
+            .ico_f{
+                float: left;
+                margin-top: 5px;
+                img{
+                    width: 52px;
+                    height: 52px;
+                    border-radius: 50%;
+                    margin-right: 8px;
+                    vertical-align: middle;
+                    display: inline-block;
+                }
+            }
+            .info{
+                float: left;
+                .name{
+                    em{
+                        font-size: 15px;
+                        font-weight: 700;
+                        color: #333;
+                    }
+                }
+                .meta{
+                    padding-top: 2px;
+                    color: #969696;
+                    span{
+                        font-size: 12px;
+                        margin-right: 10px;
+                        padding-right: 10px;
+                        border-right: 1px solid #969696;
+                    }
+                }
+                .meta.no-border{
+                    span{
+                        border-right:none;
+                    }
+                }
+            }
+            .like{
+                float: right;
+                text-align: center;
+                margin-top: 10px;
+                padding: 8px 0;
+                width: 100px;
+                font-size: 15px;
+                border-radius: 40px;
+                color: #fff;
+                background-color: #42c02e;
+                border-color: #42c02e;
+            }
+        }
+    }
+}

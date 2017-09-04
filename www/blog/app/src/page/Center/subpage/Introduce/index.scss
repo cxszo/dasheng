@@ -10,11 +10,22 @@
                 font-size: 14px;
                 color: #969696;
             }
-            em{
+            em.edit-ico{
                 float: right;
                 font-size: 13px;
                 color: #969696;
                 cursor: pointer;
+                position: relative;
+            }
+            em.edit-ico:after{
+                position: absolute;
+                content: '';
+                top: 0px;
+                left: -16px;
+                width: 16px;
+                height: 16px;
+                background: url('../../../../static/img/edit-ico.png') no-repeat center;
+                background-size:100% 100%; 
             }
             textarea{
                 width: 92%;
@@ -59,10 +70,28 @@
                     font-size: 14px;
                     color: #333;
                     line-height: 30px;
+                    .like-ico-1{
+                        display: inline-block;
+                        width: 20px;
+                        height: 20px;
+                        background: url('../../../../static/img/like-ico-1.png');
+                        background-size: 95% 95%;
+                        float: left;
+                        margin-right: 5px;
+                        margin-top: 5px;
+                    }
+                    .fl-ico{
+                        display: inline-block;
+                        width: 20px;
+                        height: 20px;
+                        background: url('../../../../static/img/fl-ico.png');
+                        background-size: 100% 100%;
+                        float: left;
+                        margin-right: 5px;
+                        margin-top: 5px;
+                    }
                 }
-                a.cur{
-                    
-                }
+                
             }
         }
     }

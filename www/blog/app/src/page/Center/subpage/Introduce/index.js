@@ -13,7 +13,7 @@ class Introduce extends React.Component{
                 <div className="jieshao">
                     <div>
                         <span>个人介绍</span>
-                        <em>编辑</em>
+                        <em className="edit-ico">编辑</em>
                         <textarea/>
                         <p>
                             <cite className="save">保存</cite>
@@ -23,10 +23,16 @@ class Introduce extends React.Component{
                     
                     <ul>
                         <li>
-                            <a>我关注的专题/文集</a>
+                            <a>
+                                <i className="fl-ico"></i>
+                                我关注的专题/文集 
+                            </a>
                         </li>
                         <li>
-                            <a className="cur" onClick = {this.toLike.bind(this,this.props.id)}>我喜欢的文章</a>
+                            <a className="cur" onClick = {this.toLike.bind(this,this.props.id)}>
+                                <i className="like-ico-1"></i>
+                                我喜欢的文章
+                            </a>
                         </li>
                     </ul>
                 </div>

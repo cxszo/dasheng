@@ -18,8 +18,9 @@ class Msg extends React.Component{
         return(
             <div className="msg-header">
                 <span className="ico"><img src={this.props.data.headimg}/></span>
+                
                 <span className="text">
-                    <p className="title">{this.props.data.name}</p>
+                    <p className="title">{this.props.data.name}<i className='sex'></i></p>
                     <p className="info">
                         <em>
                             <div>

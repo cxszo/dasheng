@@ -36,7 +36,7 @@ class Author extends React.Component{
                 <div className="follow-detail">
                     <div className="info">
                         <a className="avatar" href="/u/0fe9f776f37a">
-                            <img src="http://upload.jianshu.io/users/upload_avatars/4786780/f452cc6c-1110-4d5c-864f-6f50f88144c0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96" alt="144"/>
+                            <img src={this.props.data.blogger.headimg} alt="144"/>
                         </a>
                              {
                                  this.props.data.is_me == true ? null :

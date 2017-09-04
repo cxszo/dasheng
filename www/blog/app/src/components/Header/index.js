@@ -3,6 +3,7 @@ import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import Dropdown from '../Dropdown/'
+
 //配置导航的title
 let title  = ['首页'];
 //logo地址
@@ -26,6 +27,9 @@ class Header extends React.Component{
 			})
 		}
 	}
+	toIndex(){
+		hashHistory.push('/')
+	}
 	render(){
 		return (
 			<div className = "header">
@@ -41,7 +45,7 @@ class Header extends React.Component{
 								title.map((v,i)=>{
 									return (
 										<li key={i} className="cur">
-											<a href={i}>{v}</a>
+											<a onClick={this.toIndex.bind(this)}>{v}</a>
 										</li>
 									)
 								})

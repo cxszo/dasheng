@@ -2,6 +2,7 @@ import'./index.scss'
 import React from 'react'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
+let readeIco = require('../../../../static/img/browse.png');
 import NoData from '../../../../components/NoData/'
 class BlogList extends React.Component{
 	constructor(props) {
@@ -50,7 +51,7 @@ class BlogList extends React.Component{
 												<p>{v.intro}</p>
 											</div>
 											<div className="tj">
-												<em><cite><img src="https://gold-cdn.xitu.io/v3/static/img/like.4bf00fb.svg"/></cite><span>{v.read}</span></em>
+												<em><cite><img src={readeIco}/></cite><span>{v.read}</span></em>
 												<em><cite><img src="https://gold-cdn.xitu.io/v3/static/img/comment.4d5744f.svg"/></cite><span>{v.comment}</span></em>
 												<em><cite><img src="https://gold-cdn.xitu.io/v3/static/img/like.4bf00fb.svg"/></cite><span>{v.love}</span></em>		
 											</div>

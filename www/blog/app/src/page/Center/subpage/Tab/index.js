@@ -69,15 +69,15 @@ class Tab extends React.Component{
                                         </p>
                                         <div className="meta">
                                             <a>
-                                                <i>阅读</i>
+                                                <i className="read-ico"></i>
                                                 {v.read}
                                             </a>
                                             <a>
-                                                <i>评论</i>
+                                                <i className="com-ico"></i>
                                                 {v.comment}
                                             </a>
                                             <a>
-                                                <i>喜欢</i>
+                                                <i className="like-ico"></i>
                                                 {v.love}
                                             </a>
                                         </div>

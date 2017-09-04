@@ -5,7 +5,7 @@ import './index.scss'
 
 import Header from '../../components/Header/'
 import Msg from './subpage/Msg/'
-import TabF from './subpage/TabF/'
+import TabFS from './subpage/TabFS/'
 import Introduce from './subpage/Introduce/'
 let local_accessToken = localStorage.getItem('accessToken') || '';
 class Followers extends React.Component{
@@ -68,7 +68,7 @@ class Followers extends React.Component{
                 <div className="center-wrap">
                     <div className= "left">
                        <Msg data = {msg}/>
-                       <TabF data ={article} actions={actions}/>
+                       <TabFS data ={article} actions={actions}/>
                     </div>
                     <div className='right'>
                         <Introduce id = {this.props.params.id}/>

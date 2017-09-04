@@ -12,6 +12,7 @@
             border-radius: 50%;
         }
     }
+    
     .text{
         margin-left: 20px;
         .title{
@@ -19,6 +20,22 @@
             font-size: 21px;
             font-weight: 700;
             vertical-align: middle;
+            .sex{
+                display: inline-block;
+                margin-left: 10px;
+                width:16px;
+                height: 16px;
+                background:url(../../../../static/img/woman.png) no-repeat center;
+                background-size:100% 100%; 
+            }
+            .sex1{
+                display: inline-block;
+                margin-left: 10px;
+                width:16px;
+                height: 16px;
+                background:url(../../../../static/img/man.png) no-repeat center;
+                background-size:100% 100%; 
+            }
         }
         .info{
             margin-top: 5px;
@@ -30,7 +47,7 @@
                     cursor: pointer;
                     font-size: 12px;
                     margin: 0 7px 6px 0;
-                    padding: 0 7px 0 0;
+                    padding: 0 12px 0 0;
                     border-right: 1px solid #f0f0f0;
                     a{
                         display: block;
@@ -41,6 +58,17 @@
                     }
                     a:last-child{
                         color: #969696;
+                        position: relative;
+                    }
+                    a:last-child:after{
+                        position: absolute;
+                        right: -10px;
+                        top: 7px;
+                        content: '';
+                        width: 8px;
+                        height: 7px;
+                        background: url('../../../../static/img/row-right.png') no-repeat center;
+                        background-size: 100% 100%;
                     }
                 }
             }

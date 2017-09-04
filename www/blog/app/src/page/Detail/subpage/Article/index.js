@@ -62,7 +62,7 @@ class Article extends React.Component{
 				<div className="blog-detail-contain">
 					<div className="blog-detail-msg">
 						<span>
-							<img src={this.props.data.headimg}/>
+							<img className="ico-detail" src={this.props.data.blogger.headimg}/>
 						</span>
 						<span>
 							<p>{this.props.data.blogger.name}
