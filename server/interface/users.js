@@ -9,11 +9,12 @@ var $middlewares = require('./mount-middlewares');
 router.get('/userinfo', $middlewares,  (req, res)=>{
     let api_user = req.api_user || '后端数据异常'
     if(typeof req.api_user === 'object'){
-        let {username, callphone, headimg} = api_user;
+        let {username, callphone, headimg, user_id} = api_user;
         res.contentType('json');
         res.send({
             code:'1',
             data:{
+                user_id,
                 headimg,
                 username,
                 callphone

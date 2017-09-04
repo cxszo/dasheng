@@ -95,3 +95,32 @@ res.send({
     desc:'待开发'
 });
 return false;
+
+
+
+
+async.waterfall([
+  //【step1】
+  (callback)=>{
+
+  },
+  //【step2】
+  (callback)=>{
+      
+  },
+  //【step3】
+  (callback)=>{
+      
+  },
+  //【step4】
+  (callback)=>{
+      
+  }
+], (err)=>{
+  if(err)console.log(err);
+  res.contentType('json');
+  res.send({
+      code: ResCode.success.c,
+      desc: ResCode.success.d
+  });
+})

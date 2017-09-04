@@ -5,10 +5,12 @@ var User = require('../models/user')
 var Increment = require('../models/blog/increment')
 var BlogUser = require('../models/blog/blog_user')
 var BlogNote = require('../models/blog/blog_note')
+var BlogNoteArticle = require('../models/blog/blog_note_article')
 
 var $global = require('../config/global')
 var jwt = require('jsonwebtoken');
 
+var async = require('async')
 var bcrypt = require('bcrypt')
 var SALT_WORK_FACTOR = 10;
 
@@ -50,63 +52,89 @@ router.post('/signup', (req, res)=>{
             res.send(response);
             return false;
         }else {
-            User.find({username}, (err, _user)=>{
-                if(err)console.log(err)
-                if(_user.length){
-                    var response = {code:-1,desc:'用户名已存在'};
-                    res.contentType('json');
-                    res.send(response);
-                    return false;
-                }else{
-                    User.find({callphone}, (err, __user)=>{
-                        if(err)console.log(err)
-                        if(__user.length){
+            async.waterfall([
+                //【step1】查看用户名是否可用
+                (callback)=>{
+                    User.findOne({username}, (err, _data)=>{
+                        if(err)console.log(err);
+                        if(_data){
+                            var response = {code:-1,desc:'用户名已存在'};
+                            res.contentType('json');
+                            res.send(response);
+                            return false;
+                        }
+                        callback(null)
+                    })
+                },
+                //【step2】查看手机号是否注册
+                (callback)=>{
+                    User.findOne({callphone}, (err, _data)=>{
+                        if(err)console.log(err);
+                        if(_data){
                             var response = {code:-2,desc:'手机号已注册'};
                             res.send(response);
                             return false;
-                        }else{
-                                Increment.findOneAndUpdate({"type":"userid"},{$inc:{id:1}},{new: true}, (err, inc)=>{
-                                    if(err)return false;
-                                    let user_id = inc.id;
-                                    var user = new User({username, callphone, password, user_id});
-                                    user.save((err, __user)=>{
-                                        if(err) return console.log(err)
-                                        var accessToken = jwt.sign({
-                                            username, password
-                                        }, $global.token_key, { expiresIn: '24h' });
-                                        var response = {code:1,data:{accessToken},desc:'注册成功'};
-                                        res.contentType('json');//返回的数据类型
-                                        res.send(response);//给客户端返回一个json格式的数据
-
-
-
-
-                                        //注册的同时帮创建 博客用户表 博客写文章表创建一条用户的数据
-                                        var blogUser = new BlogUser({
-                                            user_id,user_object_id:user,following: [],followers: [],collect: [],likelist: [],articlenum: [],love: 0,say: '',sex: ''
-                                        })
-                                        // user_object_id
-                                        blogUser.save();
-                                        Increment.findOneAndUpdate({"type":"noteid"},{$inc:{id:2}},{new: true}, (err, noteInc)=>{
-                                            if(err)return false;
-
-                                            let note_id = noteInc.id;
-                                            BlogNote.insertMany([
-                                                {
-                                                    user_id,id: note_id-1,name: '随笔',is_show: true,seq: 1
-                                                },
-                                                {
-                                                    user_id,id: note_id,name: '日记',is_show: true,seq: 0
-                                                }
-                                                ], function(err, docs){
-                                            });
-                                        })
-                                        return false;
-                                    })
-                                })
                         }
+                        callback(null)
                     })
+                },
+                //【step3】获取自增值
+                (callback)=>{
+                    Increment.findOneAndUpdate({"type":"userid"},{$inc:{id:1}},{new: true}, (err, userInc)=>{
+                        if(err)return false;
+                        let user_id = userInc.id;//用户id
+                        Increment.findOneAndUpdate({"type":"noteid"},{$inc:{id:2}},{new: true}, (err, noteInc)=>{
+                            if(err)return false;
+                            let note_id = noteInc.id;//文集id
+                            Increment.findOneAndUpdate({"type":"articleid"},{$inc:{id:2}},{new: true}, (err, articleInc)=>{
+                                if(err)return false;
+                                let article_id = articleInc.id;//文章id
+                                Increment.findOneAndUpdate({"type":"push_articleid"},{$inc:{id:2}},{new: true}, (err, push_articleInc)=>{
+                                    if(err)return false;
+                                    let slug = push_articleInc.id;//发布文章id
+                                    callback(null, user_id, note_id, article_id, slug)
+                                })
+                            })
+                        })
+                    })
+                },
+                //【step4】用户表 博客用户表 插入数据
+                (user_id, note_id, article_id, slug, callback)=>{
+                    var user = new User({username, callphone, password, user_id});
+                    user.save((err)=>{
+                        if(err) return console.log(err)
+                        
+                        BlogUser.create({ user_id, user_object_id:user, following:[], followers:[], collect:[], likelist:[], love:0,say:'' }, (err, _data)=>{
+                            if(err)console.log(err);
+
+                            callback(null, user_id, note_id, article_id, slug)
+                        })
+                            
+                    })
+                },
+                //【step5】 默认  插入两个文集
+                (user_id, note_id, article_id, slug, callback)=>{
+                    BlogNote.insertMany([
+                        {user_id,id: note_id-1,name: '随笔',seq: 1},
+                        {user_id,id: note_id,  name: '日记',seq: 0}
+                    ],(err, _data)=>{
+                        callback(null, user_id, note_id, article_id, slug)
+                    });
+                },
+                //【step6】默认 一个文集插入一个文章
+                (user_id, note_id, article_id, slug, callback)=>{
+                    BlogNoteArticle.insertMany([
+                        {user_id,id: article_id-1, note_id: note_id-1, slug: slug-1, title:'无标题文章', body:'', seq_in_nb:0 },
+                        {user_id,id: article_id,  note_id, slug, title:'无标题文章', body:'', seq_in_nb:0 }
+                    ],(err, _data)=>{
+                        callback(null)
+                    });
                 }
+            ], (err)=>{
+                var accessToken = jwt.sign({ username, password }, $global.token_key, { expiresIn: '168h' });
+                var response = {code:1,data:{accessToken},desc:'注册成功'};
+                res.contentType('json');//返回的数据类型
+                res.send(response);//给客户端返回一个json格式的数据
             })
         }
 })

@@ -2,9 +2,9 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 var BlogArticleSchema = new Schema({
-    user_id: Number, // 用来查作者信息博主名 博主头像
+    user_id: Number, // 作者id
     user_object_id: { type: Schema.Types.ObjectId, ref: 'user' },//后端用的用户唯一id
-    push_article_id: Number,// 发布文章id
+    slug: Number,// 发布文章id
     note_id: Number,//笔记本id
     article_id: Number,//文章id
     img_url: String,//文章里面的图片（可空）
@@ -12,7 +12,7 @@ var BlogArticleSchema = new Schema({
     body: String,//String 文章内容
     createAt: {//Date 第一次发布时间
         type: Date,
-        defauld: Date.now()
+        default: Date.now()
     },
     love:[//Array 点赞的用户
         {
@@ -21,15 +21,25 @@ var BlogArticleSchema = new Schema({
             headimg: String,//点赞人头像
             cdate: {//点赞时间
                 type: Date,
-                defauld: Date.now()
+                default: Date.now()
             }
         }
     ],
-    read: Number,// 文章被阅读次数 自己打开的不算
+    lovenum: {//点赞数  因为要用点赞数排序 所以开了一个字段
+        type: Number,
+        default: 0
+    },
+    read: {// 文章被阅读次数 自己打开的不算
+        type: Number,
+        default: 0
+    },
     tag: String,//文章大分类
     tag_item: String,//小分类
     is_show: Boolean,//是否显示当前文章 true 显示 false 不显示
-    comment: { type: Array, ref: 'BlogComment' }//用来关联评论
+    comment: {//评论数
+        type: Number,
+        default: 0
+    }
 }, { versionKey: false })
 
 
