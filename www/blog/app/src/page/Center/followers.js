@@ -20,6 +20,7 @@ class Followers extends React.Component{
        this.isLogin();//登陆信息
        this.msg();//头部信息
        this.article();//文章列表
+       this.followlist();//关注列表
     }
     msg(){
         let {actions} = this.props;
@@ -40,6 +41,16 @@ class Followers extends React.Component{
         }
         actions.getArticleList(data);
     }
+    followlist(){
+        let {actions} = this.props;
+        let id = this.props.params.id || '';
+        let data = {
+            accessToken:local_accessToken,
+            act:'2',
+            id:id
+        }
+        actions.getFollowListData(data);
+    }
     isLogin(){
         let {blogloginData,actions} = this.props;
         //检测登录 有误Token,没有的话去登陆
@@ -58,20 +69,21 @@ class Followers extends React.Component{
         }
     }
     render(){
-        let {blogloginData,blogGuanZhuData,blogArticleData,actions} = this.props;
+        let {blogloginData,blogGuanZhuData,blogArticleData,followlist,actions} = this.props;
         let Login_data = blogloginData.data || [];
         let msg = blogGuanZhuData.data || [];//头部信息
-        let article = blogArticleData.data || [];//文章列表
+        // let article = blogArticleData.data || [];//文章列表
+        let follow = followlist.data || [];
         return (
             <div>
                 <Header isLogin={this.state.islogin} data ={Login_data}/>
                 <div className="center-wrap">
                     <div className= "left">
                        <Msg data = {msg}/>
-                       <TabFS data ={article} actions={actions}/>
+                       <TabFS data ={follow} actions={actions}/>
                     </div>
                     <div className='right'>
-                        <Introduce id = {this.props.params.id}/>
+                        <Introduce data = {msg} id = {this.props.params.id} actions={actions}/>
                     </div>
                 </ div>
             </div>

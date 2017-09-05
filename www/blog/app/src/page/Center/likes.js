@@ -20,6 +20,7 @@ class Likes extends React.Component{
        this.isLogin();//登陆信息
        this.msg();//头部信息
        this.article();//文章列表
+       this.collect();//收藏文章
     }
     msg(){
         let {actions} = this.props;
@@ -29,6 +30,16 @@ class Likes extends React.Component{
             id:id
         }
         actions.getGuanZhuData(data);
+    }
+    collect(){
+        let {actions} = this.props;
+        let id = this.props.params.id || '';
+        let data = {
+            accessToken:local_accessToken,
+            or:'love',
+            id:id
+        }
+        actions.getCollectList(data);
     }
     article(){
         let {actions} = this.props;
@@ -58,20 +69,20 @@ class Likes extends React.Component{
         }
     }
     render(){
-        let {blogloginData,blogGuanZhuData,blogArticleData,actions} = this.props;
+        let {blogloginData,blogGuanZhuData,blogArticleData,collectList,actions} = this.props;
         let Login_data = blogloginData.data || [];
         let msg = blogGuanZhuData.data || [];//头部信息
-        let article = blogArticleData.data || [];//文章列表
+        let collect = collectList.data || [];//收藏列表
         return (
             <div>
                 <Header isLogin={this.state.islogin} data ={Login_data}/>
                 <div className="center-wrap">
                     <div className= "left">
                        <Msg data = {msg}/>
-                       <TabL data ={article} actions={actions}/>
+                       <TabL data ={collect} actions={actions}/>
                     </div>
                     <div className='right'>
-                        <Introduce id = {this.props.params.id}/>
+                        <Introduce data = {msg} id = {this.props.params.id} actions={actions}/>
                     </div>
                 </ div>
             </div>

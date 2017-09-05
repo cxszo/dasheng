@@ -1,5 +1,6 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
+import NoData from '../../../../components/NoData/'
 
 import './index.scss'
 let local_accessToken = localStorage.getItem('accessToken') || '';
@@ -44,131 +45,56 @@ class TabF extends React.Component{
         return(
             <div className="tab">
                 <div className="title">
-                    <li onClick = {this.love.bind(this)} className={this.state.class1Off?'active':''}><a>关注的文集238</a></li>
-                    <li onClick = {this.hot.bind(this)} className={this.state.class2Off?'active':''}><a>喜欢的文章12</a></li>
+                    {/* <li onClick = {this.love.bind(this)} className={this.state.class1Off?'active':''}><a>关注的文集238</a></li> */}
+                    <li onClick = {this.hot.bind(this)} className={this.state.class2Off?'active':''}><a>收藏的文章{this.props.data.length}</a></li>
                 </div>
                 <div className="wrap-like">
                     <ul>
-                        <li>
-                           <a>
-                               <div className="left">
-                                   <div className="author">
-                                       <a>
-                                           <img src="http://upload-images.jianshu.io/upload_images/3459828-42e26b4a16075681.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240"/>
-                                       </a>
-                                       <span>
-                                            有备而来的路人甲
-                                       </span>
-                                       <cite>2017-02-03</cite>
-                                   </div>
-                                   <div className="title-like">
-                                        <h3>好的坏的，都是人生路上最好的经历</h3>
-                                   </div>
-                                   <div className="text">
-                                       <p>
-                                            前些日子，某位亲戚家的孩子考上了大学。 然后他父母让他加了我微信，意思是有什么不懂的可以多问问我。 虽说亲戚，平时我们之间的联系却屈指可数。不过这一次我们聊得挺久的，关于大学...
-                                       </p>
-                                   </div>
-                                   <div className="meta-like">
-                                       <span className="read">
-                                           <i>阅读</i>
-                                           23
-                                       </span>
-                                       <span className="comment">
-                                           <i>评论</i>
-                                            43
-                                       </span>
-                                       <span className="like">
-                                           <i>喜欢</i>
-                                           2
-                                       </span>
-                                   </div>
-                               </div>
-                               <div className="right">
-                                   <img src="http://upload-images.jianshu.io/upload_images/3459828-42e26b4a16075681.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240"/>
-                               </div>
-                           </a>
-                        </li>
-                        <li>
-                           <a>
-                               <div className="left">
-                                   <div className="author">
-                                       <a>
-                                           <img src="http://upload-images.jianshu.io/upload_images/3459828-42e26b4a16075681.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240"/>
-                                       </a>
-                                       <span>
-                                            有备而来的路人甲
-                                       </span>
-                                       <cite>2017-02-03</cite>
-                                   </div>
-                                   <div className="title-like">
-                                        <h3>好的坏的，都是人生路上最好的经历</h3>
-                                   </div>
-                                   <div className="text">
-                                       <p>
-                                            前些日子，某位亲戚家的孩子考上了大学。 然后他父母让他加了我微信，意思是有什么不懂的可以多问问我。 虽说亲戚，平时我们之间的联系却屈指可数。不过这一次我们聊得挺久的，关于大学...
-                                       </p>
-                                   </div>
-                                   <div className="meta-like">
-                                       <span className="read">
-                                           <i>阅读</i>
-                                           23
-                                       </span>
-                                       <span className="comment">
-                                           <i>评论</i>
-                                            43
-                                       </span>
-                                       <span className="like">
-                                           <i>喜欢</i>
-                                           2
-                                       </span>
-                                   </div>
-                               </div>
-                               <div className="right">
-                                   <img src="http://upload-images.jianshu.io/upload_images/3459828-42e26b4a16075681.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240"/>
-                               </div>
-                           </a>
-                        </li>
-                        <li>
-                           <a>
-                               <div className="left">
-                                   <div className="author">
-                                       <a>
-                                           <img src="http://upload-images.jianshu.io/upload_images/3459828-42e26b4a16075681.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240"/>
-                                       </a>
-                                       <span>
-                                            有备而来的路人甲
-                                       </span>
-                                       <cite>2017-02-03</cite>
-                                   </div>
-                                   <div className="title-like">
-                                        <h3>好的坏的，都是人生路上最好的经历</h3>
-                                   </div>
-                                   <div className="text">
-                                       <p>
-                                            前些日子，某位亲戚家的孩子考上了大学。 然后他父母让他加了我微信，意思是有什么不懂的可以多问问我。 虽说亲戚，平时我们之间的联系却屈指可数。不过这一次我们聊得挺久的，关于大学...
-                                       </p>
-                                   </div>
-                                   <div className="meta-like">
-                                       <span className="read">
-                                           <i>阅读</i>
-                                           23
-                                       </span>
-                                       <span className="comment">
-                                           <i>评论</i>
-                                            43
-                                       </span>
-                                       <span className="like">
-                                           <i>喜欢</i>
-                                           2
-                                       </span>
-                                   </div>
-                               </div>
-                               <div className="right">
-                                   <img src="http://upload-images.jianshu.io/upload_images/3459828-42e26b4a16075681.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240"/>
-                               </div>
-                           </a>
-                        </li>
+                        {
+                            this.props.data.length == '0' ? <NoData/> :
+                            this.props.data.map((v,i)=>{
+                                return (
+                                    <li>
+                                        <a>
+                                            <div className="left">
+                                                <div className="author">
+                                                    <a>
+                                                        <img src={v.headimg}/>
+                                                    </a>
+                                                    <span>
+                                                            {v.name}
+                                                    </span>
+                                                    <cite>{v.cdate}</cite>
+                                                </div>
+                                                <div className="title-like">
+                                                        <h3>{v.title}</h3>
+                                                </div>
+                                                <div className="text">
+                                                    <p>{v.intro}</p>
+                                                </div>
+                                                <div className="meta-like">
+                                                    <span className="read">
+                                                        <i>阅读</i>
+                                                        {v.read}
+                                                    </span>
+                                                    <span className="comment">
+                                                        <i>评论</i>
+                                                            {v.comment}
+                                                    </span>
+                                                    <span className="like">
+                                                        <i>喜欢</i>
+                                                        {v.love}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div className="right">
+                                                <img src="http://upload-images.jianshu.io/upload_images/3459828-42e26b4a16075681.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240"/>
+                                            </div>
+                                        </a>
+                                        </li>
+                                )
+                            })
+                        }
                         
                     </ul>
                 </div>

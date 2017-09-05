@@ -17,22 +17,31 @@ class Center extends React.Component{
     }
     componentDidMount(){
        let {blogloginData,actions} = this.props;
-       this.isLogin();//登陆信息
-       this.msg();//头部信息
-       this.article();//文章列表
+       this.isLogin(this.props);//登陆信息
+       this.msg(this.props);//头部信息
+       this.article(this.props);//文章列表
     }
-    msg(){
-        let {actions} = this.props;
-        let id = this.props.params.id || '';
+    componentWillReceiveProps(nextProps){
+        let pathName_1 = this.props.location.pathname || '';
+        let pathName_2 = nextProps.location.pathname || '';
+        if(pathName_1 !=pathName_2){
+           this.isLogin(nextProps);//登陆信息
+           this.msg(nextProps);//头部信息
+           this.article(nextProps);//文章列表
+        }
+	}
+    msg(param){
+        let {actions} = param;
+        let id = param.params.id || '';
         let data = {
             accessToken:local_accessToken,
             id:id
         }
         actions.getGuanZhuData(data);
     }
-    article(){
-        let {actions} = this.props;
-        let id = this.props.params.id || '';
+    article(param){
+        let {actions} = param;
+        let id = param.params.id || '';
         let data = {
             accessToken:local_accessToken,
             or:'love',
@@ -40,8 +49,8 @@ class Center extends React.Component{
         }
         actions.getArticleList(data);
     }
-    isLogin(){
-        let {blogloginData,actions} = this.props;
+    isLogin(param){
+        let {blogloginData,actions} = param;
         //检测登录 有误Token,没有的话去登陆
         if(!!local_accessToken){
             let data = {
@@ -57,6 +66,7 @@ class Center extends React.Component{
             })
         }
     }
+
     render(){
         let {blogloginData,blogGuanZhuData,blogArticleData,actions} = this.props;
         let Login_data = blogloginData.data || [];
@@ -68,10 +78,10 @@ class Center extends React.Component{
                 <div className="center-wrap">
                     <div className= "left">
                        <Msg data = {msg}/>
-                       <Tab data ={article} actions={actions}/>
+                       <Tab data ={article} actions={actions} id ={this.props.params.id}/>
                     </div>
                     <div className='right'>
-                        <Introduce id = {this.props.params.id}/>
+                        <Introduce data = {msg} id = {this.props.params.id} actions={actions}/>
                     </div>
                 </ div>
             </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
+import NoData from '../../../../components/NoData/'
 
 import './index.scss'
 let local_accessToken = localStorage.getItem('accessToken') || '';
@@ -11,7 +12,7 @@ class TabF extends React.Component{
             class2Off:false
         }
     }
-    love(){
+    following(){
         this.setState({
             class1Off:true,
             class2Off:false
@@ -20,12 +21,12 @@ class TabF extends React.Component{
         let id = this.props.data[0].userid;
         let data = {
             accessToken:local_accessToken,
-            or:'love',
+            act:'1',
             id:id
         }
-        actions.getArticleList(data);
+        actions.getFollowListData(data);
     }
-    hot(){
+    followers(){
         this.setState({
             class1Off:false,
             class2Off:true
@@ -34,138 +35,72 @@ class TabF extends React.Component{
         let id = this.props.data[0].userid;
         let data = {
             accessToken:local_accessToken,
-            or:'hot',
+            act:'2',
             id:id
         }
-        actions.getArticleList(data);
+        actions.getFollowListData(data);
     }
     render(){
         console.log(this.props)
         return(
             <div className="tab">
                 <div className="title">
-                    <li onClick = {this.love.bind(this)} className={this.state.class1Off?'active':''}><a>关注用户238</a></li>
-                    <li onClick = {this.hot.bind(this)} className={this.state.class2Off?'active':''}><a>粉丝12</a></li>
+                    <li onClick = {this.following.bind(this)} className={this.state.class1Off?'active':''}><a>关注用户{this.props.data.length}</a></li>
+                    <li onClick = {this.followers.bind(this)} className={this.state.class2Off?'active':''}><a>粉丝{this.props.data.length}</a></li>
                 </div>
                 <div className="wrap">
                     <ul>
-                        <li>
-                            <a className="ico_f">
-                                <img src='http://ov0zo91tq.bkt.clouddn.com/headimg/default/323.jpg'/>
-                            </a>
-                            <div className="info">
-                                <p className="name">
-                                    <em>茜喵</em>
-                                    <i></i>
-                                </p>
-                                <p className="meta">
-                                    <span>
-                                         关注
-                                        <cite>12</cite>
-                                    </span>
-                                    <span>
-                                         粉丝
-                                        <cite>34</cite>
-                                    </span>
-                                    <span>
-                                         文章
-                                        <cite>92</cite>
-                                    </span>
-                                </p>
-                                <p className="meta no-border">
-                                     <span>
-                                            写了
-                                        <cite>322</cite>
-                                        字,
-                                        您获得了
-                                        <cite>322</cite>
-                                        喜欢
-                                    </span>
-                                </p>
-                                
-                            </div>
-                            <a className="like">
-                                +关注
-                            </a>
-                        </li>
-                        <li>
-                            <a className="ico_f">
-                                <img src='http://ov0zo91tq.bkt.clouddn.com/headimg/default/323.jpg'/>
-                            </a>
-                            <div className="info">
-                                <p className="name">
-                                    <em>茜喵</em>
-                                    <i></i>
-                                </p>
-                                <p className="meta">
-                                    <span>
-                                         关注
-                                        <cite>12</cite>
-                                    </span>
-                                    <span>
-                                         粉丝
-                                        <cite>34</cite>
-                                    </span>
-                                    <span>
-                                         文章
-                                        <cite>92</cite>
-                                    </span>
-                                </p>
-                                <p className="meta no-border">
-                                     <span>
-                                            写了
-                                        <cite>322</cite>
-                                        字,
-                                        您获得了
-                                        <cite>322</cite>
-                                        喜欢
-                                    </span>
-                                </p>
-                                
-                            </div>
-                            <a className="like">
-                                +关注
-                            </a>
-                        </li>
-                        <li>
-                            <a className="ico_f">
-                                <img src='http://ov0zo91tq.bkt.clouddn.com/headimg/default/323.jpg'/>
-                            </a>
-                            <div className="info">
-                                <p className="name">
-                                    <em>茜喵</em>
-                                    <i></i>
-                                </p>
-                                <p className="meta">
-                                    <span>
-                                         关注
-                                        <cite>12</cite>
-                                    </span>
-                                    <span>
-                                         粉丝
-                                        <cite>34</cite>
-                                    </span>
-                                    <span>
-                                         文章
-                                        <cite>92</cite>
-                                    </span>
-                                </p>
-                                <p className="meta no-border">
-                                     <span>
-                                            写了
-                                        <cite>322</cite>
-                                        字,
-                                        您获得了
-                                        <cite>322</cite>
-                                        喜欢
-                                    </span>
-                                </p>
-                                
-                            </div>
-                            <a className="like">
-                                +关注
-                            </a>
-                        </li>
+                        {
+                            this.props.data.length == '0' ? <NoData/> :
+                            this.props.data.map((v,i)=>{
+                                return (
+                                        <li>
+                                            <a className="ico_f">
+                                                <img src={v.headimg}/>
+                                            </a>
+                                            <div className="info">
+                                                <p className="name">
+                                                    <em>{v.name}</em>
+                                                    <i></i>
+                                                </p>
+                                                <p className="meta">
+                                                    <span>
+                                                        关注
+                                                        <cite>{v.following}</cite>
+                                                    </span>
+                                                    <span>
+                                                        粉丝
+                                                        <cite>{v.followers}</cite>
+                                                    </span>
+                                                    <span>
+                                                        文章
+                                                        <cite>{v.articlenum}</cite>
+                                                    </span>
+                                                </p>
+                                                <p className="meta no-border">
+                                                    <span>
+                                                            写了
+                                                        <cite>322</cite>
+                                                        字,
+                                                        您获得了
+                                                        <cite>{v.love}</cite>
+                                                        喜欢
+                                                    </span>
+                                                </p>
+                                                
+                                            </div>
+                                            {
+                                                v.is_follow ? 
+                                                <a className="like">
+                                                    +关注
+                                                </a>
+                                                :
+                                                null
+                                             }
+                                        </li>        
+                                    )
+                                })
+                         }
                     </ul>
                 </div>
             </div>

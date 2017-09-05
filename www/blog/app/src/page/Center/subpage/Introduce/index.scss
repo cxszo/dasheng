@@ -1,31 +1,45 @@
 .introduce{
     .jieshao{
-        div{
+        .jieshao-wrap{
             padding: 20px 0 10px 0;
             overflow: hidden;
             border-bottom: 1px solid #f0f0f0;
-            span{
-                float: left;
+            section.hide{
+                display: none;
+            }
+            .biaoti{
+                overflow: hidden;
+                span{
+                    float: left;
+                    margin-bottom: 10px;
+                    font-size: 14px;
+                    color: #969696;
+                }
+                em.edit-ico{
+                    float: right;
+                    font-size: 13px;
+                    color: #969696;
+                    cursor: pointer;
+                    position: relative;
+                }
+                em.edit-ico.hide{
+                    display: none;
+                }
+                em.edit-ico:after{
+                    position: absolute;
+                    content: '';
+                    top: 0px;
+                    left: -16px;
+                    width: 16px;
+                    height: 16px;
+                    background: url('../../../../static/img/edit-ico.png') no-repeat center;
+                    background-size:100% 100%; 
+                }
+            }
+            .desc{
                 margin-bottom: 10px;
+                line-height: 20px;
                 font-size: 14px;
-                color: #969696;
-            }
-            em.edit-ico{
-                float: right;
-                font-size: 13px;
-                color: #969696;
-                cursor: pointer;
-                position: relative;
-            }
-            em.edit-ico:after{
-                position: absolute;
-                content: '';
-                top: 0px;
-                left: -16px;
-                width: 16px;
-                height: 16px;
-                background: url('../../../../static/img/edit-ico.png') no-repeat center;
-                background-size:100% 100%; 
             }
             textarea{
                 width: 92%;
@@ -57,6 +71,8 @@
                     vertical-align: middle;
                 }
             }
+        
+            
         }
         ul{
             cursor: pointer;

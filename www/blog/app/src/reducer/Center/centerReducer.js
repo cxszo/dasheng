@@ -2,7 +2,10 @@ import * as types from '../../constant/Center/centerType.js'
 const initialState = {
     bloglogin:'',
     blogGuanzhu:'',
-    blogArticle:''
+    blogArticle:'',
+    followList:'',
+    collectList:'',
+    editSign:''
 }
 export default  function BlogCenter(state=initialState,action){
     switch(action.type){
@@ -17,6 +20,18 @@ export default  function BlogCenter(state=initialState,action){
 
         case types.GETARTICLE_DATA:
         return Object.assign({},state,{blogArticle:action.data})
+        break;
+
+        case types.FOLLOWLIST_DATA:
+        return Object.assign({},state,{followList:action.data})
+        break;
+
+        case types.COLLECT_DATA:
+        return Object.assign({},state,{collectList:action.data})
+        break;
+
+        case types.EDIT_DATA:
+        return Object.assign({},state,{editSign:action.data})
         break;
 
         default:

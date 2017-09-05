@@ -38,6 +38,8 @@
             a{
                 .left{
                     float: left;
+                    height: 145px;
+                    position: relative;
                     .author{
                         overflow: hidden;
                         line-height: 32px;
@@ -76,7 +78,8 @@
                         }
                     }
                     .meta-like{
-                        margin-top: 10px;
+                        position: absolute;
+                        bottom: 0;
                         span{
                             margin-right: 10px;
                             font-size: 12px;

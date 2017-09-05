@@ -1,6 +1,6 @@
 import React from 'react'
 import PureRenderMixin from 'react-addons-pure-render-mixin'
-
+import NoData from '../../../../components/NoData/'
 import './index.scss'
 let local_accessToken = localStorage.getItem('accessToken') || '';
 class Tab extends React.Component{
@@ -17,7 +17,7 @@ class Tab extends React.Component{
             class2Off:false
         })
         let {actions} = this.props;
-        let id = this.props.data[0].userid;
+        let id = this.props.id;
         let data = {
             accessToken:local_accessToken,
             or:'love',
@@ -31,7 +31,7 @@ class Tab extends React.Component{
             class2Off:true
         })
         let {actions} = this.props;
-        let id = this.props.data[0].userid;
+        let id = this.props.id;
         let data = {
             accessToken:local_accessToken,
             or:'hot',
@@ -44,12 +44,12 @@ class Tab extends React.Component{
         return(
             <div className="tab">
                 <div className="title">
-                    <li onClick = {this.love.bind(this)} className={this.state.class1Off?'active':''}><a>文章列表34</a></li>
-                    <li onClick = {this.hot.bind(this)} className={this.state.class2Off?'active':''}><a>热门文章23</a></li>
+                    <li onClick = {this.love.bind(this)} className={this.state.class1Off?'active':''}><a>文章列表</a></li>
+                    <li onClick = {this.hot.bind(this)} className={this.state.class2Off?'active':''}><a>热门文章</a></li>
                 </div>
                 <div className="wrap">
                     <ul>
-                        {this.props.data.length =='0' || !this.props.data? null :
+                        {this.props.data.length =='0' || !this.props.data? <NoData/> :
                         this.props.data.map((v,i)=>{
                             return (
                                 <li key={i}>
