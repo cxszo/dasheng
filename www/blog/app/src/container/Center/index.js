@@ -17,7 +17,8 @@ const mapStateToProps=state=>{
         blogloginData:state.BlogCenter.bloglogin,
         blogGuanZhuData:state.BlogCenter.blogGuanzhu,
         blogArticleData:state.BlogCenter.blogArticle,
-        editSign:state.BlogCenter.editSign
+        editSign:state.BlogCenter.editSign,
+        guanZhu:state.BlogCenter.guanZhu
     }
 }
 

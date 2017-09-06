@@ -5,7 +5,8 @@ const initialState = {
     blogArticle:'',
     followList:'',
     collectList:'',
-    editSign:''
+    editSign:'',
+    guanZhu:''
 }
 export default  function BlogCenter(state=initialState,action){
     switch(action.type){
@@ -32,6 +33,10 @@ export default  function BlogCenter(state=initialState,action){
 
         case types.EDIT_DATA:
         return Object.assign({},state,{editSign:action.data})
+        break;
+
+        case types.GUANZHU_DATA:
+        return Object.assign({},state,{guanZhu:action.data})
         break;
 
         default:

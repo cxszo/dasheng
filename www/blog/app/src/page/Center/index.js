@@ -77,7 +77,7 @@ class Center extends React.Component{
                 <Header isLogin={this.state.islogin} data ={Login_data}/>
                 <div className="center-wrap">
                     <div className= "left">
-                       <Msg data = {msg}/>
+                       <Msg data = {msg} actions={actions} id = {this.props.params.id}/>
                        <Tab data ={article} actions={actions} id ={this.props.params.id}/>
                     </div>
                     <div className='right'>

@@ -3,7 +3,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import './index.scss'
-
+let local_accessToken = localStorage.getItem('accessToken') || '';
 class Msg extends React.Component{
     toFollowing(i){
         hashHistory.push("/Center/"+i+"/following");
@@ -13,6 +13,16 @@ class Msg extends React.Component{
     }
     toCenter(i){
         hashHistory.push("/Center/"+i+"");
+    }
+    attention(){
+       let {actions} = this.props;
+       let id = this.props.id;
+       let data = {
+            accessToken:local_accessToken,
+            id:id
+       }
+        actions.getGz(data);
+        actions.getGuanZhuData(data);
     }
     render(){
         return(
@@ -43,7 +53,11 @@ class Msg extends React.Component{
                        
                     </p>
                 </span>
-                <a className="like">+关注</a>
+                {
+                    this.props.data.is_me ? null :
+                    <a className={!this.props.data.is_follow  ? 'like':'like cur'} onClick={this.attention.bind(this)}>{!this.props.data.is_follow ? '+关注':'√ 已关注'}</a>
+                }
+                
         </div>
         )
     }

@@ -78,8 +78,8 @@ class Likes extends React.Component{
                 <Header isLogin={this.state.islogin} data ={Login_data}/>
                 <div className="center-wrap">
                     <div className= "left">
-                       <Msg data = {msg}/>
-                       <TabL data ={collect} actions={actions}/>
+                       <Msg data = {msg} actions={actions} id = {this.props.params.id}/>
+                       <TabL data ={collect} actions={actions} id ={this.props.params.id}/>
                     </div>
                     <div className='right'>
                         <Introduce data = {msg} id = {this.props.params.id} actions={actions}/>

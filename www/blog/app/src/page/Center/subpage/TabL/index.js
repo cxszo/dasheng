@@ -18,7 +18,7 @@ class TabF extends React.Component{
             class2Off:false
         })
         let {actions} = this.props;
-        let id = this.props.data[0].userid;
+        let id = this.props.id;
         let data = {
             accessToken:local_accessToken,
             or:'love',
@@ -32,7 +32,7 @@ class TabF extends React.Component{
             class2Off:true
         })
         let {actions} = this.props;
-        let id = this.props.data[0].userid;
+        let id = this.props.id;
         let data = {
             accessToken:local_accessToken,
             or:'hot',
@@ -46,7 +46,7 @@ class TabF extends React.Component{
             <div className="tab">
                 <div className="title">
                     {/* <li onClick = {this.love.bind(this)} className={this.state.class1Off?'active':''}><a>关注的文集238</a></li> */}
-                    <li onClick = {this.hot.bind(this)} className={this.state.class2Off?'active':''}><a>收藏的文章{this.props.data.length}</a></li>
+                    <li onClick = {this.hot.bind(this)} className={this.state.class2Off?'active':''}><a>收藏的文章</a></li>
                 </div>
                 <div className="wrap-like">
                     <ul>
@@ -54,7 +54,7 @@ class TabF extends React.Component{
                             this.props.data.length == '0' ? <NoData/> :
                             this.props.data.map((v,i)=>{
                                 return (
-                                    <li>
+                                    <li key ={i}>
                                         <a>
                                             <div className="left">
                                                 <div className="author">

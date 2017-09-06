@@ -79,8 +79,8 @@ class Following extends React.Component{
                 <Header isLogin={this.state.islogin} data ={Login_data}/>
                 <div className="center-wrap">
                     <div className= "left">
-                       <Msg data = {msg}/>
-                       <TabF data ={follow} actions={actions}/>
+                        <Msg data = {msg} actions={actions} id = {this.props.params.id}/>
+                       <TabF data ={follow} actions={actions} id ={this.props.params.id}/>
                     </div>
                     <div className='right'>
                         <Introduce data = {msg} id = {this.props.params.id} actions={actions}/>

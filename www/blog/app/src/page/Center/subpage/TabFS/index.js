@@ -18,7 +18,7 @@ class TabFS extends React.Component{
             class2Off:false
         })
         let {actions} = this.props;
-        let id = this.props.data[0].userid;
+        let id = this.props.id;
         let data = {
             accessToken:local_accessToken,
             act:'1',
@@ -32,7 +32,7 @@ class TabFS extends React.Component{
             class2Off:true
         })
         let {actions} = this.props;
-        let id = this.props.data[0].userid;
+        let id = this.props.id;
         let data = {
             accessToken:local_accessToken,
             act:'2',
@@ -45,8 +45,8 @@ class TabFS extends React.Component{
         return(
             <div className="tab">
                 <div className="title">
-                    <li onClick = {this.following.bind(this)} className={this.state.class1Off?'active':''}><a>关注用户{this.props.data.length}</a></li>
-                    <li onClick = {this.followers.bind(this)} className={this.state.class2Off?'active':''}><a>粉丝{this.props.data.length}</a></li>
+                    <li onClick = {this.following.bind(this)} className={this.state.class1Off?'active':''}><a>关注用户</a></li>
+                    <li onClick = {this.followers.bind(this)} className={this.state.class2Off?'active':''}><a>粉丝</a></li>
                 </div>
                 <div className="wrap">
                     <ul>
@@ -54,7 +54,7 @@ class TabFS extends React.Component{
                             this.props.data.length == '0' ? <NoData/> :
                             this.props.data.map((v,i)=>{
                                 return (
-                                        <li>
+                                        <li key ={i}>
                                             <a className="ico_f">
                                                 <img src={v.headimg}/>
                                             </a>

@@ -27,6 +27,9 @@ class Header extends React.Component{
 			})
 		}
 	}
+	toWrite(){
+		hashHistory.push('/Note')
+	}
 	toIndex(){
 		hashHistory.push('/')
 	}
@@ -74,7 +77,7 @@ class Header extends React.Component{
 						<img src="https://gold-cdn.xitu.io/v3/static/img/juejin-search-icon.6f8ba1b.svg" alt=""/>
 					</div>
 					<div className = 'edit'>
-						<a>写文章</a>
+						<a onClick={this.toWrite.bind(this)}>写文章</a>
 					</div>
 				</div>
 			</div>

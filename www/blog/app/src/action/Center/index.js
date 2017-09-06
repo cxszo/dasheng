@@ -96,3 +96,19 @@ export const getEdit= param =>{
          type: types.EDIT_DATA,
          data
  })
+ //关注，取消关注
+ export const getGz= param =>{
+    return dispatch =>{
+        Util.ajaxGet('http://59.110.143.111/data/blog/follow/'+param.id+'?accessToken='+param.accessToken,(data)=>{
+                dispatch(blogGZ(data))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+        
+    }
+}
+const blogGZ=data=>({
+        type: types.GUANZHU_DATA,
+        data
+})
