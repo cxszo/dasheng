@@ -1,6 +1,6 @@
 
 /**
- * @api {post} /data/signin  登录
+ * @api {post} /signin  登录
  * @apiGroup Index
  *
  * @apiParam {String} username 输入用户名或者手机号   
@@ -31,7 +31,7 @@
  */
 
 /**
- * @api {post} /data/signup  注册 
+ * @api {post} /signup  注册 
  * @apiGroup Index
  *
  * @apiParam {String} username 输入用户名
@@ -45,7 +45,7 @@
 
 
 /**
- * @api {get} /data/cdn/list  查询想要检索的库列表
+ * @api {get} /cdn/list  查询想要检索的库列表
  * @apiGroup CDN
  * @apiParam {String} charAt 需要检索的字符 
  *
@@ -69,7 +69,7 @@
 
 
 /**
- * @api {get} /data/cdn/list/:id  获取指定库 版本列表
+ * @api {get} /cdn/list/:id  获取指定库 版本列表
  * @apiGroup CDN
  * @apiParam {String} id 需要查询的库名
  *
@@ -116,7 +116,7 @@
 
 
 /**
- * @api {get} /data/cdn/list/:l/:v 获取指定库 指定版本 数据列表
+ * @api {get} /cdn/list/:l/:v 获取指定库 指定版本 数据列表
  * @apiGroup CDN
  * @apiParam {String} l 库名
  * @apiParam {String} v 库版本
@@ -138,7 +138,7 @@
  */
 
 /**
- * @api {post} /data/blog/list 1.1文章列表
+ * @api {post} /blog/list 1.1文章列表
  * @apiGroup blogStartPage
  * @apiParam {String} tag 大分类（可空）
  * @apiParam {String} tag_item 小分类（可空）
@@ -177,7 +177,7 @@
 }
  */
 /**
- * @api {get} /data/blog/tag 1.2查询大标签 
+ * @api {get} /blog/tag 1.2查询大标签 
  * @apiGroup blogStartPage
  * @apiSuccessExample Success-Response:
  {
@@ -209,7 +209,7 @@
 
  */
 /**
- * @api {get} /data/blog/tag/:id 1.3查询小标签 
+ * @api {get} /blog/tag/:id 1.3查询小标签 
  * @apiGroup blogStartPage
  * 
  * @apiParam {String} id 大标签id
@@ -226,7 +226,7 @@
  }
  */
 /**
- * @api {get} /data/blog/authors 1.4优秀原创作者 
+ * @api {get} /blog/authors 1.4优秀原创作者 
  * @apiGroup blogStartPage
  * 
  * @apiSuccess {Number} code 1成功.
@@ -253,7 +253,7 @@
  }
  */
 /**
- * @api {get} /data/blog/read/:id 2.2统计阅读
+ * @api {get} /blog/read/:id 2.2统计阅读
  * @apiGroup blogArticle
  * @apiHeader {String} x-access-token 登录信息（可空）
  * 
@@ -268,7 +268,7 @@
  }
  */
 /**
- * @api {post} /data/blog/article 2.1内容
+ * @api {post} /blog/article 2.1内容
  * @apiGroup blogArticle
  * @apiHeader {String} x-access-token 登录信息（可空）
  * 
@@ -316,7 +316,7 @@
 
 
 /**
- * @api {post} /data/blog/article/love 2.3喜欢、取消喜欢
+ * @api {post} /blog/article/love 2.3喜欢、取消喜欢
  * @apiGroup blogArticle
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -328,7 +328,7 @@
  }
  */
 /**
- * @api {get} /data/blog/article/loverlist/:id 2.4喜欢人列表
+ * @api {get} /blog/article/loverlist/:id 2.4喜欢人列表
  * @apiGroup blogArticle
  * 
  * @apiParam {String} id 文章id slug
@@ -357,7 +357,7 @@
 
 
 /**
- * @api {get} /data/blog/follow/:id 4.1关注、取消关注
+ * @api {get} /blog/follow/:id 4.1关注、取消关注
  * @apiGroup blogUser
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -369,7 +369,7 @@
  }
  */
 /**
- * @api {get} /data/blog/userinfo/:id 4.2关注数、文章数...
+ * @api {get} /blog/userinfo/:id 4.2关注数、文章数...
  * @apiGroup blogUser
  * @apiHeader {String} x-access-token 登录信息 (可空)
  * 
@@ -383,6 +383,7 @@
  * @apiSuccess {Number} articlenum 发布的文章数
  * @apiSuccess {Number} love 获得的喜欢数
  * @apiSuccess {Boolean} is_follow 自己是否也关注了
+ * @apiSuccess {Boolean} is_me 是否是自己  true是自己 false 不是 （如果是true is_follow不返回）
  * @apiSuccess {String} sex 性别 1男 2女 0没有设置
  * @apiSuccess {String} say 个人介绍
  * @apiSuccessExample Success-Response:
@@ -398,13 +399,14 @@
         love: 81009,
         is_follow:false,
         sex:1,
-        say:'暖污暖污的槽值小妹等你撩。'
+        say:'暖污暖污的槽值小妹等你撩。',
+        is_me: false
     },
     desc:'success'
 }
  */
 /**
- * @api {post} /data/blog/followlist 4.3关注、粉丝列表
+ * @api {post} /blog/followlist 4.3关注、粉丝列表
  * @apiGroup blogUser
  * @apiHeader {String} x-access-token 登录信息 (可空)
  * 
@@ -443,7 +445,7 @@
  */
 
 /**
- * @api {get} /data/blog/user_article/:id 4.4文章列表
+ * @api {get} /blog/user_article/:id 4.4文章列表
  * @apiGroup blogUser
  * @apiParam {String} id 博主userid
  * 
@@ -482,7 +484,7 @@
  * 
  */
 /**
- * @api {get} /data/blog/user_article/:id/love 4.5喜欢的文章列表
+ * @api {get} /blog/user_article/:id/love 4.5喜欢的文章列表
  * @apiGroup blogUser
  * @apiParam {String} id 博主userid
  * 
@@ -521,7 +523,7 @@
  * 
  */
 /**
- * @api {get} /data/blog/user_article/:id/hot 4.6热门文章列表
+ * @api {get} /blog/user_article/:id/hot 4.6热门文章列表
  * @apiGroup blogUser
  * @apiParam {String} id 博主userid
  * 
@@ -560,7 +562,7 @@
  * 
  */
 /**
- * @api {get} /data/blog/user_article/collect 4.7收藏的文章列表
+ * @api {get} /blog/user_article/collect 4.7收藏的文章列表
  * @apiGroup blogUser
  * @apiHeader {String} x-access-token 登录信息 (可空)
  * 
@@ -598,7 +600,7 @@
  * 
  */
 /**
- * @api {post} /data/blog/user_say 4.8编辑个人介绍
+ * @api {post} /blog/user_say 4.8编辑个人介绍
  * @apiGroup blogUser
  * @apiHeader {String} x-access-token 登录信息 (可空)
  * 
@@ -612,7 +614,7 @@
 
 
 /**
- * @api {post} /data/blog/collect 2.5收藏、取消收藏
+ * @api {post} /blog/collect 2.5收藏、取消收藏
  * @apiGroup blogArticle
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -628,7 +630,7 @@
 
 
 /**
- * @api {post} /data/blog/notebooks 5.1 新增文集
+ * @api {post} /blog/notebooks 5.1 新增文集
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -656,7 +658,7 @@
  }
  */
 /**
- * @api {post} /data/blog/notebooks/:id/soft_destroy 5.2 删除文集
+ * @api {post} /blog/notebooks/:id/soft_destroy 5.2 删除文集
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -681,7 +683,7 @@
  }
  */
 /**
- * @api {put} /data/blog/notebooks/:id 5.3 修改文集名
+ * @api {put} /blog/notebooks/:id 5.3 修改文集名
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -695,7 +697,7 @@
  }
  */
 /**
- * @api {get} /data/blog/notebooks 5.4 文集列表
+ * @api {get} /blog/notebooks 5.4 文集列表
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -720,7 +722,7 @@
  }
  */
 /**
- * @api {post} /data/blog/notebooks/update_seq 5.5 排序文集❌
+ * @api {post} /blog/notebooks/update_seq 5.5 排序文集❌
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -744,7 +746,7 @@
 
 
 /**
- * @api {post} /data/blog/notes 6.1 新增文章
+ * @api {post} /blog/notes 6.1 新增文章
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -783,7 +785,7 @@
  }
  */
 /**
- * @api {post} /data/blog/notes/:id/soft_destroy 6.2 删除文章
+ * @api {post} /blog/notes/:id/soft_destroy 6.2 删除文章
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -807,7 +809,7 @@
 
 
 /**
- * @api {post} /data/blog/notes/update_seq 6.3 排序文章❌
+ * @api {post} /blog/notes/update_seq 6.3 排序文章❌
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -828,7 +830,7 @@
  }
  */
 /**
- * @api {get} /data/blog/notes 6.4 文章列表
+ * @api {get} /blog/notes 6.4 文章列表
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -863,7 +865,7 @@
  }
  */
 /**
- * @api {put} /data/blog/notes/:id 6.5 保存文章
+ * @api {put} /blog/notes/:id 6.5 保存文章
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -879,7 +881,7 @@
  }
  */
 /**
- * @api {post} /data/blog/notes/:id/publicize 6.6 发布文章
+ * @api {post} /blog/notes/:id/publicize 6.6 发布文章
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -900,7 +902,7 @@
  }
  */
 /**
- * @api {post} /data/blog/notes/:id/privatize 6.7 设为私有
+ * @api {post} /blog/notes/:id/privatize 6.7 设为私有
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -920,7 +922,7 @@
  */
 
 /**
- * @api {get} /data/blog/notes/:id/content 6.8 文章内容
+ * @api {get} /blog/notes/:id/content 6.8 文章内容
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -939,7 +941,7 @@
 }
  */
 /**
- * @api {DELETE} /data/blog/notes/:id 7.1 销毁文章
+ * @api {DELETE} /blog/notes/:id 7.1 销毁文章
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -956,7 +958,7 @@
  }
  */
 /**
- * @api {post} /data/blog/notes/:id/put_back 7.2 恢复文章
+ * @api {post} /blog/notes/:id/put_back 7.2 恢复文章
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -977,7 +979,7 @@
  }
  */
 /**
- * @api {post} /data/blog/notes/:id/tag 8.1 设置大标签
+ * @api {post} /blog/notes/:id/tag 8.1 设置大标签
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -999,7 +1001,7 @@
  }
  */
 /**
- * @api {post} /data/blog/notes/:id/tag_item 8.2 设置小标签
+ * @api {post} /blog/notes/:id/tag_item 8.2 设置小标签
  * @apiGroup blogWrite
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -1025,7 +1027,7 @@
 
 
  /**
- * @api {get} /data/blog/comment/:id 3.1查看评论
+ * @api {get} /blog/comment/:id 3.1查看评论
  * @apiGroup blogComment
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -1089,7 +1091,7 @@
  */
 
  /**
- * @api {post} /data/blog/comment/:id 3.2评论
+ * @api {post} /blog/comment/:id 3.2评论
  * @apiGroup blogComment
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -1129,7 +1131,7 @@
  */
 
   /**
- * @api {post} /data/blog/comment/:slug/love 3.3评论点赞
+ * @api {post} /blog/comment/:slug/love 3.3评论点赞
  * @apiGroup blogComment
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -1146,7 +1148,7 @@
  * 
  */
  /**
- * @api {delete} /data/blog/comment/:slug/delete 3.4删除评论
+ * @api {delete} /blog/comment/:slug/delete 3.4删除评论
  * @apiGroup blogComment
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -1162,7 +1164,7 @@
  */
 
  /**
- * @api {post} /data/blog/comment/:slug/revert 3.5回复评论
+ * @api {post} /blog/comment/:slug/revert 3.5回复评论
  * @apiGroup blogComment
  * @apiHeader {String} x-access-token 登录信息
  * 
@@ -1203,7 +1205,7 @@
  */
 
 /**
-* @api {delete} /data/blog/comment/:slug/delete_revert 3.6删除回复
+* @api {delete} /blog/comment/:slug/delete_revert 3.6删除回复
 * @apiGroup blogComment
 * @apiHeader {String} x-access-token 登录信息
 * 

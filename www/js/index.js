@@ -11,7 +11,7 @@ var invite = (function () {
                 return $('.count').show();
             }
             $.ajax({
-                url:'/data/user/userinfo',
+                url:'http://data.9188.group/user/userinfo',
                 type:'get',
                 headers:{
                     'x-access-token': localStorage.accessToken
