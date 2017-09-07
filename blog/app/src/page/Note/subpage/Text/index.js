@@ -1,6 +1,11 @@
 import'./index.scss'
 import React from 'react'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+require('jquery');
+require('../../../../util/zepto.min.js')
+let test = require('../../../../util/editormd.min.js')
+console.log(test())
+
 
 class Text extends React.Component{
 	constructor(props) {
@@ -14,7 +19,9 @@ class Text extends React.Component{
     }
 	render(){
 		return (
-        <div className="text">文字编辑</div>
+        <div className="text-n">
+			 
+		</div>
 		)
 	}
 }

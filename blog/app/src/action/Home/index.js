@@ -1,10 +1,11 @@
 import * as types from '../../constant/Home/homeType.js'
 import {Util} from '../../util/util.js'
+
 // 博客列表
 export const getListData = param =>{
    let _param = param || {};
     return dispatch =>{
-        Util.post('http://59.110.143.111/data/blog/list',_param,(data)=>{
+        Util.post(Util.burl+'/blog/list',_param,(data)=>{
                 dispatch(bloglistData(data))
             },(err)=>{
                 console.log(err)
@@ -21,7 +22,7 @@ const bloglistData=data=>({
 export const getTitleData = param =>{
  
     return dispatch =>{
-        Util.ajaxGet('http://59.110.143.111/data/blog/tag',(data)=>{
+        Util.ajaxGet(Util.burl+'/blog/tag',(data)=>{
             dispatch(titleData(data))
             },(err)=>{
                 console.log(err)
@@ -38,7 +39,7 @@ const titleData = data =>({
 export const getTitleData_2 = param =>{
     
        return dispatch =>{
-           Util.ajaxGet('http://59.110.143.111/data/blog/tag/'+param,(data)=>{
+           Util.ajaxGet(Util.burl+'/blog/tag/'+param,(data)=>{
                dispatch(titleData_2(data))
                },(err)=>{
                    console.log(err)
@@ -54,7 +55,7 @@ export const getTitleData_2 = param =>{
 //热门原作者
 export const getAuthorData = param =>{
     return dispatch =>{
-        Util.ajaxGet('http://59.110.143.111/data/blog/authors',(data)=>{
+        Util.ajaxGet(Util.burl+'/blog/authors',(data)=>{
             dispatch(authorData(data))
         },(error)=>{
             console.log(error)
@@ -69,7 +70,7 @@ const authorData=data=>({
 //账户信息
 export const getLoginData = param =>{
     return dispatch =>{
-        Util.ajaxGet('http://59.110.143.111/data/user/userinfo/?accessToken='+param.accessToken,(data)=>{
+        Util.ajaxGet(Util.burl+'/user/userinfo/?accessToken='+param.accessToken,(data)=>{
             dispatch(blogLogin(data))
         },(err)=>{
             console.log(err)

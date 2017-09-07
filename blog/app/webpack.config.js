@@ -2,6 +2,7 @@ var path = require('path')
 var webpack = require("webpack")
 var HtmlWebpackPlugin = require("html-webpack-plugin")
 var pxtorem = require("postcss-pxtorem");
+var $ = require("jquery");
  module.exports={
      entry:path.resolve(__dirname,'./src'),
      output:{
@@ -63,10 +64,10 @@ var pxtorem = require("postcss-pxtorem");
      ],
      devServer:{
          proxy: {
-             '/':{
-                 target: 'http://10.0.10.171:8080',
-                 changeOrigin: true
-             }
+            //  '/blog':{
+            //      target: 'http://data.9188.group/blog',
+            //      changeOrigin: true
+            //  }
          },
          colors: true, //终端中输出结果为彩色
          historyApiFallback: true, //不跳转

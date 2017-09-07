@@ -14,14 +14,27 @@ class Wj extends React.Component{
     }
 	render(){
 		return (
-        <div className="wj">
-            <div className="home-wrap">回到首页</div>
-            <div className="new-notebook">新建文集</div>
-            <ul>
-                <li>随笔</li>
-                <li>日记本</li>
+        <div className="wj-n">
+            <div className="home-wrap">
+                <a>回到首页</a>
+            </div>
+            <div className="new-notebook">
+                <a>+新建文集</a>
+            </div>
+            <ul className="note-bookes">
+                <li>
+                    <a href="javascript:void(0)" className="active">随笔<i></i></a>
+                </li>
+                <li>
+                    <a href='javascript:void(0)'>日记本</a>
+                </li>
             </ul>
-            <div className="commercial">回收站</div>
+            <div className="commercial">
+                <a>
+                    <i></i>
+                    回收站
+                </a>
+            </div>
         </div>
 		)
 	}

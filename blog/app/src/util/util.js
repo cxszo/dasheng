@@ -91,7 +91,9 @@ let Util={
 			return false
 		}
 		
-	}
+	},
+	burl:'http://data.9188.group'
+	
 }
 let Cookie = {
 	getCookie:function(objName,fn){

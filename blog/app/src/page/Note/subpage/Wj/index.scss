@@ -1,6 +1,112 @@
-.wj{
+.wj-n{
     float: left;
     width: 15%;
+    height: 1000px;
     background-color: #3f3f3f;
     color: #fff;
+    .home-wrap{
+        padding: 30px 19px 5px 18px;
+        text-align: center;
+        a{
+            padding: 9px 0;
+            font-size: 15px;
+            color: #ec7259;
+            border: 1px solid rgba(236,114,89,0.7);
+            border-radius: 20px;
+            display: block;
+            transition: 0.1s ease;
+            -webkit-transition: 0.1s ease;
+        }
+    }
+    .new-notebook{
+        padding: 0 15px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        a{
+            font-size: 11px;
+            font-weight: normal;
+            line-height: 20px;
+            color: white;
+            text-decoration: none;
+        }
+    }
+    .note-bookes{
+        font-size: 15px;
+        font-weight: normal;
+        line-height: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-bottom: 0;
+        margin-left: 0;
+        list-style: none;
+        li{
+            height: 40px;
+            position: relative;
+            line-height: 27px;
+            -webkit-transition: height 0.4s cubic-bezier(0, 0.34, 0.64, 1.37);
+            -moz-transition: height 0.4s cubic-bezier(0, 0.34, 0.64, 1.37);
+            -o-transition: height 0.4s cubic-bezier(0, 0.34, 0.64, 1.37);
+            transition: height 0.4s cubic-bezier(0, 0.34, 0.64, 1.37);
+            a{
+                display: block;
+                color: white;
+                text-shadow: 0 -1px 0 rgba(0,0,0,0.2);
+                position: relative;
+                height: 34px;
+                line-height: 2.3;
+                padding: 3px 15px;
+                margin-left: -15px;
+                margin-right: -15px;
+                text-decoration: none;
+                i{
+                    display: block;
+                    width: 10px;
+                    height: 10px;
+                    position: absolute;
+                    top: 15px;
+                    right: 10px;
+                    background: url('../../../../static/img/set-ico.png') no-repeat center;
+                    background-size:100% 100%;
+                }
+            }
+            a.active{
+                background-color: #646464;
+                border-left: 3px solid #ec7259;
+            }
+            
+        }
+    }
+    .commercial{
+        bottom: 0;
+        width: 100%;
+        color: #999999;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 20px;
+        a{
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            padding: 20px 0 30px 15px;
+            color: #969696;
+            background-color: #3f3f3f;
+            text-align: left;
+            border: none;
+            border-radius: 0;
+            box-sizing: border-box;
+            font-size: 14px;
+            line-height: 20px;
+            text-indent: 20px;
+            i{
+                display: block;
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                top: 19px;
+                left: 10px;
+                background: url('../../../../static/img/del-ico.png') no-repeat center;
+                background-size:100% 100%;
+            }
+        }
+    }
 }

@@ -5,7 +5,7 @@ import {Util} from '../../util/util.js'
 export const getDetailData = param =>{
     let _param = param || {};
      return dispatch =>{
-         Util.post('http://59.110.143.111/data/blog/article',_param,(data)=>{
+         Util.post(Util.burl+'/blog/article',_param,(data)=>{
             dispatch(blogDetailData(data))
                  
              },(err)=>{
@@ -23,7 +23,7 @@ export const getDetailData = param =>{
  export const getLike= param =>{
     let _param = param || {};
      return dispatch =>{
-         Util.post('http://59.110.143.111/data/blog/article/love',_param,(data)=>{
+         Util.post(Util.burl+'/blog/article/love',_param,(data)=>{
                  dispatch(blogLike(data))
              },(err)=>{
                  console.log(err)
@@ -40,7 +40,7 @@ export const getDetailData = param =>{
   export const getCollect= param =>{
     let _param = param || {};
      return dispatch =>{
-         Util.post('http://59.110.143.111/data/blog/collect',_param,(data)=>{
+         Util.post(Util.burl+'/blog/collect',_param,(data)=>{
                  dispatch(blogCollect(data))
              },(err)=>{
                  console.log(err)
@@ -57,7 +57,7 @@ export const getDetailData = param =>{
  export const getLoveList= param =>{
     
      return dispatch =>{
-         Util.ajaxGet('http://59.110.143.111/data/blog/article/loverlist/'+param.id+'',(data)=>{
+         Util.ajaxGet(Util.burl+'/blog/article/loverlist/'+param.id+'',(data)=>{
                  dispatch(blogLoveList(data))
              },(err)=>{
                  console.log(err)
@@ -78,7 +78,7 @@ export const getDetailData = param =>{
  //点击关注
  export const getGz= param =>{
      return dispatch =>{
-         Util.ajaxGet('http://59.110.143.111/data/blog/follow/'+param.id+'?accessToken='+param.accessToken,(data)=>{
+         Util.ajaxGet(Util.burl+'/blog/follow/'+param.id+'?accessToken='+param.accessToken,(data)=>{
                  dispatch(blogGZ(data))
              },(err)=>{
                  console.log(err)
@@ -94,7 +94,7 @@ export const getDetailData = param =>{
  //账户信息
 export const getLoginData = param =>{
     return dispatch =>{
-        Util.ajaxGet('http://59.110.143.111/data/user/userinfo/?accessToken='+param.accessToken,(data)=>{
+        Util.ajaxGet(Util.burl+'/user/userinfo/?accessToken='+param.accessToken,(data)=>{
             dispatch(blogLogin(data))
         },(err)=>{
             console.log(err)

@@ -22,7 +22,7 @@ module.exports = {
     output: {
         path: __dirname + "/build",
         filename: "[name].[chunkhash:8].js",
-        publicPath: '/blog/'
+        publicPath: '/'
     },
 
     resolve:{
@@ -79,7 +79,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: __dirname + '/src/index.html'
         }),
-
+        new webpack.ProvidePlugin({
+            $: 'jquery'
+        }),
         // 定义为生产环境，编译 React 时压缩到最小
         new webpack.DefinePlugin({
             'process.env':{

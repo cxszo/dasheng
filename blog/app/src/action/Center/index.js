@@ -3,7 +3,7 @@ import {Util} from '../../util/util.js'
 //账户信息
 export const getLoginData = param =>{
     return dispatch =>{
-        Util.ajaxGet('http://59.110.143.111/data/user/userinfo/?accessToken='+param.accessToken,(data)=>{
+        Util.ajaxGet(Util.burl+'/user/userinfo/?accessToken='+param.accessToken,(data)=>{
             dispatch(blogLogin(data))
         },(err)=>{
             console.log(err)
@@ -18,7 +18,7 @@ const blogLogin=data=>({
 //头部信息
 export const getGuanZhuData = param =>{
     return dispatch =>{
-        Util.ajaxGet('http://59.110.143.111/data/blog/userinfo/'+param.id+'?accessToken='+param.accessToken,(data)=>{
+        Util.ajaxGet(Util.burl+'/blog/userinfo/'+param.id+'?accessToken='+param.accessToken,(data)=>{
             dispatch(getGuanZhu(data))
         },(err)=>{
             console.log(err)
@@ -33,7 +33,7 @@ const getGuanZhu=data=>({
 //文章列表
 export const getArticleList= param =>{
     return dispatch =>{
-        Util.ajaxGet('http://59.110.143.111/data/blog/user_article/'+param.id+'/'+param.or+'?accessToken='+param.accessToken,(data)=>{
+        Util.ajaxGet(Util.burl+'/blog/user_article/'+param.id+'/'+param.or+'?accessToken='+param.accessToken,(data)=>{
                 dispatch(getArticle(data))
             },(err)=>{
                 console.log(err)
@@ -50,7 +50,7 @@ const getArticle=data=>({
   export const getFollowListData= param =>{
     let _param = param || {};
      return dispatch =>{
-         Util.post('http://59.110.143.111/data/blog/followlist/',_param,(data)=>{
+         Util.post(Util.burl+'/blog/followlist/',_param,(data)=>{
                  dispatch(followList(data))
              },(err)=>{
                  console.log(err)
@@ -66,7 +66,7 @@ const getArticle=data=>({
  //收藏列表
  export const getCollectList= param =>{
     return dispatch =>{
-        Util.ajaxGet('http://59.110.143.111/data/blog/user_article/collect?accessToken='+param.accessToken,(data)=>{
+        Util.ajaxGet(Util.burl+'/blog/user_article/collect?accessToken='+param.accessToken,(data)=>{
                 dispatch(getCollect(data))
             },(err)=>{
                 console.log(err)
@@ -83,7 +83,7 @@ const getCollect=data=>({
 export const getEdit= param =>{
     let _param = param || {};
      return dispatch =>{
-         Util.post('http://59.110.143.111/data/blog/user_say',_param,(data)=>{
+         Util.post(Util.burl+'/blog/user_say',_param,(data)=>{
                  dispatch(edit(data))
              },(err)=>{
                  console.log(err)
@@ -99,7 +99,7 @@ export const getEdit= param =>{
  //关注，取消关注
  export const getGz= param =>{
     return dispatch =>{
-        Util.ajaxGet('http://59.110.143.111/data/blog/follow/'+param.id+'?accessToken='+param.accessToken,(data)=>{
+        Util.ajaxGet(Util.burl+'/blog/follow/'+param.id+'?accessToken='+param.accessToken,(data)=>{
                 dispatch(blogGZ(data))
             },(err)=>{
                 console.log(err)
