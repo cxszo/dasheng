@@ -51,6 +51,7 @@
     "antd-mobile": "~1.0.0",
     "es6-promise": "^3.2.1",
     "immutable": "^3.8.1",
+    "jquery": "^3.2.1",
     "postcss-pxtorem": "^4.0.1",
     "react": "^15.3.2",
     "react-addons-css-transition-group": "^15.3.1",
@@ -65,7 +66,7 @@
     "redux": "^3.5.2",
     "redux-thunk": "^2.2.0",
     "swipe-js-iso": "^2.0.3",
-    "whatwg-fetch": "^1.0.0",
-    "jquery": "^3.2.1"
+    "wangeditor": "^3.0.8",
+    "whatwg-fetch": "^1.0.0"
   }
 }
