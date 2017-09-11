@@ -1,21 +1,21 @@
 import React from 'react'
 import {bindActionCreators} from 'redux'
-import NoteBooks from '../../page/Note/'
+import Note from '../../page/Note/'
 import {connect} from 'react-redux'
 
-import * as HomeActions from '../../action/Home'
+import * as NoteActions from '../../action/Note'
 
-const note=props=>(
-	<NoteBooks {...props} />
+const notewrap=props=>(
+	<Note {...props} />
 )
 
 const mapStateToProps=state=>({
-	blognoteData:state.BlogList.blognote,
+	blogNoteData:state.BlogNote.note
 })
 
 const mapDispatchToProps=dispatch=>({
-	actions:bindActionCreators(HomeActions,dispatch)
+	actions:bindActionCreators(NoteActions,dispatch)
 })
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(note);
+export default connect(mapStateToProps,mapDispatchToProps)(notewrap);

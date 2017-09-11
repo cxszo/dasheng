@@ -1,11 +1,11 @@
 import * as types from '../../constant/Note/noteType.js'
 const initialState = {
-    blognote:'',
+    note:'',
 }
 export default  function BlogNote(state=initialState,action){
     switch(action.type){
         case types.NOTE_DATA:
-        return Object.assign({},state,{blognote:action.data})
+        return Object.assign({},state,{note:action.data})
         break;
         
         default:

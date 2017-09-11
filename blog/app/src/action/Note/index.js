@@ -1,4 +1,4 @@
-import * as types from '../constant/Note/noteType.js'
+import * as types from '../../constant/Note/noteType.js'
 import{Util} from '../../util/util.js'
 // 博客列表
 export const getNotetData = param =>{
