@@ -57,7 +57,7 @@ $('#input').on('keyup', (event)=>{
     setTimeout(()=>{//.3之内没有输入 才去请求接口
         if(lastInput-nowDate == 0){
              $.ajax({
-                url:`/data/cdn/list?charAt=${val}`,
+                url:`http://data.9188.group/cdn/list?charAt=${val}`,
                 type:'get',
                 success(res){
                     if(res.code == '1'){
@@ -107,7 +107,7 @@ $('.wrapper').delegate('dd span', 'click', function(){
 
     let library = $(this).text();
     $.ajax({
-        url:`/data/cdn/list/${library}`,
+        url:`http://data.9188.group/cdn/list/${library}`,
         type:'get',
         success(res){
             if(res.code != '1'){
@@ -176,7 +176,7 @@ $('.versions').delegate('label', 'click', function(){
     $('.versions-select-value, #libversion').text(version);
     
     $.ajax({
-        url:`/data/cdn/list/${library}/${version}`,
+        url:`http://data.9188.group/cdn/list/${library}/${version}`,
         type:'get',
         success(res){
             if(res.code != '1'){
