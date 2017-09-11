@@ -1,3 +1,15 @@
+/**
+ * @api {post} /signup  注册 
+ * @apiGroup Index
+ *
+ * @apiParam {String} username 输入用户名
+ * @apiParam {Number} callphone 输入手机号  
+ * @apiParam {String} password 登录密码
+ *
+ * @apiSuccess {Number} code 1登录成功 -1用户名 -2手机号 -3密码.
+ * @apiSuccess {String} desc 登录结果描述 .
+ * 
+ */
 
 /**
  * @api {post} /signin  登录
@@ -29,19 +41,38 @@
   *     "desc": "帐号或密码错误"
  *     }
  */
-
 /**
- * @api {post} /signup  注册 
+ * @api {get} /user/userinfo  获取用户信息
  * @apiGroup Index
  *
- * @apiParam {String} username 输入用户名
- * @apiParam {Number} callphone 输入手机号  
- * @apiParam {String} password 登录密码
- *
- * @apiSuccess {Number} code 1登录成功 -1用户名 -2手机号 -3密码.
- * @apiSuccess {String} desc 登录结果描述 .
+ * @apiHeader {String} x-access-token 登录信息（可空）
  * 
+ * @apiSuccess {Number} callphone 手机号.
+ * @apiSuccess {String} headimg 用户头像.
+ * @apiSuccess {String} username 用户名.
+ * @apiSuccess {String} user_id 用户标识.
+ * @apiExample 测试账号:
+ *     accessToken :  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ium9kOWkqeWkp-WcoyIsInBhc3N3b3JkIjoibG92ZW1lIiwiaWF0IjoxNTA0MTA2NTcxLCJleHAiOjE1NjQ1ODY1NzF9.iaaV422XNemhr4kioCWGt5b0RgLKEkKCf_fTQpEeuic
+
+ * @apiSuccessExample Success-Response:
+{
+    "code": "1",
+    "data": {
+        callphone:18121252781,
+        headimg:"http://ov0zo91tq.bkt.clouddn.com/headimg/default/323.jpg",
+        user_id:2222223,
+        username:"齐天大圣"
+    },
+    "desc": "登录成功"
+}
+ *
+ * @apiErrorExample Error-Response:
+ *     {
+  *     "code": "1024",
+  *     "desc": "用户没登录"
+ *     }
  */
+
 
 
 /**
