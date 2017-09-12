@@ -4,6 +4,8 @@
     height: 1000px;
     background-color: #3f3f3f;
     color: #fff;
+    overflow: hidden;
+    overflow-y: scroll;
     .home-wrap{
         padding: 30px 19px 5px 18px;
         text-align: center;
@@ -19,6 +21,7 @@
         }
     }
     .new-notebook{
+        cursor: pointer;
         padding: 0 15px;
         margin-top: 20px;
         margin-bottom: 10px;
@@ -59,7 +62,7 @@
                 margin-right: -15px;
                 text-decoration: none;
                 i{
-                    display: block;
+                    display: none;
                     width: 10px;
                     height: 10px;
                     position: absolute;
@@ -72,6 +75,9 @@
             a.active{
                 background-color: #646464;
                 border-left: 3px solid #ec7259;
+                i{
+                    display: block;
+                }
             }
             
         }
@@ -108,5 +114,43 @@
                 background-size:100% 100%;
             }
         }
+    }
+    .new-wj {
+            padding: 0 15px;
+            margin-bottom: 10px;
+            input{
+                display: inline-block;
+                width: 100%;
+                height: 35px;
+                box-sizing: border-box;
+                background-color: rgba(180,180,180,0.2);
+                border:1px #2f2f2f solid;
+                color: #c8c8c8;
+                border-radius: 4px;
+                padding: 4px 6px;
+                margin-bottom: 10px;
+                font-size: 14px;
+                line-height: 20px;
+            }
+            .new-wj-btn span{
+                cursor: pointer;
+                background: none;
+                border:1px#34ab20 solid;
+                border-radius: 20px;
+                color: #34ab20;
+                padding: 5px 20px;
+            }
+            .new-wj-btn cite{
+                cursor: pointer;                
+                font-size: 14px;
+                padding-top: 6px;
+                background: none;
+                border: none;
+                color: #969696;
+                margin-left: 15px;
+            }
+    }
+    .new-wj.hide{
+        display: none;
     }
 }

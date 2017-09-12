@@ -10,7 +10,10 @@ const notewrap=props=>(
 )
 
 const mapStateToProps=state=>({
-	blogNoteData:state.BlogNote.note
+	blogNoteData:state.BlogNote.note,
+	blogNewNote:state.BlogNote.newNote,
+	codeDesc:state.BlogNote.codeDesc,
+	isFinish:state.BlogNote.isFinish
 })
 
 const mapDispatchToProps=dispatch=>({
