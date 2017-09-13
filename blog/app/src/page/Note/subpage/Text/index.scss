@@ -1,4 +1,41 @@
 .text-n{
-    float: right;
-    width: 59%;
+    float: left;
+    width: 60%;
+    .edit{
+        position: relative;
+    }
+    .title-edit{
+        outline: none;
+        height: 60px;
+        line-height: 60px;
+        padding: 0 20px;
+        ::-webkit-input-placeholder { /* WebKit browsers */ 
+            font-size:18px;
+       } 
+        input{
+            width: 100%;
+            border: none;
+            outline: none;
+            height: 60px;
+        }
+    }
+    .editor{
+        position: relative;
+        .w-e-text-container{
+            height: 885px !important;
+            border: none;
+        }
+    }
+    .publish{
+        outline: none;
+        position: absolute;
+        top: 66px;
+        right: 20px;
+        border: 1px #ccc solid;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 2px;
+        font-size: 14px;
+    }
+   
 }

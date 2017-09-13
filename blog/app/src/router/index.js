@@ -9,7 +9,7 @@ import Center from '../container/Center/index'
 import Following from '../container/Center/following'
 import Followers from '../container/Center/followers'
 import Likes from '../container/Center/Likes'
-import Note from '../page/Note/index'
+import Note from '../container/Note/index'
 class RouterMap extends React.Component {
     render() {
         return (
