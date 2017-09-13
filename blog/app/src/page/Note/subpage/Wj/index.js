@@ -6,7 +6,9 @@ class Wj extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state={
-           show:false
+           show:false,
+           setShow:'0',
+           setBtn :false
 		}
 	}
     componentDidMount(){
@@ -21,8 +23,8 @@ class Wj extends React.Component{
          })
          if(this.state.show == true){
             this.setState({
-                show:false,
-                setShow:'0',
+                show:false
+               
                
              })
          }
@@ -55,6 +57,29 @@ class Wj extends React.Component{
             setShow:i
         })
     }
+    delName(i){
+        let {actions} =this.props;
+   
+        let data = {
+            id:i,
+            accessToken:local_accessToken
+        }
+        actions.delWj(data);//删除文集
+        this.setState({
+            setBtn:false
+         })
+    }
+    setBtn(){
+        this.setState({
+            setBtn:true
+         })
+         if(this.state.setBtn == true){
+            this.setState({
+                setBtn:false
+             })
+         }
+        
+    }
 	render(){
 		return (
         <div className="wj-n">
@@ -76,11 +101,27 @@ class Wj extends React.Component{
                     this.props.data.length == '' ? '' :
                     this.props.data.map((v,i)=>{
                         return (
+                            !v.is_show ? '' :
                             <li key={i} onClick={this.setShow.bind(this,i)}>
-                                <a href="javascript:void(0)" className={!!this.state.setShow == i ? 'active' :''}>
+                                <a href="javascript:void(0)" className={this.state.setShow == i ? 'active' :''}>
                                     {v.name}
-                                    <i></i>
+                                    <i onClick = {this.setBtn.bind(this)}></i>
                                 </a>
+                                {   
+                                    this.state.setShow == i ? 
+                                    <ul className={this.state.setBtn ? 'dropdown-menu':' dropdown-menu hide'}>
+                                        <li>
+                                            <cite></cite>
+                                            修改名称
+                                        </li>
+                                        <li className="divider"></li>
+                                        <li onClick={this.delName.bind(this,v.id)}>
+                                            <cite></cite>
+                                            删除文集
+                                        </li>
+                                    </ul>
+                                    :''
+                                }
                             </li>
                         )
                     })

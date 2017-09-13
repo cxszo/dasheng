@@ -63,14 +63,63 @@
                 text-decoration: none;
                 i{
                     display: none;
+                    padding: 10px;
                     width: 10px;
                     height: 10px;
                     position: absolute;
-                    top: 15px;
-                    right: 10px;
+                    top: 5px;
+                    right: 5px;
                     background: url('../../../../static/img/set-ico.png') no-repeat center;
-                    background-size:100% 100%;
+                    background-size:40% 40%;
                 }
+                
+            }
+            .dropdown-menu{
+                right: -14px;
+                overflow: inherit;
+                font-size: 14px;
+                font-style: normal;
+                margin-top: 10px;
+                border-color: #d9d9d9;
+                position: absolute;
+                min-width: 160px;
+                padding: 5px 0;
+                margin: 2px 0 0;
+                list-style: none;
+                background:#fff;
+                border-radius: 6px;
+                z-index: 1000;
+                li{
+                    position: relative;
+                    height: 30px;
+                    line-height: 30px;
+                    color: #333;
+                    text-align: center;
+                    
+                }
+                li.divider{
+                    height: 1px;
+                    margin: 9px 1px;
+                    overflow: hidden;
+                    background-color: #e5e5e5;
+                    border-bottom: 1px solid white;
+                }
+
+            }
+            .dropdown-menu:after{
+                position: absolute;
+                left: 130px;
+                top: -9px;
+                border-bottom: 9px solid white;
+                content: '';
+                display: inline-block;
+                border-left: 9px solid transparent;
+                border-right: 9px solid transparent;
+                border-bottom: 9px solid #FFFFFF;
+                z-index: 1000;
+            }
+            .dropdown-menu.hide{
+                display: none;
             }
             a.active{
                 background-color: #646464;
@@ -78,6 +127,7 @@
                 i{
                     display: block;
                 }
+               
             }
             
         }

@@ -52,7 +52,7 @@ let Util={
 		para = (typeof para[1] == 'undefined') ? para[0] : para[1];
 		para = para.split('&');
 		for (var i = 0; para[i]; i++) {
-			para[i] = para[i].split('=');
+			para[i] = para[i].split('='); 
 			if (para[i][0] == name) {
 				try { // 防止FF等decodeURIComponent异常
 					return para[i][1]
@@ -78,7 +78,26 @@ let Util={
 		  if (this.status === 200) {
 			successCallback(this.response);
 		  } else {
-			// console.log(new Error(this.statusText));
+			failCallback(this.statusText);
+		  }
+		};
+	},
+	ajaxPut(url,data,successCallback,failCallback){
+		var client = new XMLHttpRequest();
+		client.open("PUT", url);
+		client.onreadystatechange = handler;
+		client.responseType = "json";
+		client.setRequestHeader("Accept", "application/json");
+		client.setRequestHeader("Content-type","application/x-www-form-urlencoded"); 
+		client.send();
+	
+		function handler() {
+		  if (this.readyState !== 4) {
+			return;
+		  }
+		  if (this.status === 200) {
+			successCallback(this.response);
+		  } else {
 			failCallback(this.statusText);
 		  }
 		};

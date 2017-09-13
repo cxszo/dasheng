@@ -35,4 +35,39 @@ const noteNewData=(data,codeDesc)=>({
      data,
      codeDesc:codeDesc
 })
+//删除文集
+export const delWj = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.post(Util.burl+'/blog/notebooks/'+_param.id+'/soft_destroy',_param,(data)=>{
+                dispatch(delWjData(data,{code:data.code,desc:data.desc}))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+    }
 
+}
+
+const delWjData =(data,codeDesc)=>({
+    type: types.DEL_NOTE_DATA,
+    data,
+    codeDesc:codeDesc
+})
+//修改文集名称
+export const modifyName = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.post(Util.burl+'/blog/notebooks/'+_param.id+'',_param,(data)=>{
+                dispatch(modify(data,{code:data.code,desc:data.desc}))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+    }
+}
+const modify =(data,codeDesc)=>({
+    type: types.MODIFY_NAME,
+    data,
+    codeDesc:codeDesc
+})

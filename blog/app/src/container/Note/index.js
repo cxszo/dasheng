@@ -13,7 +13,8 @@ const mapStateToProps=state=>({
 	blogNoteData:state.BlogNote.note,
 	blogNewNote:state.BlogNote.newNote,
 	codeDesc:state.BlogNote.codeDesc,
-	isFinish:state.BlogNote.isFinish
+	isFinish:state.BlogNote.isFinish,
+	blogDelNote:state.BlogNote.delNote
 })
 
 const mapDispatchToProps=dispatch=>({
