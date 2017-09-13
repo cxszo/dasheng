@@ -1,0 +1,11 @@
+
+{
+    "presets": ["es2015", "stage-0", "react"],
+    "plugins": [
+        ["transform-runtime", "import", { "libraryName": "antd", "style": "css" }] // `style: true` 会加载 less 文件
+    ]
+    // "cacheDirectory": true
+    // "plugins": ["transform-react-jsx"]
+    // "comments": false
+}
+  
