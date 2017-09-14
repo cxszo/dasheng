@@ -58,16 +58,33 @@ const delWjData =(data,codeDesc)=>({
 export const modifyName = param =>{
     let _param = param || {};
     return dispatch =>{
-        Util.post(Util.burl+'/blog/notebooks/'+_param.id+'',_param,(data)=>{
-                dispatch(modify(data,{code:data.code,desc:data.desc}))
+        Util.put(Util.burl+'/blog/notebooks/'+_param.id+'',_param,(data)=>{
+                dispatch(modify(data,{code:data.code,desc:data.desc,id:_param.id,name:_param.name}))
             },(err)=>{
                 console.log(err)
             }
         )
     }
 }
-const modify =(data,codeDesc)=>({
+const modify =(data,modfiy)=>({
     type: types.MODIFY_NAME,
     data,
-    codeDesc:codeDesc
+    modfiy:modfiy
+})
+//文章列表
+export const getarticleData = param =>{
+    return dispatch =>{
+        Util.ajaxGet(Util.burl+'/blog/notes?accessToken='+param.accessToken,(data)=>{
+                dispatch(articleData(data))
+            },(err)=>{
+                console.log(err);
+            }
+        )
+    }
+ 
+}
+
+const articleData=data=>({
+     type: types.ARTICLE_DATA,
+     data
 })

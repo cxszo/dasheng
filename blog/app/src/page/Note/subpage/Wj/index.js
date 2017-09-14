@@ -8,7 +8,9 @@ class Wj extends React.Component{
 		this.state={
            show:false,
            setShow:'0',
-           setBtn :false
+           setBtn :false,
+           poupShow:false,
+           modfiyId:''
 		}
 	}
     componentDidMount(){
@@ -78,7 +80,32 @@ class Wj extends React.Component{
                 setBtn:false
              })
          }
-        
+    }
+    modfiyName(i){//显示修改弹层
+        this.setState({
+            poupShow:true,
+            modfiyId:i,
+            setBtn:false
+        })
+    }
+    submitName(){//提交新的修改名称
+        let{actions} =this.props;
+        let modfiy_Input = this.refs.modfiyInput;
+        let val = modfiy_Input.value;
+        let data ={
+            id:this.state.modfiyId,
+            name:val,
+            accessToken:local_accessToken
+        }
+        actions.modifyName(data);
+        this.setState({
+            poupShow:false
+        })
+    }
+    cancelName(){
+        this.setState({
+            poupShow:false
+        })
     }
 	render(){
 		return (
@@ -105,12 +132,12 @@ class Wj extends React.Component{
                             <li key={i} onClick={this.setShow.bind(this,i)}>
                                 <a href="javascript:void(0)" className={this.state.setShow == i ? 'active' :''}>
                                     {v.name}
-                                    <i onClick = {this.setBtn.bind(this)}></i>
+                                    <i onClick = {this.setBtn.bind(this)}></i>  
                                 </a>
                                 {   
                                     this.state.setShow == i ? 
                                     <ul className={this.state.setBtn ? 'dropdown-menu':' dropdown-menu hide'}>
-                                        <li>
+                                        <li onClick={this.modfiyName.bind(this,v.id)}>
                                             <cite></cite>
                                             修改名称
                                         </li>
@@ -132,6 +159,20 @@ class Wj extends React.Component{
                     <i></i>
                     回收站
                 </a>
+            </div>
+            <div className={this.state.poupShow ? 'poup' : 'poup hide'}>
+                <div className="poup-wrap">
+                    <div className="poup-title">
+                        <h3>修改文集内容</h3>
+                    </div>
+                    <div className="poup-text">
+                        <input type="text" ref="modfiyInput"/>
+                    </div>
+                    <div className="poup-btn">
+                        <span onClick={this.cancelName.bind(this)}>取消</span>
+                        <cite onClick={this.submitName.bind(this)}>提交</cite>
+                    </div>
+                </div>
             </div>
         </div>
 		)

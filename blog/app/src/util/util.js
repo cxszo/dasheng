@@ -26,6 +26,27 @@ let Util={
 			failCallback(err);
 		})
 	},
+	put(url,data,successCallback,failCallback){
+		let options={};
+		options.headers={
+			'Content-type':'application/x-www-form-urlencoded'
+		}
+		let _data = $.param(data);
+		console.log(_data);
+		options.body=_data;
+		options.method='PUT';
+		this.timeout(3e3,fetch(url,options)).then(res=>{
+			if(res.ok){
+				return res.text();
+			}else{
+				failCallback(res);
+			}
+		}).then(resText=>{
+		   return successCallback(JSON.parse(resText));
+		}).catch(err=>{
+			failCallback(err);
+		})
+	},
 	ajaxGet(url,successCallback,failCallback){
 		var client = new XMLHttpRequest();
 		client.open("GET", url);

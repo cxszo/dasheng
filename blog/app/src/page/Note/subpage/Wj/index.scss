@@ -203,4 +203,79 @@
     .new-wj.hide{
         display: none;
     }
+    .poup{
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1040;
+        background-color: #FFFFFF;
+        z-index: 10400;
+        .poup-wrap{
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            z-index: 10500;
+            width: 560px;
+            margin-left: -280px;
+            .poup-title{ 
+                padding: 20px;
+                border-bottom: 1px solid #eee;
+                h3{
+                    text-align: center;
+                    color: #333;
+                    font-size: 20px;
+                 }
+            }
+            .poup-text{
+                padding: 30px;
+                text-align: center;
+                input{
+                    width: 220px;
+                    border: 1px solid #cccccc;
+                    border-radius:4px;
+                    display: inline-block;
+                    height: 20px;
+                    padding: 4px 6px;
+                    margin-bottom: 10px;
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #555555;
+                }
+            }
+            .poup-btn{
+                padding: 0 15px 40px;
+                border: none;
+                background-color: transparent;
+                text-align: center;
+                span{
+                    padding: 5px 20px;
+                    border-radius: 4px;
+                    box-shadow: none;
+                    color: #555555;
+                    border:1px whitesmoke solid;
+                    background: whitesmoke;
+                    border-color: #d5d5d5;
+                    text-shadow: none;
+                    margin-right: 20px;
+                }
+                cite{
+                    padding: 5px 20px;
+                    border-radius: 4px;
+                    box-shadow: none;
+                    color: #555555;
+                    border:1px #3194d0 solid;
+                    background: #3194d0;
+                    border-color: #3194d0;
+                    text-shadow: none;
+                    font-size: 14px;
+                    color: #fff;
+                }
+            }
+        }
+    }
+    .poup.hide{
+        display: none;
+    }
 }

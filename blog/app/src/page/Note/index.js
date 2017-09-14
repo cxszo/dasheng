@@ -14,6 +14,7 @@ class Note extends React.Component{
 	}
     componentDidMount(){
 		this.wj();//文集列表
+		this.wz();//文章列表
 	}
 	// componentWillReceiveProps(nextProps){
 	// 	let {isFinish} = nextProps;
@@ -28,17 +29,25 @@ class Note extends React.Component{
 		}
 		actions.getNotetData(data);
 	}
+	wz(){
+		let {actions} = this.props;
+		let data= {
+			accessToken:local_accessToken
+		}
+		actions.getarticleData(data);
+	}
 	render(){
 		
-		let {blogNoteData,blogNewNote,codeDesc,actions} = this.props;
-		console.log(this.props)
-		let wj =  blogNoteData.data|| '';
+		let {blogNoteData,blogNewNote,articleData,codeDesc,actions} = this.props;
+		let wj =  blogNoteData.data|| '';//文集
 		let wj_code = codeDesc.code || '';//文集code
 		let wj_desc = codeDesc.desc || '';//文集desc
+		let article = articleData.data || '';//文章列表
+
 		return (
         <div>
 			<Wj data = {wj} actions ={actions} code ={wj_code} desc = {wj_desc}/>
-			<Wz/>
+			<Wz data = {article} actions={actions}/>
 			<Text/>
 		</div>
 		)
