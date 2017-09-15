@@ -4,7 +4,7 @@ import{Util} from '../../util/util.js'
 export const getNotetData = param =>{
         return dispatch =>{
             Util.ajaxGet(Util.burl+'/blog/notebooks?accessToken='+param.accessToken,(data)=>{
-                    dispatch(noteData(data))
+                    dispatch(noteData(data,{code:data.code,desc:data.desc}))
                 },(err)=>{
                     console.log(err);
                 }
@@ -13,9 +13,10 @@ export const getNotetData = param =>{
      
  }
 
- const noteData=data=>({
+ const noteData=(data,codeDesc)=>({
          type: types.NOTE_DATA,
-         data
+         data,
+         codeDesc:codeDesc
  })
  //新建文集
  export const getNewData = param =>{
@@ -75,7 +76,7 @@ const modify =(data,modfiy)=>({
 export const getarticleData = param =>{
     return dispatch =>{
         Util.ajaxGet(Util.burl+'/blog/notes?accessToken='+param.accessToken,(data)=>{
-                dispatch(articleData(data))
+                dispatch(articleData(data,{code:data.code,desc:data.desc,}))
             },(err)=>{
                 console.log(err);
             }
@@ -84,7 +85,31 @@ export const getarticleData = param =>{
  
 }
 
-const articleData=data=>({
+const articleData=(data,codeDesc)=>({
      type: types.ARTICLE_DATA,
-     data
+     data,
+     codeDesc:codeDesc
+})
+
+export const filter = note_id =>({
+    type:types.FILTER_ARTICLE_DATA,
+    id:note_id
+})
+//新增文章
+export const addWz = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.post(Util.burl+'/blog/notes',_param,(data)=>{
+                dispatch(WzData(data,{code:data.code,desc:data.desc}))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+    }
+}
+
+const WzData =(data,codeDesc)=>({
+    type: types.ADD_ARTICLE,
+    data,
+    codeDesc:codeDesc
 })

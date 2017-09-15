@@ -53,6 +53,7 @@ class Text extends React.Component{
 			</div>
 			<div id='editor' className="editor">
 			</div>
+			<button  className = 'save' id="btn2">保存</button>
 			<button  className = 'publish' id="btn1">发布</button>
 		</div>
 		)

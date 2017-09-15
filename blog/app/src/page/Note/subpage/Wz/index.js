@@ -1,21 +1,39 @@
 import'./index.scss'
 import React from 'react'
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
+let local_accessToken = localStorage.getItem('accessToken') || '';
 
 class Wz extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state={
-           
+			setShow:''
 		}
 	}
     componentDidMount(){
         
-    }
+	}
+	toggle(i){//点击状态
+		this.setState({
+			setShow:i
+		})
+	}
+	addArticle(i){//新建文章
+		let {actions,noteTargetId} = this.props;
+		console.log(noteTargetId)
+		let data = {
+			accessToken:local_accessToken,
+			note_id:noteTargetId,
+			title:'无标题文章',
+			seq_in_nb:i
+		}
+		console.log(this.props,'刹车')
+		actions.addWz(data);
+	}
 	render(){
 		return (
         <div className="wz-n">
-			<div className="n-note">
+			<div className="n-note" onClick={this.addArticle.bind(this,0)}>
 				<a href="javascript:void(0)">+新建文章</a>
 			</div>
 			<ul className="n-notelist">
@@ -23,7 +41,7 @@ class Wz extends React.Component{
 					this.props.data.length == '0' ? '':
 					this.props.data.map((v,i)=>{
 						return (
-							<li className="" key={i}>
+							<li className={this.state.setShow == i ? 'active' :''} onClick={this.toggle.bind(this,i)} key={i}>
 								<a href="javascript:void(0)">
 									<span className="left">
 										<i></i> 
@@ -39,7 +57,7 @@ class Wz extends React.Component{
 					})
 				}
 			</ul>
-			<div className="n-title-new">
+			<div className="n-title-new">  
 				<a href="javascript:void(0)">+在下方新建文章</a>
 			</div>
 		</div>

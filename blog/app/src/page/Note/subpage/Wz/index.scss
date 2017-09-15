@@ -3,8 +3,7 @@
     width: 25%;
     height: 1000px;
     border-right: 1px solid #d9d9d9;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: scroll;
     box-sizing: border-box;
     .n-note{
         a{
@@ -62,7 +61,7 @@
                     }
                 }
                 .set-ico{
-                    display: block;
+                    display: none;
                     width: 15px;
                     height: 15px;
                     position: absolute;
@@ -72,12 +71,17 @@
                     background-size:100% 100%;
                 }
             }
+           
         }
-        li:hover,li.active{
+        li.active{
             background-color: #ececec;
             color: #eeeeee;
             border-left: 5px solid #ec7259 !important;
+            .set-ico{
+                display: block;
+            }
         }
+        
     }
     .n-title-new{
         font-size: 12px;

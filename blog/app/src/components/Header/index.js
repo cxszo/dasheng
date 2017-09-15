@@ -28,7 +28,7 @@ class Header extends React.Component{
 		}
 	}
 	toWrite(i){
-		hashHistory.push('/Note/'+i)
+		hashHistory.push('/Note')
 	}
 	toIndex(){
 		hashHistory.push('/')

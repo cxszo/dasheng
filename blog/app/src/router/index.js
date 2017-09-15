@@ -22,7 +22,7 @@ class RouterMap extends React.Component {
                     <Route path='/Center/:id/Following' component={Following}/>
                     <Route path='/Center/:id/followers' component={Followers}/>
                     <Route path='/Center/:id/likes' component={Likes}/>
-                    <Route path='/Note/:id' component={Note}/>
+                    <Route path='/Note' component={Note}/>
             	</Route>
             </Router>
         )

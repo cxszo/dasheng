@@ -7,31 +7,27 @@ class Wj extends React.Component{
 		super(props);
 		this.state={
            show:false,
-           setShow:'0',
-           setBtn :false,
-           poupShow:false,
+           setShow:'',
+           setBtn :false,//是否显示设置按钮
+           poupShow:false,//修改文集名称层
            modfiyId:''
-		}
+        }
+      
 	}
     componentDidMount(){
         
     }
-    newWj(){
-    
-    }
-    show(){
+    show(){//是否渲染新建文集的dom
         this.setState({
             show:true
          })
          if(this.state.show == true){
             this.setState({
                 show:false
-               
-               
              })
          }
     }
-    submit(){
+    submit(){//提交文集
         let {actions,code,desc} =this.props;
         var input = this.refs.nameInput;
         var inputValue = input.value;
@@ -49,19 +45,20 @@ class Wj extends React.Component{
         })
         
     }
-    cacel(){
+    cacel(){//取消新建文集
         this.setState({
             show:false
          })
     }
-    setShow(i){
+    setShow(i){//触发actions,传当前文集id
+        let {actions} = this.props;
+        actions.filter(i);//过滤文章
         this.setState({
             setShow:i
         })
     }
-    delName(i){
+    delName(i){//删除文集
         let {actions} =this.props;
-   
         let data = {
             id:i,
             accessToken:local_accessToken
@@ -71,7 +68,7 @@ class Wj extends React.Component{
             setBtn:false
          })
     }
-    setBtn(){
+    setBtn(){//是否显示设置按钮
         this.setState({
             setBtn:true
          })
@@ -102,7 +99,7 @@ class Wj extends React.Component{
             poupShow:false
         })
     }
-    cancelName(){
+    cancelName(){//取消修改文集名称
         this.setState({
             poupShow:false
         })
@@ -127,15 +124,15 @@ class Wj extends React.Component{
                 {
                     this.props.data.length == '' ? '' :
                     this.props.data.map((v,i)=>{
+                     
                         return (
-                            !v.is_show ? '' :
-                            <li key={i} onClick={this.setShow.bind(this,i)}>
-                                <a href="javascript:void(0)" className={this.state.setShow == i ? 'active' :''}>
-                                    {v.name}
+                            <li key={i} onClick={this.setShow.bind(this,v.id)}>
+                                <a href="javascript:void(0)" className={this.state.setShow == v.id || (this.state.setShow=='' && i==0) ? 'active' :''}>
+                                    {v.name}{v.id}
                                     <i onClick = {this.setBtn.bind(this)}></i>  
                                 </a>
                                 {   
-                                    this.state.setShow == i ? 
+                                    this.state.setShow == v.id ? 
                                     <ul className={this.state.setBtn ? 'dropdown-menu':' dropdown-menu hide'}>
                                         <li onClick={this.modfiyName.bind(this,v.id)}>
                                             <cite></cite>

@@ -10,11 +10,14 @@ const notewrap=props=>(
 )
 
 const mapStateToProps=state=>({
-	blogNoteData:state.BlogNote.note,
-	blogNewNote:state.BlogNote.newNote,
+	blogNoteData:state.BlogNote.note,//文集列表
+	blogNewNote:state.BlogNote.newNote,//新建文集
 	codeDesc:state.BlogNote.codeDesc,
 	isFinish:state.BlogNote.isFinish,
-	articleData:state.BlogNote.article
+	articleData:state.BlogNote.article,//文章列表
+	addArticle:state.BlogNote.addArticle,//新增文章
+	newArticle:state.BlogNote.newArticle,
+	noteTargetId:state.BlogNote.noteTargetId
 })
 
 const mapDispatchToProps=dispatch=>({
