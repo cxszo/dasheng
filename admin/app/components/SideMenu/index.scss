@@ -1,0 +1,35 @@
+
+
+.admin-logo {
+    height: 50px;
+    background: #333;
+    border-radius: 6px;
+    text-align: left;
+    padding-left: 24px;
+    padding-top: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    &::after{
+      content: '';
+      display: table;
+      clear: both;
+    }
+    img{
+      height: 30px;
+      width: 40px;
+      float: left;
+    }
+    span{
+      display: inline-block;
+      height: 40px;
+      line-height: 40px;
+      float: left;
+      font-weight: bold;
+    }
+}
+
+.ant-menu-inline-collapsed .admin-logo span {
+  max-width: 0;
+  display: inline-block;
+  opacity: 0;
+}
