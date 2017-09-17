@@ -6,10 +6,14 @@ var pxtorem = require('postcss-pxtorem')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+const extractCSS = new ExtractTextPlugin('css/[name].[chunkhash:7].css');
+const extractLESS = new ExtractTextPlugin('css/[name].[chunkhash:7]-less.css');
+const extractSASS = new ExtractTextPlugin('css/[name].[chunkhash:7]-scss.css');
+
 var config = {
     
     resolve:{
-        extensions: ['.web.js', '.jsx', '.js', '.json'],
+        extensions: ['.web.js', '.jsx', '.js', '.json', '.less'],
     },
     module:{
         rules: [
@@ -19,11 +23,37 @@ var config = {
                 use: 'babel-loader'
             },
             {
-                test: /\.(scss|css)$/,
-                // exclude: /node_modules/,
-                use: ExtractTextPlugin.extract({
+                test: /\.css$/,
+                use: extractCSS.extract({
                     fallback: "style-loader",
-                    use: "css-loader!sass-loader"
+                    use:[
+                        {
+                            loader: 'css-loader!postcss-loader',
+                            options:{minimize: true}
+                        }
+                    ]
+                })
+            },
+            {
+                test: /\.scss$/,
+                use: extractSASS.extract({
+                    fallback: "style-loader",
+                    use:[
+                        {loader: 'css-loader',options:{minimize: true}},
+                        {loader: 'sass-loader'}
+                    ]
+                })
+            },
+            {
+                test: /\.less$/,
+                use: extractLESS.extract({
+                    fallback: "style-loader",
+                    use: "css-loader!less-loader",
+                    use: [
+                        {loader:'css-loader',options:{minimize: true}},
+                        {loader:'less-loader'},
+
+                    ]
                 })
             },
             {
@@ -31,8 +61,8 @@ var config = {
                 exclude: /node_modules/,
                 loader: 'url-loader',
                 options: {
-                  limit: 1000,
-                  name: './img/[sha512:hash:base64:5].[ext]'
+                  limit: 2500,
+                  name: './img/[sha512:hash:base64:7].[ext]'
                 }
             }
             
@@ -40,13 +70,15 @@ var config = {
         ]
     },
     plugins: [
-        new ExtractTextPlugin('[name].[chunkhash:5].css'),
+        extractCSS,
+        extractLESS,
+        extractSASS,
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../index.html'),
         }),
         new webpack.LoaderOptionsPlugin({
             options: {
-                postcss(){
+                postcss: ()=>{
                     return [require('autoprefixer')];
                 }
             }

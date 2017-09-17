@@ -1,6 +1,4 @@
 
-import 'antd/dist/antd.css';
-
 import React from 'react';
 
 
@@ -10,7 +8,7 @@ import Sign from './sign'
 
 import Nofound from './404'
 
-const RouterMap = () => (
+const App = () => (
   <Router>
     <div>
         {
@@ -30,6 +28,6 @@ const RouterMap = () => (
   </Router>
 )
 
-export default RouterMap
+export default App
 
 //  <Route component={Nofound}/>
