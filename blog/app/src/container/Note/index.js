@@ -17,7 +17,12 @@ const mapStateToProps=state=>({
 	articleData:state.BlogNote.article,//文章列表
 	addArticle:state.BlogNote.addArticle,//新增文章
 	newArticle:state.BlogNote.newArticle,
-	noteTargetId:state.BlogNote.noteTargetId
+	noteTargetId:state.BlogNote.noteTargetId,
+	saveArticle:state.BlogNote.saveArticle,//保存文章
+	wzTargetId:state.BlogNote.wzTargetId,
+	textArticle:state.BlogNote.textArticle,//文章内容
+	wzId:state.BlogNote.wzId,
+	fbArticle:state.BlogNote.fbArticle//发布文章
 })
 
 const mapDispatchToProps=dispatch=>({

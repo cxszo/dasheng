@@ -14,6 +14,13 @@ class Wz extends React.Component{
         
 	}
 	toggle(i){//点击状态
+		let {actions} =this.props;
+		actions.filterwZ(i);
+		let data = {
+			id:i,
+			accessToken:local_accessToken
+		}
+		actions.textArticleData(data)
 		this.setState({
 			setShow:i
 		})
@@ -41,13 +48,13 @@ class Wz extends React.Component{
 					this.props.data.length == '0' ? '':
 					this.props.data.map((v,i)=>{
 						return (
-							<li className={this.state.setShow == i ? 'active' :''} onClick={this.toggle.bind(this,i)} key={i}>
+							<li className={this.state.setShow == v.id || (this.state.setShow ==''&& i==0) ? 'active' :''} onClick={this.toggle.bind(this,v.id)} key={i}>
 								<a href="javascript:void(0)">
 									<span className="left">
 										<i></i> 
 									</span>
 									<span className="right">
-										<p className="title">{v.title}</p>
+										<p className="title">{v.title}{v.id}</p>
 										<p className="desc">{v.content}</p>
 									</span>
 									<cite className="set-ico"></cite>

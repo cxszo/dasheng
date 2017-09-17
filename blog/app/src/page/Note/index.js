@@ -20,40 +20,53 @@ class Note extends React.Component{
 		
 	}
 	componentWillReceiveProps(nextProps){
-		console.log(this.props)
 		if(this.props.blogNoteData === ''){
-			this.wz();//文集列表
+			this.wz();//文章列表
 		}
-        
+		if(this.props.textArticle === '' && (typeof this.props.articleData == 'object')){
+			let {wzTargetId} = this.props;
+			console.log(this.props,'文章内容')
+			console.log(wzTargetId+'ani','生命周期')
+			this.Text();//文章内容
+		}
 	}
-	wj(){
+	wj(){//文集
 		let {actions} = this.props;
 		let data= {
 			accessToken:local_accessToken
 		}
 		actions.getNotetData(data);
 	}
-	wz(){
+	wz(){//文章
 		let {actions} = this.props;
 		let data= {
 			accessToken:local_accessToken
 		}
 		actions.getarticleData(data);
 	}
+	Text(){//文章内容
+		let {actions,wzTargetId} = this.props;
+		let data= {
+			id:wzTargetId,
+			accessToken:local_accessToken
+		}
+		actions.textArticleData(data);
+	}
 	render(){
-		
-		let {blogNoteData,blogNewNote,articleData,newArticle,codeDesc,actions,noteTargetId} = this.props;
+		console.log(this.props,'render')
+		let {blogNoteData,blogNewNote,articleData,newArticle,textArticle,wzId,codeDesc,actions,noteTargetId} = this.props;
 		let wj =  blogNoteData.data|| '';//文集
 		let wj_code = codeDesc.code || '';//文集code
 		let wj_desc = codeDesc.desc || '';//文集desc
 		let article = newArticle.data || '';//文章列表
-	
+		let _textArticle = textArticle.data || '';//文章内容
 		// console.log(this.props.noteTargetId);
+		console.log(wzId,'订单ID')
 		return (
         <div>
-			<Wj data = {wj} actions ={actions} code ={wj_code} desc = {wj_desc}/>
-			<Wz data = {article} actions={actions} noteTargetId={noteTargetId}/>
-			<Text/>
+			<Wj data={wj} actions ={actions} code ={wj_code} desc = {wj_desc}/>
+			<Wz data={article} actions={actions} noteTargetId={noteTargetId}/>
+			<Text data={_textArticle} actions={actions} wzId={wzId}/>
 		</div>
 		)
 	}

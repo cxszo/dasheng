@@ -7,7 +7,13 @@ const initialState = {
     article:'',
     addArticle:'',
     newArticle:'',
-    noteTargetId:''
+    noteTargetId:'',
+    saveArticle:'',
+    textArticle:'',
+    wzTargetId:'',
+    wzId:'',
+    fbArticle:''
+    
 
 }
 export default  function BlogNote(state=initialState,action){
@@ -65,6 +71,9 @@ export default  function BlogNote(state=initialState,action){
         //文章列表
         case types.ARTICLE_DATA:
         let firstId = state.note.data[0].id;
+        let wzTargetId = action.data.data.find((v,i)=>{
+            return v.is_show ==true &&  v.note_id == firstId 
+        }).id;
         return Object.assign({},state,{article:{
             code:action.codeDesc.code,
             desc:action.codeDesc.desc,
@@ -77,7 +86,7 @@ export default  function BlogNote(state=initialState,action){
             data:action.data.data.filter((v,i)=>{
                 return v.is_show ==true &&  v.note_id == firstId  
             })
-        }})
+        },wzTargetId:wzTargetId})
         break;
 
         //过滤文章
@@ -99,6 +108,26 @@ export default  function BlogNote(state=initialState,action){
         _newArticle.data.unshift(newWz);
         return Object.assign({},state,{addArticle:action.data,_newArticle})
         break;
+
+        //获取文章ID
+        case types.FILTER_ARTICLE_NR:
+        return Object.assign({},state,{wzId:action.id})
+        break;
+
+        //文章内容
+        case types.TEXT_ARTICLE_DATA:
+        return Object.assign({},state,{textArticle:action.data})
+        break;
+        
+        //保存文章
+        case types.SAVE_ARTICLE_DATA:
+        return Object.assign({},state,{saveArticle:action.data,wzTargetId:wzTargetId})
+        break;
+
+         //发布文章
+         case types.FB_ARTICLE_DATA:
+         return Object.assign({},state,{fbArticle:action.data})
+         break;
 
         default:
         return state

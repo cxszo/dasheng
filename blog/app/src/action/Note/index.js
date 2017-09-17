@@ -113,3 +113,60 @@ const WzData =(data,codeDesc)=>({
     data,
     codeDesc:codeDesc
 })
+//过滤文章
+export const filterwZ = wz_id =>({
+    type:types.FILTER_ARTICLE_NR,
+    id:wz_id
+})
+
+//文章内容
+export const textArticleData = param =>{
+    return dispatch =>{
+        Util.ajaxGet(Util.burl+'/blog/notes/'+param.id+'/content?accessToken='+param.accessToken,(data)=>{
+                dispatch(textArticle(data,{code:data.code,desc:data.desc,}))
+            },(err)=>{
+                console.log(err);
+            }
+        )
+    }
+}
+const textArticle = (data,codeDesc) =>({
+    type:types.TEXT_ARTICLE_DATA,
+    data,
+    codeDesc:codeDesc
+})
+//保存文章
+export const saveArticleData = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.put(Util.burl+'/blog/notes/'+_param.id+'',_param,(data)=>{
+                dispatch(saveArticle(data))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+    }
+}
+const saveArticle =(data) =>({
+    type:types.SAVE_ARTICLE_DATA,  
+    data
+})
+
+//发布文章
+export const fbArticleData = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.post(Util.burl+'/blog/notes/'+_param.id+'/publicize',_param,(data)=>{
+                dispatch(fbArticle(data,{code:data.code,desc:data.desc}))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+    }
+}
+const fbArticle =(data,codeDesc) =>({
+    type:types.FB_ARTICLE_DATA,  
+    data,
+    codeDesc:codeDesc
+})
+
