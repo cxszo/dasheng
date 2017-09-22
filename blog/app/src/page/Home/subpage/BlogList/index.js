@@ -48,7 +48,7 @@ class BlogList extends React.Component{
 												<h3>{v.title}</h3>
 											</div>
 											<div className="intro">
-												<p>{v.intro}</p>
+												<p>{v.intro.replace(/<\/?[^>]*>/g,'')}</p>
 											</div>
 											<div className="tj">
 												<em><cite><img src={readeIco}/></cite><span>{v.read}</span></em>

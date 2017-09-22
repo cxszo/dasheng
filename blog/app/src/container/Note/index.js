@@ -22,7 +22,8 @@ const mapStateToProps=state=>({
 	wzTargetId:state.BlogNote.wzTargetId,
 	textArticle:state.BlogNote.textArticle,//文章内容
 	wzId:state.BlogNote.wzId,
-	fbArticle:state.BlogNote.fbArticle//发布文章
+	fbArticle:state.BlogNote.fbArticle,//发布文章
+	recycleArticle:state.BlogNote.recycleArticle//回收站
 })
 
 const mapDispatchToProps=dispatch=>({

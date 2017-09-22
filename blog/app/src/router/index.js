@@ -10,6 +10,7 @@ import Following from '../container/Center/following'
 import Followers from '../container/Center/followers'
 import Likes from '../container/Center/Likes'
 import Note from '../container/Note/index'
+import Recycle from '../container/Note/recycle'
 class RouterMap extends React.Component {
     render() {
         return (
@@ -23,6 +24,8 @@ class RouterMap extends React.Component {
                     <Route path='/Center/:id/followers' component={Followers}/>
                     <Route path='/Center/:id/likes' component={Likes}/>
                     <Route path='/Note' component={Note}/>
+                    <Route path='/Recycle' component={Recycle}/>
+
             	</Route>
             </Router>
         )

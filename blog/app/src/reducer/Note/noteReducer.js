@@ -6,14 +6,16 @@ const initialState = {
     isFinish:false,
     article:'',
     addArticle:'',
-    newArticle:'',
+    newArticle:'',//文章列表
     noteTargetId:'',
-    saveArticle:'',
-    textArticle:'',
+    saveArticle:'',//保存文章
+    textArticle:'',//文章内容
     wzTargetId:'',
     wzId:'',
-    fbArticle:''
-    
+    fbArticle:'',// 发布文章
+    delArticle:'',//删除文章
+    recycleArticle:'',//回收站列表
+    hfArticle:''//恢复文章
 
 }
 export default  function BlogNote(state=initialState,action){
@@ -86,7 +88,9 @@ export default  function BlogNote(state=initialState,action){
             data:action.data.data.filter((v,i)=>{
                 return v.is_show ==true &&  v.note_id == firstId  
             })
-        },wzTargetId:wzTargetId})
+        },wzTargetId:wzTargetId,recycleArticle:action.data.data.filter((v,i)=>{
+            return v.is_show ==false
+        })})
         break;
 
         //过滤文章
@@ -103,10 +107,17 @@ export default  function BlogNote(state=initialState,action){
 
         //新增文章
         case types.ADD_ARTICLE:
-        let _newArticle = state.newArticle;
+        let seq = action.codeDesc.seq;
         let newWz =action.data.data;
-        _newArticle.data.unshift(newWz);
-        return Object.assign({},state,{addArticle:action.data,_newArticle})
+            newWz.content = '';
+        let arr = [];
+        arr = state.newArticle.data;
+        seq == 0 ? arr.unshift(newWz) : arr.push(newWz)
+        return Object.assign({},state,{addArticle:action.data,newArticle:{
+            code:state.newArticle.code,
+            desc:state.newArticle.desc,
+            data:arr
+        }})
         break;
 
         //获取文章ID
@@ -121,13 +132,65 @@ export default  function BlogNote(state=initialState,action){
         
         //保存文章
         case types.SAVE_ARTICLE_DATA:
-        return Object.assign({},state,{saveArticle:action.data,wzTargetId:wzTargetId})
+        let idText = action.text.id;
+        let titleText = action.text.title;
+        let contentText = action.text.content;
+        
+        return Object.assign({},state,{ newArticle:{
+            code:state.article.code,
+            desc:state.article.desc,
+            data:state.newArticle.data.map((v,i)=>{
+                if(v.id == idText){
+                    v.title = titleText;
+                    v.content = contentText
+                }
+                return v
+            })
+        },textArticle:{
+            code:state.textArticle.code,
+            desc:state.textArticle.desc,
+            data:{
+                title:titleText,
+                content:contentText
+            }  
+        }})
         break;
 
-         //发布文章
-         case types.FB_ARTICLE_DATA:
-         return Object.assign({},state,{fbArticle:action.data})
-         break;
+        //发布文章
+        case types.FB_ARTICLE_DATA:
+        return Object.assign({},state,{fbArticle:action.data})
+        break;
+
+        //删除文章
+        case types.DEL_ARTICLE_DATA:
+        let delId = action.data.data.param1;
+        return Object.assign({},state,{newArticle:{
+                code:state.article.code,
+                desc:state.article.desc,
+                data:state.newArticle.data.filter((v,i)=>{
+                   return v.is_show ==true && v.id !=delId
+                })
+        },textArticle:{
+            code:state.textArticle.code,
+            desc:state.textArticle.desc,
+            data:{
+                title:'',
+                content:''
+            }
+        },recycleArticle:state.recycleArticle.concat(state.newArticle.data.find(item =>{return item.id ==delId}))})
+        break;
+
+        //恢复文章
+        case types.HF_ARTICLE_DATA:
+        let hfId = action.id;
+        console.log(hfId,'恢复文章ID')
+        return Object({},state,{newArticle:state.newArticle.concat(state.newArticle.data.find(item =>{return item.id ==hfId}))})
+        break;
+
+        //彻底删除文章
+        case types.ALL_DEL_ARTICLE_DATA:
+        return Object({},state)
+        break;
 
         default:
         return state

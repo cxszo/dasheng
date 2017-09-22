@@ -100,7 +100,7 @@ export const addWz = param =>{
     let _param = param || {};
     return dispatch =>{
         Util.post(Util.burl+'/blog/notes',_param,(data)=>{
-                dispatch(WzData(data,{code:data.code,desc:data.desc}))
+                dispatch(WzData(data,{code:data.code,desc:data.desc,seq:_param.seq_in_nb}))
             },(err)=>{
                 console.log(err)
             }
@@ -140,16 +140,17 @@ export const saveArticleData = param =>{
     let _param = param || {};
     return dispatch =>{
         Util.put(Util.burl+'/blog/notes/'+_param.id+'',_param,(data)=>{
-                dispatch(saveArticle(data))
+                dispatch(saveArticle(data,{title:_param.title,content:_param.content,id:_param.id}))
             },(err)=>{
                 console.log(err)
             }
         )
     }
 }
-const saveArticle =(data) =>({
+const saveArticle =(data,text) =>({
     type:types.SAVE_ARTICLE_DATA,  
-    data
+    data,
+    text:text
 })
 
 //发布文章
@@ -170,3 +171,54 @@ const fbArticle =(data,codeDesc) =>({
     codeDesc:codeDesc
 })
 
+//删除文章
+export const delArticleData = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.post(Util.burl+'/blog/notes/'+_param.id+'/soft_destroy',_param,(data)=>{
+                dispatch(delArticle(data))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+    }
+}
+const delArticle =(data) =>({
+    type:types.DEL_ARTICLE_DATA,  
+    data
+})
+
+//恢复文章
+export const hfArticleData = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.post(Util.burl+'/blog/notes/'+_param.id+'/put_back',_param,(data)=>{
+                dispatch(hfArticle(data,{id:_param.id}))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+    }
+}
+const hfArticle =(data,id) =>({
+    type:types.HF_ARTICLE_DATA,  
+    data,
+    id:id.id
+})
+
+//彻底删除文章
+export const allDelArticleData = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.delete(Util.burl+'/blog/notes/'+_param.id,_param,(data)=>{
+                dispatch(allDelArticle(data))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+    }
+}
+const allDelArticle =(data) =>({
+    type:types.ALL_DEL_ARTICLE_DATA,  
+    data
+})

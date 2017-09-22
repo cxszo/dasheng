@@ -104,11 +104,17 @@ class Wj extends React.Component{
             poupShow:false
         })
     }
+    backIndex(){//返回首页
+        hashHistory.push('/Home')
+    }
+    toReycle(){
+        hashHistory.push('/Recycle')
+    }
 	render(){
 		return (
         <div className="wj-n">
             <div className="home-wrap">
-                <a>回到首页</a>
+                <a onClick={this.backIndex.bind(this)}>回到首页</a>
             </div>
             <div className="new-notebook">
                 <a onClick={this.show.bind(this)}>+新建文集</a>
@@ -128,7 +134,7 @@ class Wj extends React.Component{
                         return (
                             <li key={i} onClick={this.setShow.bind(this,v.id)}>
                                 <a href="javascript:void(0)" className={this.state.setShow == v.id || (this.state.setShow=='' && i==0) ? 'active' :''}>
-                                    {v.name}{v.id}
+                                    {v.name}
                                     <i onClick = {this.setBtn.bind(this)}></i>  
                                 </a>
                                 {   
@@ -151,7 +157,7 @@ class Wj extends React.Component{
                     })
                 }
             </ul>
-            <div className="commercial">
+            <div className="commercial" onClick = {this.toReycle.bind(this)}>
                 <a>
                     <i></i>
                     回收站

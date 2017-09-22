@@ -7,7 +7,8 @@ class Wz extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state={
-			setShow:''
+			setShow:'',
+			setBtn:false//是否显示设置按钮
 		}
 	}
     componentDidMount(){
@@ -27,15 +28,34 @@ class Wz extends React.Component{
 	}
 	addArticle(i){//新建文章
 		let {actions,noteTargetId} = this.props;
-		console.log(noteTargetId)
 		let data = {
 			accessToken:local_accessToken,
 			note_id:noteTargetId,
 			title:'无标题文章',
 			seq_in_nb:i
 		}
-		console.log(this.props,'刹车')
 		actions.addWz(data);
+	}
+	setHandler(i){
+		this.setState({
+			setBtn:true
+		})
+		if(this.state.setBtn == true){
+			this.setState({
+				setBtn:false
+			})
+		}
+	}
+	delArticle(i){
+		let {actions} = this.props;
+		this.setState({
+			setBtn:false
+		})
+		let data = {
+			id:i,
+			accessToken:local_accessToken
+		}
+		actions.delArticleData(data);
 	}
 	render(){
 		return (
@@ -54,18 +74,33 @@ class Wz extends React.Component{
 										<i></i> 
 									</span>
 									<span className="right">
-										<p className="title">{v.title}{v.id}</p>
-										<p className="desc">{v.content}</p>
+										<p className="title">{v.title}</p>
+										<p className="desc">{v.content.replace(/<\/?[^>]*>/g,'')}</p>
 									</span>
-									<cite className="set-ico"></cite>
+									<cite className="set-ico" onClick={this.setHandler.bind(this,v.id)}></cite>
 								</a>
+								{
+									this.state.setShow == v.id ? 
+									<ul className={this.state.setBtn?'dropdown-menu':' dropdown-menu hide'}>
+											<li>
+												<cite></cite>
+												修改名称
+											</li>
+										
+											<li onClick={this.delArticle.bind(this,v.id)}>
+												<cite></cite>
+												删除文章
+											</li>
+								</ul>
+								:''
+								}
 							</li>
 						)
 					})
 				}
 			</ul>
 			<div className="n-title-new">  
-				<a href="javascript:void(0)">+在下方新建文章</a>
+				<a href="javascript:void(0)" onClick={this.addArticle.bind(this,1)}>+在下方新建文章</a>
 			</div>
 		</div>
 		)

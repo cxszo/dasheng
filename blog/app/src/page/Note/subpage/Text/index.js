@@ -5,16 +5,17 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 
 let local_accessToken = localStorage.getItem('accessToken') || '';
 let E = require('wangeditor')  // 使用下载的源码
+let editor;
 class Text extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state={
-			body:''
+			title:''
 		}
 	}
     componentDidMount(){
-		// 创建编辑器
-		var editor = new E('#editor')
+		// editor.txt.html(this.props.data.content);
+		editor = new E('#editor')
 		editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
 		// 自定义菜单配置
 		editor.customConfig.menus = [
@@ -37,26 +38,24 @@ class Text extends React.Component{
 			'redo'  // 重复
 		]
 		editor.create()
-		editor.txt.html(this.props.data.content);
-		document.getElementById('btn1').addEventListener('click', function () {
-			// 读取 html
-			editor.txt.html('你说你是一个好人');
-			this.setState({
-				body:editor.txt.html()
-			})
-		}, false)
-	}
-	deltip(){
+		editor.txt.html(this.props.data.content)
 		
+	}
+	componentWillReceiveProps(nextProps){
+		editor.txt.html(nextProps.data.content)
+		this.setState({
+			title:nextProps.data.title
+		})
 	}
 	saveArticle(){//保存文章
 		let {actions,wzId} = this.props;
 		let titleInput = this.refs.titleInput;
 		let val = titleInput.value;
+		let content = editor.txt.html();
 		let data = {
 			id:wzId,
 			title:val,
-			content:this.state.body,
+			content:content,
 			note_type:'',
 			accessToken:local_accessToken
 		}
@@ -69,16 +68,16 @@ class Text extends React.Component{
 			accessToken:local_accessToken
 		}
 		actions.fbArticleData(data);
-	}
+	} 
 	render(){
-		console.log(window.editormd)
 		return (
 		<div className="text-n">
 			<div className = 'title-edit'>
-				<input type="text" placeholder="请输入标题" ref = 'titleInput' value={this.props.data.title}/>
+				<input type="text" placeholder="请输入标题" ref = 'titleInput' onChange = {e=>{
+					this.setState({title:e.currentTarget.value})}} value={this.state.title}/>
 			</div>
 			<div id='editor' className="editor">
-
+				
 			</div>
 			<button  className = 'save' id="btn2" onClick={this.saveArticle.bind(this)}>保存</button>
 			<button  className = 'publish' id="btn1" onClick={this.fbArticle.bind(this)}>发布</button>

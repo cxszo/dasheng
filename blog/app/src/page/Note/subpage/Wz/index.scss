@@ -57,7 +57,9 @@
                         line-height: 36px;
                     }
                     .desc{
-                        
+                        width: 300px;
+                        height:20px;
+                        overflow: hidden;
                     }
                 }
                 .set-ico{
@@ -72,6 +74,61 @@
                 }
             }
            
+        }
+        .dropdown-menu{
+            cursor: pointer;
+            right: 0;
+            top: 60px;
+            overflow: inherit;
+            font-size: 14px;
+            font-style: normal;
+            margin-top: 10px;
+            border-color: #d9d9d9;
+            position: absolute;
+            min-width: 160px;
+            padding: 5px 0;
+            margin: 2px 0 0;
+            list-style: none;
+            background:#fff;
+            border-radius: 6px;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            li{
+                position: relative;
+                height: 30px;
+                line-height: 30px;
+                color: #333;
+                text-align: center;
+                border-top: none;
+                border-bottom:1px #DADADA solid;
+                
+            }
+            li:last-child{
+                border-bottom:none;
+            }
+            li.divider{
+                height: 1px;
+                margin: 9px 1px;
+                overflow: hidden;
+                background-color: #e5e5e5;
+                border-bottom: 1px solid white;
+            }
+
+        }
+        .dropdown-menu:after{
+            position: absolute;
+            left: 130px;
+            top: -9px;
+            border-bottom: 9px solid white;
+            content: '';
+            display: inline-block;
+            border-left: 9px solid transparent;
+            border-right: 9px solid transparent;
+            border-bottom: 9px solid #FFFFFF;
+            z-index: 1000;
+        }
+        .dropdown-menu.hide{
+            display: none;
         }
         li.active{
             background-color: #ececec;

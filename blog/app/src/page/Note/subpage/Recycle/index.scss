@@ -1,0 +1,66 @@
+.recycle{
+    overflow: hidden;
+    padding: 20px;
+    .left{
+        float: left;
+        width: 20%;
+        height: 1000px;
+        overflow-y: scroll;
+        ul{
+            li{
+                line-height: 40px;
+                border-bottom: 1px #e5e5e5 solid;
+            }
+            li:hover{
+                cursor: pointer;
+                background: #e5e5e5;
+            }
+        }
+    }
+    .right{
+        float: right;
+        width: 80%;
+        height: 1000px;
+        overflow-y: scroll;
+        position: relative;
+        .title-right{
+            width: 100%;
+            min-height: 48px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background: #eeeeee;
+            border-bottom: 1px solid #eeeeee;
+            text-align: center;
+            h3{
+                font-size: 30px;
+            }
+        }
+        .text-wrap{
+            width: 740px;
+            margin: auto;
+            padding: 30px;
+            padding-bottom: 50px;
+            p{
+                font-size: 20px;
+            }
+        }
+        .btn-del-hf{
+            position: absolute;
+            left: 50%;
+            margin-left: -140px;
+            bottom: 150px;
+            span{
+                cursor: pointer;
+                display: inline-block;
+                padding: 9px 32px 7px;;
+                background: #42c02e;
+                color: #fff;
+                border-radius: 4px;
+                margin-right: 20px;
+            }
+            span:last-child{
+                background: #ea6f5a
+            }
+        }
+    }
+}

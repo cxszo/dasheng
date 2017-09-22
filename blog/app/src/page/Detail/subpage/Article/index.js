@@ -81,7 +81,7 @@ class Article extends React.Component{
 						</span>
 					</div>
 					<div className="blog-detail-p">
-						<p>{this.props.data.body}</p>
+						<p>{this.props.data.body.replace(/<\/?[^>]*>/g,'')}</p>
 					</div>
 				</div>
 				<Author data = {this.props.data} id ={this.props.id} actions={this.props.actions} is_following={this.props.is_following}/>				

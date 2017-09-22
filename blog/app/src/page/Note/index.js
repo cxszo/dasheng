@@ -6,6 +6,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import Wj from './subpage/Wj/'
 import Wz from './subpage/Wz/'
 import Text from './subpage/Text/'
+import Loading from '../../components/Load/'
 let local_accessToken = localStorage.getItem('accessToken') || '';
 class Note extends React.Component{
 	constructor(props) {
@@ -23,12 +24,10 @@ class Note extends React.Component{
 		if(this.props.blogNoteData === ''){
 			this.wz();//文章列表
 		}
-		if(this.props.textArticle === '' && (typeof this.props.articleData == 'object')){
-			let {wzTargetId} = this.props;
-			console.log(this.props,'文章内容')
-			console.log(wzTargetId+'ani','生命周期')
-			this.Text();//文章内容
-		}
+		// if(this.props.textArticle === '' && (typeof this.props.articleData == 'object')){
+		// 	let {wzTargetId} = this.props;
+		// 	this.Text();//文章内容
+		// }
 	}
 	wj(){//文集
 		let {actions} = this.props;
@@ -53,20 +52,21 @@ class Note extends React.Component{
 		actions.textArticleData(data);
 	}
 	render(){
-		console.log(this.props,'render')
 		let {blogNoteData,blogNewNote,articleData,newArticle,textArticle,wzId,codeDesc,actions,noteTargetId} = this.props;
 		let wj =  blogNoteData.data|| '';//文集
 		let wj_code = codeDesc.code || '';//文集code
 		let wj_desc = codeDesc.desc || '';//文集desc
 		let article = newArticle.data || '';//文章列表
 		let _textArticle = textArticle.data || '';//文章内容
-		// console.log(this.props.noteTargetId);
-		console.log(wzId,'订单ID')
+		console.log(this.props)
 		return (
         <div>
 			<Wj data={wj} actions ={actions} code ={wj_code} desc = {wj_desc}/>
 			<Wz data={article} actions={actions} noteTargetId={noteTargetId}/>
 			<Text data={_textArticle} actions={actions} wzId={wzId}/>
+			{
+				!article ? <Loading/> : null
+			}
 		</div>
 		)
 	}
