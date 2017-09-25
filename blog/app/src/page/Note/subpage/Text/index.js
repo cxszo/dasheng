@@ -10,7 +10,8 @@ class Text extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state={
-			title:''
+			title:'',
+			saveBtn:true
 		}
 	}
     componentDidMount(){
@@ -60,6 +61,9 @@ class Text extends React.Component{
 			accessToken:local_accessToken
 		}
 		actions.saveArticleData(data);
+		this.setState({
+			saveBtn:false
+		})
 	}
 	fbArticle(){//发布文章
 		let {actions,wzId} = this.props;
@@ -68,6 +72,9 @@ class Text extends React.Component{
 			accessToken:local_accessToken
 		}
 		actions.fbArticleData(data);
+		this.setState({
+			saveBtn:true
+		})
 	} 
 	render(){
 		return (
@@ -79,8 +86,12 @@ class Text extends React.Component{
 			<div id='editor' className="editor">
 				
 			</div>
-			<button  className = 'save' id="btn2" onClick={this.saveArticle.bind(this)}>保存</button>
-			<button  className = 'publish' id="btn1" onClick={this.fbArticle.bind(this)}>发布</button>
+			{
+				this.state.saveBtn ? <button  className = 'save' id="btn2" onClick={this.saveArticle.bind(this)}>保存</button>:
+				<button  className = 'publish' id="btn1" onClick={this.fbArticle.bind(this)}>发布</button>
+			}
+			
+			
 		</div>
 		)
 	}

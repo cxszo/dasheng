@@ -83,7 +83,7 @@ class Detail extends React.Component{
 				<Header isLogin={this.state.islogin} data = {login_data}/>
 				<Article data = {detail} actions = {actions} is_following ={is_following} id={id}/>
 				<Like data = {like} love={love} is_love={is_love}  actions = {actions} id={id}/>
-				{/* <Comment/> */}
+				<Comment/>
 				<SideTool collect ={collect} is_collect={is_collect}  actions = {actions} id={id}/>
 				<LoveList show ={loveMask} data={bloglovelist} actions = {actions}/>
 			</div>

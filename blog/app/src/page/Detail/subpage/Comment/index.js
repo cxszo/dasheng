@@ -8,7 +8,7 @@ class Comment extends React.Component{
             {/* 发表评论 */}
             <div className="new-comment">
                 <a className='touxiang'>
-                    <img src = {txSrc}/>
+                    <img src = ''/>
                 </a>
                 <div className="sign-container">
                     <a href="" className="btn btn-sign">登录</a> 
@@ -19,7 +19,7 @@ class Comment extends React.Component{
                 <div className="comment-author">
                     <div className="author">
                         <a>
-                            <img src={txSrc}/>
+                            <img src=''/>
                         </a>
                         <div className="info">
                             <p>安娜</p>

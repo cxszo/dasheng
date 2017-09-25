@@ -35,7 +35,7 @@ class Blog extends React.Component {
     }
     isLogin(){
         let {actions} = this.props;
-        let accessToken= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IuWImOW_l-WxsSIsInBhc3N3b3JkIjoiMTIzNDU2IiwiaWF0IjoxNTA2MDUwNzc1LCJleHAiOjE1MDYxMzcxNzV9.TBN4lmsqZoVkAENTLo8Cz0Mslda_6bywhey0ApiBDQM';
+        let accessToken= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IuWImOW_l-WxsSIsInBhc3N3b3JkIjoiMTIzNDU2IiwiaWF0IjoxNTA2MzI2NDU1LCJleHAiOjE1MDY0MTI4NTV9.fzX6vbj1ft7wOEsMSTGvrAU3Vc6-cqiULUzjOkYWEcM';
         localStorage.setItem('accessToken',accessToken);
          //检测登录 有误Token,没有的话去登陆
          let local_accessToken = localStorage.getItem('accessToken') || '';
