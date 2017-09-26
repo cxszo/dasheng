@@ -17,7 +17,11 @@ const mapStateToProps=state=>({
 	loveMask:state.BlogDetail.loveMask,
 	guanZhu:state.BlogDetail.guanZhu,
 	isFinish:state.BlogDetail.isFinish,
-	bloglogin:state.BlogDetail.bloglogin
+	bloglogin:state.BlogDetail.bloglogin,
+	comment:state.BlogDetail.comment,
+	replayComment:state.BlogDetail.replayComment,
+	commentArticle:state.BlogDetail.commentArticle,
+	dianZan:state.BlogDetail.dianZan
 })
 
 const mapDispatchToProps=dispatch=>({

@@ -106,3 +106,72 @@ const blogLogin=data=>({
     type: types.LOGIN_DATA,
     data
 })
+
+//评论
+export const commentData = param =>{
+    return dispatch =>{
+        Util.ajaxGet(Util.burl+'/blog/comment/'+param.id+'?accessToken='+param.accessToken,(data)=>{
+            dispatch(blogComment(data))
+        },(err)=>{
+            console.log(err)
+        }
+    )
+    }  
+}
+const blogComment=data=>({
+    type: types.COMMENT_DATA,
+    data
+})
+//评论文章
+export const commentArticleData = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.post(Util.burl+'/blog/comment/'+_param.id+'',_param,(data)=>{
+                dispatch(commentArticle(data))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+        
+    }
+}
+const commentArticle=data=>({
+    type: types.COMMENT_ARTICLE_DATA,
+    data
+})
+
+//回复评论
+export const replyCommentData = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.post(Util.burl+'/blog/comment/'+_param.id+'/revert',_param,(data)=>{
+                dispatch(replyComment(data))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+        
+    }
+}
+const replyComment=data=>({
+    type: types.REPLAY_COMMENT_DATA,
+    data
+})
+
+//点赞
+export const DzData = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.post(Util.burl+'/blog/comment/'+_param.id+'/love',_param,(data)=>{
+                dispatch(Dz(data))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+        
+    }
+}
+const Dz=data=>({
+    type: types.DIAN_ZAN_DATA,
+    data
+})
