@@ -144,7 +144,7 @@ const commentArticle=data=>({
 export const replyCommentData = param =>{
     let _param = param || {};
     return dispatch =>{
-        Util.post(Util.burl+'/blog/comment/'+_param.id+'/revert',_param,(data)=>{
+        Util.post(Util.burl+'/blog/comment/'+_param.slug+'/revert',_param,(data)=>{
                 dispatch(replyComment(data))
             },(err)=>{
                 console.log(err)
@@ -162,7 +162,7 @@ const replyComment=data=>({
 export const DzData = param =>{
     let _param = param || {};
     return dispatch =>{
-        Util.post(Util.burl+'/blog/comment/'+_param.id+'/love',_param,(data)=>{
+        Util.post(Util.burl+'/blog/comment/'+_param.slug+'/love',_param,(data)=>{
                 dispatch(Dz(data))
             },(err)=>{
                 console.log(err)
@@ -173,5 +173,39 @@ export const DzData = param =>{
 }
 const Dz=data=>({
     type: types.DIAN_ZAN_DATA,
+    data
+})
+//删除评论
+export const deleteCommentData = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.delete(Util.burl+'/blog/comment/'+_param.slug+'/delete',_param,(data)=>{
+                dispatch(deleteComment(data))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+        
+    }
+}
+const deleteComment=data=>({
+    type: types.DELETE_COMMENT_DATA,
+    data
+})
+//删除回复评论
+export const deleteReplayCommentData = param =>{
+    let _param = param || {};
+    return dispatch =>{
+        Util.delete(Util.burl+'/blog/comment/'+_param.slug+'/delete_revert',_param,(data)=>{
+                dispatch(deleteReplayComment(data))
+            },(err)=>{
+                console.log(err)
+            }
+        )
+        
+    }
+}
+const deleteReplayComment=data=>({
+    type: types.DELETE_REPLAYCOMMENT_DATA,
     data
 })

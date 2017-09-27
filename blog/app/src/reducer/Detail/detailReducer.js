@@ -66,6 +66,14 @@ export default  function BlogDetail(state=initialState,action){
         return Object.assign({},state,{dianZan:action.data})
         break;
 
+        case types.DELETE_COMMENT_DATA://删除评论
+        return Object.assign({},state)
+        break;
+
+        case types.DELETE_REPLAYCOMMENT_DATA://删除回复
+        return Object.assign({},state)
+        break;
+
         default:
         return state
 

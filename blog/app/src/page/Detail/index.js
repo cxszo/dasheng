@@ -91,14 +91,14 @@ class Detail extends React.Component{
 		
 		let login_data= bloglogin.data || [];
 		let commentData = comment.data || [];//评论内容
-		let replayCommentData = replayComment.data || []; //回复平林
-		
+		let replayCommentData = replayComment.data || []; //回复评论
+		let commentCount = commentData.count || '';//回复评论数量
 		return (
 			<div>
 				<Header isLogin={this.state.islogin} data = {login_data}/>
 				<Article data = {detail} actions = {actions} is_following ={is_following} id={id}/>
 				<Like data = {like} love={love} is_love={is_love}  actions = {actions} id={id}/>
-				<Comment commentData = {commentData} replayCommentData = {replayCommentData} actions={actions} id = {id} login_data={login_data} isLogin={this.state.islogin}/>
+				<Comment commentData = {commentData} replayCommentData = {replayCommentData} actions={actions} id = {id} login_data={login_data} isLogin={this.state.islogin} commentCount={commentCount}/>
 				<SideTool collect ={collect} is_collect={is_collect}  actions = {actions} id={id}/>
 				<LoveList show ={loveMask} data={bloglovelist} actions = {actions}/>
 			</div>

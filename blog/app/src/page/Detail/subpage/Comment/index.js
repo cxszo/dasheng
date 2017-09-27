@@ -2,7 +2,14 @@ import React from 'react'
 import './index.scss'
 let local_accessToken = localStorage.getItem('accessToken') || '';
 class Comment extends React.Component{
-    submitComment(){
+    constructor(props){
+        super(props)
+        this.state = {
+            editShow:false,
+            commentId:''
+        }
+    }
+    submitComment(){//发表评论
         let {actions} = this.props;
         let commentText = $('#commentText').text();
         let data = {
@@ -22,16 +29,43 @@ class Comment extends React.Component{
         }
         actions.DzData(data)
     }
-    huifu(i){//回复评论
+    cancel(){//隐藏回复框
+        this.setState({
+            editShow:false,
+            commentId:''
+        })
+    }
+    huifuBtn(i){//显示回复框
+        this.setState({
+            editShow:true,
+            commentId:i
+        })
+    }
+    huifu(m){//回复评论
         let {actions} = this.props;
+        let _commentTxt = $('.commentTxt')[m.index].innerHTML;
+        console.log(_commentTxt)
+        let data = {
+            slug:this.props.id,
+            id:m.id,
+            u_id:m.userid,
+            msg:_commentTxt,
+            accessToken:local_accessToken
+        }
+        actions.replyCommentData(data);
+        this.setState({
+            editShow:false
+        })
+        $('.commentTxt')[m.index].innerHTML='';
+    }
+    deleteComment(i){//删除评论
+        let {actions} =this.props;
         let data = {
             slug:this.props.id,
             id:i,
-            u_id:'2222223',
-            msg:'这是我第一个回复的评论',
             accessToken:local_accessToken
         }
-        actions.replyCommentData(data)
+        actions.deleteCommentData(data);
     }
     render(){
         return(
@@ -79,12 +113,20 @@ class Comment extends React.Component{
                                         </a>
                                         <a>
                                             <i></i>
-                                            <span onClick={this.huifu.bind(this,v.id)}>{v.count}人回复</span>
+                                            <span onClick={this.huifuBtn.bind(this,v.id)}>{this.props.commentCount}人回复</span>
                                         </a>
+                                        <cite onClick={this.deleteComment.bind(this,v.id)}>删除</cite>
                                     </div>
                                 </div>
                             </div>
                             <div className="sub-comment-list">
+                                <div className={this.state.editShow && this.state.commentId == v.id ? 'edit-comment' : 'edit-comment hide'}>
+                                    <div className='commentTxt' contentEditable={true}></div>
+                                    <div>
+                                        <cite onClick={this.huifu.bind(this,{index:i,id:v.id,userid:v.userid})}>发送</cite>
+                                        <span onClick={this.cancel.bind(this,v.id)}>取消</span>
+                                    </div>
+                                </div>
                                {
                                    !v.revert ?  '' :
                                    v.revert.map((m,n)=>{

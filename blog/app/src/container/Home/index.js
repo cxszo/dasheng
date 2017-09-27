@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import * as HomeActions from '../../action/Home'
 
 const BlogWrap=props=>(
-	<Blog {...props} />
+	<Blog {...props}/>
 )
 
 const mapStateToProps=state=>({
