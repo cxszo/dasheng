@@ -163,24 +163,25 @@ export const DzData = param =>{
     let _param = param || {};
     return dispatch =>{
         Util.post(Util.burl+'/blog/comment/'+_param.slug+'/love',_param,(data)=>{
-                dispatch(Dz(data))
+                dispatch(Dz(data,{desc:data.desc,id:_param.id}))
             },(err)=>{
                 console.log(err)
             }
         )
-        
     }
 }
-const Dz=data=>({
+const Dz=(data,desc)=>({
     type: types.DIAN_ZAN_DATA,
-    data
+    data,
+    desc:desc.desc,
+    id:desc.id
 })
 //删除评论
 export const deleteCommentData = param =>{
     let _param = param || {};
     return dispatch =>{
         Util.delete(Util.burl+'/blog/comment/'+_param.slug+'/delete',_param,(data)=>{
-                dispatch(deleteComment(data))
+                dispatch(deleteComment(data,{id:_param.id}))
             },(err)=>{
                 console.log(err)
             }
@@ -188,9 +189,10 @@ export const deleteCommentData = param =>{
         
     }
 }
-const deleteComment=data=>({
+const deleteComment=(data,id)=>({
     type: types.DELETE_COMMENT_DATA,
-    data
+    data,
+    id:id.id
 })
 //删除回复评论
 export const deleteReplayCommentData = param =>{

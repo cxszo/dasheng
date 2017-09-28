@@ -33,6 +33,9 @@ class Header extends React.Component{
 	toIndex(){
 		hashHistory.push('/')
 	}
+	toSigIn(){//去登陆
+		hashHistory.push('/SignIn')
+	}
 	render(){
 		return (
 			<div className = "header">
@@ -60,8 +63,8 @@ class Header extends React.Component{
 						<div className="login-count">
 							<ul>
 								<li>
-									<a href="http://10.0.10.171:8081/sign_in">登录</a>
-									<a href="http://10.0.10.171:8081/sign_up">注册</a>   
+									<a onClick={this.toSigIn.bind(this)}>登录</a>
+									<a>注册</a>   
 								</li>
 								
 							</ul>

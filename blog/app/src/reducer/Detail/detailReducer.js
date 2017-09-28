@@ -63,11 +63,43 @@ export default  function BlogDetail(state=initialState,action){
         break;
 
         case types.DIAN_ZAN_DATA://点赞
-        return Object.assign({},state,{dianZan:action.data})
+        let dzDesc = action.desc;
+        let dzId= action.id;
+        let allCount;
+        if(dzDesc == '添加success'){
+            allCount=1
+        }else if(dzDesc == '取消success'){
+            allCount=0
+        }
+        return Object.assign({},state,{comment:{
+            code:state.comment.code,
+            desc:state.comment.desc,
+            data:{
+                count:state.comment.data.count,
+                list:state.comment.data.list.map((v,i)=>{
+                    if(v.id == dzId){
+                        v.love = allCount
+                    }
+                    return v
+                })
+                   
+            }
+        }})
         break;
 
         case types.DELETE_COMMENT_DATA://删除评论
-        return Object.assign({},state)
+        let deleteCommentId = action.id;
+        return Object.assign({},state,{comment:{
+            code:state.comment.code,
+            desc:state.comment.desc,
+            data:{
+                count:state.comment.data.count - 1,
+                list:state.comment.data.list.filter((v,i)=>{
+                    return v.id !=deleteCommentId
+                })
+                }
+            }
+        })
         break;
 
         case types.DELETE_REPLAYCOMMENT_DATA://删除回复
