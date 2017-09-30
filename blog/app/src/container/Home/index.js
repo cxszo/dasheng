@@ -14,7 +14,9 @@ const mapStateToProps=state=>({
 	blogtitleData:state.BlogList.blogtitle,
 	blogtitleData_2:state.BlogList.blogtitle_2,
 	blogauthorData:state.BlogList.blogauthor,
-	bloglogin:state.BlogList.bloglogin
+	bloglogin:state.BlogList.bloglogin,
+	loginCode:state.BlogList.loginCode,
+	loginDesc:state.BlogList.loginDesc
 })
 
 const mapDispatchToProps=dispatch=>({

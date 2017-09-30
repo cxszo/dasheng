@@ -11,7 +11,9 @@ import Followers from '../container/Center/followers'
 import Likes from '../container/Center/Likes'
 import Note from '../container/Note/index'
 import Recycle from '../container/Note/recycle'
-import SignIn from '../container/SignIn/index'
+import Sign from '../container/Sign/index'
+// import SignIn from '../page/Sign/subpage/signIn.js'
+// import SignUp from '../page/Sign/subpage/signUp.js'
 class RouterMap extends React.Component {
     render() {
         return (
@@ -26,7 +28,10 @@ class RouterMap extends React.Component {
                     <Route path='/Center/:id/likes' component={Likes}/>
                     <Route path='/Note' component={Note}/>
                     <Route path='/Recycle' component={Recycle}/>
-                    <Route path='/SignIn' component={SignIn}/>
+                    <Route path='/Sign' component={Sign}/>
+                    {/* <Route path='/SignIn' component={SignIn}/>
+                    <Route path='/SignUp' component={SignUp}/> */}
+                                 
             	</Route>
             </Router>
         )

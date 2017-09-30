@@ -35,21 +35,15 @@ class Blog extends React.Component {
     }
     isLogin(){
         let {actions} = this.props;
-        let accessToken= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IuWImOW_l-WxsSIsInBhc3N3b3JkIjoiMTIzNDU2IiwiaWF0IjoxNTA2NTY1NDg3LCJleHAiOjE1MDY2NTE4ODd9.RE4kXQmX3tKePxLv9KNgYU7qdsMG5I156QZ16ex0DZ8';
-        localStorage.setItem('accessToken',accessToken);
-         //检测登录 有误Token,没有的话去登陆
+         //检测登录 有无Token,没有的话去登陆
          let local_accessToken = localStorage.getItem('accessToken') || '';
-         if(!!local_accessToken){
+         if(local_accessToken){
              let data = {
                  accessToken: local_accessToken
              }
              actions.getLoginData(data);//查询登陆个人信息
              this.setState({
                  islogin:true
-             })
-         }else{
-             this.setState({
-                 islogin:false
              })
          }
     }

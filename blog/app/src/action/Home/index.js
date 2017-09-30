@@ -71,14 +71,16 @@ const authorData=data=>({
 export const getLoginData = param =>{
     return dispatch =>{
         Util.ajaxGet(Util.burl+'/user/userinfo/?accessToken='+param.accessToken,(data)=>{
-            dispatch(blogLogin(data))
+            dispatch(blogLogin(data,{code:data.code,desc:data.desc}))
         },(err)=>{
             console.log(err)
         }
     )
     }  
 }
-const blogLogin=data=>({
+const blogLogin=(data,islogin)=>({
     type: types.LOGIN_DATA,
-    data
+    data,
+    code:islogin.code,
+    desc:islogin.desc
 })

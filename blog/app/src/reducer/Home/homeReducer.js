@@ -4,7 +4,9 @@ const initialState = {
     blogtitle:'',
     blogtitle_2:'',
     blogauthor:'',
-    bloglogin:''
+    bloglogin:'',
+    loginCode:'',
+    loginDesc:''
 }
 export default  function BlogList(state=initialState,action){
     switch(action.type){
@@ -25,7 +27,7 @@ export default  function BlogList(state=initialState,action){
         break;
 
         case types.LOGIN_DATA:
-        return Object.assign({},state,{bloglogin:action.data})
+        return Object.assign({},state,{bloglogin:action.data,loginCode:action.code,loginDesc:action.desc})
         break;
         
         default:
