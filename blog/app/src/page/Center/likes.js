@@ -68,6 +68,13 @@ class Likes extends React.Component{
             })
         }
     }
+    loginOut(){//退出登录
+        let {actions} = this.props;
+        this.setState({
+            islogin:false
+        })
+        actions.clearUserInfo();
+    }
     render(){
         let {blogloginData,blogGuanZhuData,blogArticleData,collectList,actions} = this.props;
         let Login_data = blogloginData.data || [];
@@ -75,7 +82,7 @@ class Likes extends React.Component{
         let collect = collectList.data || [];//收藏列表
         return (
             <div>
-                <Header isLogin={this.state.islogin} data ={Login_data}/>
+                <Header isLogin={this.state.islogin} data ={Login_data} loginOut={this.loginOut.bind(this)}/>
                 <div className="center-wrap">
                     <div className= "left">
                        <Msg data = {msg} actions={actions} id = {this.props.params.id}/>

@@ -19,6 +19,11 @@ export default  function BlogSign(state=initialState,action){
         return Object.assign({},state,{SignUpData:action._data,SignUpCode:action.code,SignUpDesc :action.desc})
         break;
 
+         //清除登录信息
+         case types.CLEAR_USERINFO:
+         return Object.assign({},state,{SignInCode:''})
+         break;
+
         default:
         return state
 

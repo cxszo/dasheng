@@ -7,7 +7,7 @@ import Header from '../../components/Header/'
 import Msg from './subpage/Msg/'
 import Tab from './subpage/Tab/'
 import Introduce from './subpage/Introduce/'
-let local_accessToken = localStorage.getItem('accessToken') || '';
+
 class Center extends React.Component{
     constructor(props){
         super(props)
@@ -17,7 +17,7 @@ class Center extends React.Component{
     }
     componentDidMount(){
        let {blogloginData,actions} = this.props;
-       this.isLogin(this.props);//登陆信息
+       this.isLogin();//登陆信息
        this.msg(this.props);//头部信息
        this.article(this.props);//文章列表
     }
@@ -31,6 +31,7 @@ class Center extends React.Component{
         }
 	}
     msg(param){
+        let local_accessToken = localStorage.getItem('accessToken') || '';
         let {actions} = param;
         let id = param.params.id || '';
         let data = {
@@ -40,6 +41,7 @@ class Center extends React.Component{
         actions.getGuanZhuData(data);
     }
     article(param){
+        let local_accessToken = localStorage.getItem('accessToken') || '';
         let {actions} = param;
         let id = param.params.id || '';
         let data = {
@@ -49,9 +51,10 @@ class Center extends React.Component{
         }
         actions.getArticleList(data);
     }
-    isLogin(param){
-        let {blogloginData,actions} = param;
+    isLogin(){//检测登录
+        let {blogloginData,actions} = this.props;
         //检测登录 有误Token,没有的话去登陆
+        let local_accessToken = localStorage.getItem('accessToken') || '';
         if(!!local_accessToken){
             let data = {
                 accessToken: local_accessToken
@@ -60,13 +63,15 @@ class Center extends React.Component{
             this.setState({
                 islogin:true
             })
-        }else{
-            this.setState({
-                islogin:false
-            })
         }
     }
-
+    loginOut(){//退出登录
+        let {actions} = this.props;
+        this.setState({
+            islogin:false
+        })
+        actions.clearUserInfo();
+    }
     render(){
         let {blogloginData,blogGuanZhuData,blogArticleData,actions} = this.props;
         let Login_data = blogloginData.data || [];
@@ -74,7 +79,7 @@ class Center extends React.Component{
         let article = blogArticleData.data || [];//文章列表
         return (
             <div>
-                <Header isLogin={this.state.islogin} data ={Login_data}/>
+                <Header isLogin={this.state.islogin} data ={Login_data} loginOut ={this.loginOut.bind(this)} from ={'center'} />
                 <div className="center-wrap">
                     <div className= "left">
                        <Msg data = {msg} actions={actions} id = {this.props.params.id}/>

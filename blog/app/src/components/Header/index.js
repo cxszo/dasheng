@@ -27,24 +27,36 @@ class Header extends React.Component{
 			})
 		}
 	}
-	toWrite(i){
-		hashHistory.push('/Note')
+	toWrite(i){//写文章先检测是否登录
+		let accessToken = localStorage.getItem('accessToken') || '';
+		if(accessToken){
+			hashHistory.push('/Note');
+		}else{
+			hashHistory.push('/Sign/0');
+		}
 	}
-	toIndex(){
-		hashHistory.push('/')
+	toIndex(){//回到主页
+		hashHistory.push('/');
 	}
-	toSigIn(){//去登陆
-		hashHistory.push('/Sign')
+	toSigIn(i){//去登陆
+		hashHistory.push('/Sign/'+i+'');
+	}
+	toSigUp(i){//去注册
+		hashHistory.push('/Sign/'+i+'')
 	}
 	toCenter(e){//我的主页
         let user_id = this.props.data.user_id;
         hashHistory.push("/Center/"+user_id);
     }
     loginOut(){//退出
-        localStorage.removeItem('accessToken');
+		localStorage.removeItem('accessToken');
+		if(this.props.from == 'detail' || this.props.from == 'center'){//在个人中心,详情里退出直接跳转到首页
+			hashHistory.push('/')
+		}
 		this.setState({
 			show:false
-		})
+		});
+		this.props.loginOut();
     }
 	render(){
 		return (
@@ -73,8 +85,8 @@ class Header extends React.Component{
 						<div className="login-count">
 							<ul>
 								<li>
-									<a onClick={this.toSigIn.bind(this)}>登录</a>
-									<a>注册</a>   
+									<a onClick={this.toSigIn.bind(this,'0')}>登录</a>
+									<a onClick={this.toSigUp.bind(this,'1')}>注册</a>   
 								</li>
 								
 							</ul>

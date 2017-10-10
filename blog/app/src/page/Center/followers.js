@@ -41,6 +41,13 @@ class Followers extends React.Component{
         }
         actions.getArticleList(data);
     }
+    loginOut(){//退出登录
+        let {actions} = this.props;
+        this.setState({
+            islogin:false
+        })
+        actions.clearUserInfo();
+    }
     followlist(){
         let {actions} = this.props;
         let id = this.props.params.id || '';
@@ -62,10 +69,6 @@ class Followers extends React.Component{
             this.setState({
                 islogin:true
             })
-        }else{
-            this.setState({
-                islogin:false
-            })
         }
     }
     render(){
@@ -76,7 +79,7 @@ class Followers extends React.Component{
         let follow = followlist.data || [];
         return (
             <div>
-                <Header isLogin={this.state.islogin} data ={Login_data}/>
+                <Header isLogin={this.state.islogin} data ={Login_data} loginOut ={this.loginOut.bind(this)} from ={'center'}/>
                 <div className="center-wrap">
                     <div className= "left">
                        <Msg data = {msg} actions={actions} id = {this.props.params.id}/>

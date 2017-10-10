@@ -28,9 +28,7 @@ class RouterMap extends React.Component {
                     <Route path='/Center/:id/likes' component={Likes}/>
                     <Route path='/Note' component={Note}/>
                     <Route path='/Recycle' component={Recycle}/>
-                    <Route path='/Sign' component={Sign}/>
-                    {/* <Route path='/SignIn' component={SignIn}/>
-                    <Route path='/SignUp' component={SignUp}/> */}
+                    <Route path='/Sign/:id' component={Sign}/>
                                  
             	</Route>
             </Router>

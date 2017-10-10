@@ -47,6 +47,14 @@ class Blog extends React.Component {
              })
          }
     }
+    loginOut(){//退出登录
+        console.log(this.props)
+        let {actions} = this.props;
+        this.setState({
+            islogin:false
+        })
+        actions.clearUserInfo();
+    }
     render() {
         // 博客列表
         let {bloglistData,blogtitleData,blogtitleData_2,bloglogin,blogauthorData,actions}=this.props;
@@ -61,7 +69,7 @@ class Blog extends React.Component {
         let Login_data = bloglogin.data || [];
         return (
             <div className="agree">
-                <Header isLogin={this.state.islogin} data ={Login_data}/>
+                <Header isLogin={this.state.islogin} data ={Login_data} loginOut ={this.loginOut.bind(this)}/>
                 <div className="main">
                     <div className="main-left">
                         <Tag data={Blogtitle_1} actions={actions}/>

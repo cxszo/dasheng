@@ -112,3 +112,7 @@ const blogGZ=data=>({
         type: types.GUANZHU_DATA,
         data
 })
+ //清除登录信息
+ export const clearUserInfo = () =>({
+    type:types.CLEAR_USERINFO
+})

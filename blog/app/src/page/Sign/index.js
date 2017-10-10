@@ -10,10 +10,23 @@ import SignUp from './subpage/signUp.js'
 class Sign extends React.Component{
 	constructor(props) {
 		super(props);
-		// this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);		
+		this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);		
 		this.state={
            off:true
 		}
+    }
+    componentDidMount(){
+        // 判断是从点击什么进来的 0 是登录 1 是注册
+        let type = this.props.params.id || '';
+        if(type == '0'){
+            this.setState({
+                off:true
+            })
+        }else if(type == '1'){
+            this.setState({
+                off:false
+            })
+        }
     }
 	render(){
         let {SignInCode,SignInData,SignInDesc,SignUpCode,SignUpData,SignUpDesc,actions} = this.props;
@@ -29,7 +42,8 @@ class Sign extends React.Component{
             localStorage.setItem('accessToken',accessToken); 
             alert(SignUpDesc);
         }
-       
+        let type = this.props.params.type || '';
+        console.log(type)
 		return (
             <div className="signIn">
                 <div className="logo">
@@ -40,9 +54,9 @@ class Sign extends React.Component{
                 <div className="signIn-main">
                     <h4 className='title'>
                         <div className="normal-title">
-                            <a onClick={()=>{this.setState({off:true})}} className={this.state.off ? 'active':''}>登录</a>
+                            <a onClick={()=>{hashHistory.push('/Sign/0');this.setState({off:true})}} className={this.state.off ? 'active':''}>登录</a>
                             <b>·</b>
-                            <a onClick={()=>{this.setState({off:false})}} className={!this.state.off ? 'active':''}>注册</a>
+                            <a onClick={()=>{hashHistory.push('/Sign/1');this.setState({off:false})}} className={!this.state.off ? 'active':''}>注册</a>
                         </div>
                      </h4>
                     {

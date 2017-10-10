@@ -39,3 +39,7 @@ export const signInData = param =>{
          desc:login.desc,
          _data:login._data
  })
+ //清除登录信息
+export const clearUserInfo = () =>({
+    type:types.CLEAR_USERINFO
+})

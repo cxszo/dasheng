@@ -4,10 +4,10 @@
   "description": "",
   "main": "",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --host 10.0.10.171 --hot --open --port 8081",
+    "start": "webpack-dev-server --progress --colors --host 10.0.10.82 --hot --open --port 8081",
     "ww": "webpack-dev-server --progress --colors --host 192.168.0.131 --hot --open --port 8084",
     "ww1": "webpack-dev-server --progress --colors --host 10.0.10.2 --hot --open --port 8084",
-    "dev1": "webpack-dev-server --port 3002 --hot --host 10.0.10.171 --open",
+    "dev1": "webpack-dev-server --port 3002 --hot --host 10.0.10.82 --open",
     "mock": "node --harmony ./mock/server.js",
     "build": "webpack --config ./webpack.production.config.js --progress --colors",
     "sit": "rm -rf ./build && NODE_ENV=production webpack --config ./webpack.production.config.js --progress --colors"
@@ -48,7 +48,7 @@
     "webpack-dev-server": "^1.15.0"
   },
   "dependencies": {
-    "antd-mobile": "~1.0.0",
+    "antd": "^2.13.1",
     "es6-promise": "^3.2.1",
     "immutable": "^3.8.1",
     "jquery": "^3.2.1",

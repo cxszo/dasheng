@@ -75,6 +75,13 @@ class Detail extends React.Component{
             })
         }
 	}
+	loginOut(){//退出登录
+        let {actions} = this.props;
+        this.setState({
+            islogin:false
+        })
+        actions.clearUserInfo();
+    }
 	render(){
 		
 		//详情信息
@@ -95,7 +102,7 @@ class Detail extends React.Component{
 		let commentCount = commentData.count || '';//回复评论数量
 		return (
 			<div>
-				<Header isLogin={this.state.islogin} data = {login_data}/>
+				<Header isLogin={this.state.islogin} data = {login_data} loginOut ={this.loginOut.bind(this)} from ={'detail'}/>
 				<Article data = {detail} actions = {actions} is_following ={is_following} id={id}/>
 				<Like data = {like} love={love} is_love={is_love}  actions = {actions} id={id}/>
 				<Comment commentData = {commentData} replayCommentData = {replayCommentData} actions={actions} id = {id} login_data={login_data} isLogin={this.state.islogin} commentCount={commentCount}/>

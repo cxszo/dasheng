@@ -1,2 +1,4 @@
 export const SIGNIN_DATA = 'SIGNIN_DATA'
 export const SIGNUP_DATA = 'SIGNUP_DATA'
+export const CLEAR_USERINFO = 'CLEAR_USERINFO'
+export const FETCH_USERINFO = 'FETCH_USERINFO'

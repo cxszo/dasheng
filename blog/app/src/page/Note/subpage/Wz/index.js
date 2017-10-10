@@ -82,15 +82,10 @@ class Wz extends React.Component{
 								{
 									this.state.setShow == v.id ? 
 									<ul className={this.state.setBtn?'dropdown-menu':' dropdown-menu hide'}>
-											<li>
-												<cite></cite>
-												修改名称
-											</li>
-										
-											<li onClick={this.delArticle.bind(this,v.id)}>
-												<cite></cite>
-												删除文章
-											</li>
+										<li onClick={this.delArticle.bind(this,v.id)}>
+											<cite></cite>
+											删除文章
+										</li>
 								</ul>
 								:''
 								}
