@@ -1,0 +1,28 @@
+{
+  "entry": "src/index.js",
+  "extraBabelPlugins": [
+    "transform-runtime",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": true }]
+  ],
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr"
+      ]
+    }
+  },
+  "externals": {
+    
+  },
+  "ignoreMomentLocale": true,
+  "theme": "./src/theme.js",
+  "hash": true,
+  "proxy": {
+    "/notcontrol": {
+      "target": "http://192.168.1.51:11012/",
+      "changeOrigin": true
+    }
+  }
+}

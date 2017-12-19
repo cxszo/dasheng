@@ -1,0 +1,29 @@
+@import "~antd/lib/style/themes/default.less";
+@import "../../utils/utils.less";
+
+.pageHeaderContent {
+  .clearfix();
+  .select{
+    float: left;
+  }
+  .salesExtraWrap {
+    float: right;
+    .salesExtra {
+      display: inline-block;
+      margin-right: 24px;
+      a {
+        color: @text-color;
+        margin-left: 24px;
+        &:hover {
+          color: @primary-color;
+        }
+        &.currentDate {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+}
+.margin20 {
+  margin: 0 0 20px 0;
+}
