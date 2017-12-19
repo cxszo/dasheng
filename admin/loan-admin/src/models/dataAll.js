@@ -7,15 +7,24 @@ export default {
   state: {
     list: [],
     loading: true,
+    total:0,
+    ps: 10
   },
 
   effects: {
     *fetch({ payload }, { call, put }) {
+      yield put({
+        type: 'changeLoading',
+        payload: true,
+      });
       const response = yield call(fetch.get, `${API.dataAll}?${obj2params(payload)}`);
+      let { data=[], total=0, ps=10 } = response
       yield put({
         type: 'save',
-        payload: response,
-        loading: false
+        payload: data,
+        loading: false,
+        total,
+        ps
       });
     },
   },
@@ -25,7 +34,15 @@ export default {
       return {
         ...state,
         list: action.payload,
-        loading: action.loading
+        loading: action.loading,
+        total: action.total,
+        ps: action.ps
+      };
+    },
+    changeLoading(state, action) {
+      return {
+        ...state,
+        loading: action.payload,
       };
     },
   },

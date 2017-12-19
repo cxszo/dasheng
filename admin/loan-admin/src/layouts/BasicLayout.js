@@ -12,7 +12,7 @@ import Debounce from 'lodash-decorators/debounce';
 import GlobalFooter from '../components/GlobalFooter';
 import NotFound from '../routes/Exception/404';
 import styles from './BasicLayout.less';
-import logo from '../assets/logo.png';
+import logo from '../assets/60.png';
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -273,7 +273,7 @@ class BasicLayout extends React.PureComponent {
           <div className={styles.logo}>
             <Link to="/">
               <img src={logo} alt="logo" />
-              <h1>有鱼金融</h1>
+              <h1>有鱼贷客</h1>
             </Link>
           </div>
           <Menu
@@ -320,7 +320,7 @@ class BasicLayout extends React.PureComponent {
                     )
                   )
                 }
-                <Redirect exact from="/" to="/api/data-all" />
+                <Redirect exact from="/" to="/data/recharge" />
                 <Route component={NotFound} />
               </Switch>
             </div>

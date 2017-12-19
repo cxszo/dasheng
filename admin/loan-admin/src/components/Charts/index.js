@@ -14,6 +14,8 @@ import TimelineChart from './TimelineChart';
 import Donut from './Donut'
 import TrendLine from './TrendLine'
 import TrendBar from './TrendBar'
+import LineChart from './LineChart'
+import Column from './Column'
 const yuan = val => `&yen; ${numeral(val).format('0,0')}`;
 
 export default {
@@ -33,4 +35,6 @@ export default {
   TrendLine,
   TrendBar,
   Donut,//环图
+  LineChart,//折线
+  Column,//柱状图
 };

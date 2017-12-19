@@ -16,14 +16,8 @@ export const getNavData = app => [
     path: '/',
     children: [
       {
-        name: 'H5合作',
-        icon: 'mobile',
-        path: 'h5',
-        component: dynamicWrapper(app, [], () => import('../pages/H5')),
-      },
-      {
-        name: 'API合作',
-        path: 'api',
+        name: '贷款数据分析',
+        path: 'data',
         icon: 'copy',
         children: [
           // {
@@ -32,42 +26,38 @@ export const getNavData = app => [
           //   component: dynamicWrapper(app, ['chart'], () => import('../routes/Dashboard/Analysis')),
           // },
           {
-            name: '数据汇总',
-            path: 'data-all',
-            component: dynamicWrapper(app, ['dataAll'], () => import('../pages/API/DataAll/')),
+            name: '充值金额与充值用户',
+            path: 'recharge',
+            component: dynamicWrapper(app, ['dataAll'], () => import('../pages/LoanData/recharge/')),
           },
           {
-            name: '数据详情',
-            path: 'detail',
-            component: dynamicWrapper(app, ['dataDetail'], () => import('../pages/API/Detail/')),
+            name: '新增与申请认证用户',
+            path: 'add',
+            component: dynamicWrapper(app, ['dataAll'], () => import('../pages/LoanData/add_user/')),
           },
           {
-            name: '整体趋势',
-            path: 'all-trend',
-            component: dynamicWrapper(app, [], () => import('../pages/API/AllTrend/')),
+            name: '消费用户',
+            path: 'buy',
+            component: dynamicWrapper(app, ['dataAll'], () => import('../pages/LoanData/buy_user/')),
           },
           {
-            name: '转化率趋势',
-            path: 'conversion-trend',
-            component: dynamicWrapper(app, [], () => import('../pages/API/ConversionTrend/')),
-          },
-          {
-            name: '还款统计',
-            path: 'repayment',
-            component: dynamicWrapper(app, ['repay'], () => import('../pages/API/Repayment/')),
-          },
-          {
-            name: '产品结算设置',
-            path: 'expressions-setting',
-            component: dynamicWrapper(app, ['expressions'], () => import('../pages/API/ExpressionsSetting/')),
+            name: '净收入与退款',
+            path: 'earning',
+            component: dynamicWrapper(app, ['dataAll'], () => import('../pages/LoanData/earning/')),
           },
         ],
       },
       {
-        name: '权限设置',
-        icon: 'setting',
-        path: 'authorized',
-        component: dynamicWrapper(app, [], () => import('../pages/Authorized')),
+        name: '数据管理',
+        icon: 'edit',
+        path: 'edit',
+        children: [
+          {
+            name: '编辑查看数据',
+            path: 'data',
+            component: dynamicWrapper(app, ['dataAll'], () => import('../pages/Edit/data/')),
+          },
+        ],
       },
     ],
   }

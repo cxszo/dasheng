@@ -20,8 +20,8 @@
   "theme": "./src/theme.js",
   "hash": true,
   "proxy": {
-    "/notcontrol": {
-      "target": "http://192.168.1.51:11012/",
+    "/admin": {
+      "target": "http://10.0.10.2:3000/",
       "changeOrigin": true
     }
   }
