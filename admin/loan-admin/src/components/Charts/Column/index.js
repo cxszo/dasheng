@@ -11,11 +11,13 @@ import styles from './index.less'
 export default class Column extends Component {
   static defaultProps = {
     height: 300,
-    isState: true
+    isState: true, 
+    title: '万元'
   }
   static propTypes = {
     height: PropTypes.number,
-    isState: PropTypes.bool
+    isState: PropTypes.bool,
+    title: PropTypes.string
   }
   state = {
     
@@ -36,7 +38,7 @@ export default class Column extends Component {
   }
 
   renderChart(props) {
-    let { height, dv, isState } = props;
+    let { height, dv, isState, title } = props;
     
     this.chart && this.chart.destroy();
     
@@ -46,7 +48,30 @@ export default class Column extends Component {
       height: height
     });
     chart.source(dv);
-    
+    chart.tooltip({
+      crosshairs: {
+        type: 'line'
+      },
+      showTitle: true,
+      itemTpl: `<li style="margin-bottom: 4px;"><span style="width: 7px; height: 7px; border-radius: 50%; border: 1px solid rgb(255, 255, 255); display: inline-block; margin-right: 8px; background-color: {color};" class="g2-tooltip-marker"></span>{name}: {value}${title == '人次'? '人': title}</li>`
+
+    });
+    chart.legend(true, {
+      offsetY: 0,
+      layout: 'horizontal',
+      position: 'top'
+    });
+    chart.axis('月份', {
+      label: {
+        textStyle: {
+          rotate: 45,
+          fontWeight: 'bold',
+          textAlign: 'start',
+          fill: '#404040'
+        },
+        autoRotate: false
+      },
+    });
     if( isState ) {
       chart.intervalStack()
       .position('月份*收入退款金额')
@@ -66,11 +91,11 @@ export default class Column extends Component {
     this.node = n;
   }
   render() {
-    const { height } = this.props;
+    const { height, title } = this.props;
 
     return (
       <div className={styles.Column} style={{ height}}>
-        <h4 className={styles.h4}>(万元)</h4>
+        <h4 className={styles.h4}>({title})</h4>
         <div ref={this.handleRef} />
       </div>
     );

@@ -3,10 +3,11 @@ import { connect } from 'dva';
 import { Row, Col, Icon, Card, Tabs, Table, Radio, Menu, Dropdown } from 'antd';
 import moment from 'moment'
 import DataSet from '@antv/data-set'
+import numeral from 'numeral'
 
 import PageHeaderLayout from '../../../layouts/PageHeaderLayout';
 import HeadSift from '../../../components/HeadSift'
-import { LineChart } from '../../../components/Charts'
+import { LineChart, yuan } from '../../../components/Charts'
 import { getTimeDistance } from '../../../utils/utils';
 const { TabPane } = Tabs;
 import styles from './index.less'
@@ -25,7 +26,7 @@ export default class Recharge extends Component {
   state = {
   }
   componentDidMount() {
-    let date = getTimeDistance('year');
+    let date = getTimeDistance('halfyear');
     let startDate = moment(date[0]).format('YYYY-MM-DD');
     let endDate = moment(date[1]).format('YYYY-MM-DD')
     Object.assign(cData, {
@@ -58,11 +59,12 @@ export default class Recharge extends Component {
     let { 
       dataAll: { list, loading },
     } = this.props;
-    list.reverse();
+    let rechargeUserAll = 0, rechargeAll = 0;
     let data = list.map(v => {
-      return { week: v.start_date.substr(5) , recharge: +v.recharge/10000, recharge_user: +v.recharge_user }
+      rechargeUserAll += +v.recharge_user;
+      rechargeAll += +v.recharge
+      return { week: `${v.start_date.substr(5)}~${v.end_date.substr(5)}` , recharge: +v.recharge/10000, recharge_user: +v.recharge_user }
     })
-    console.log(data)
     const ds = new DataSet();
     const dv = ds.createView().source(data);
     dv.transform({
@@ -77,7 +79,9 @@ export default class Recharge extends Component {
       key: 'city', // key字段
       value: 'temperature', // value字段 y轴
     });
-
+    dv.transform({ 
+      type: 'reverse',
+    });
     const ds1 = new DataSet();
     const dv1 = ds1.createView().source(data);
     dv1.transform({
@@ -92,19 +96,22 @@ export default class Recharge extends Component {
       key: 'city', // key字段
       value: 'temperature', // value字段 y轴
     });
+    dv1.transform({ 
+      type: 'reverse',
+    });
     return (
       <div className={styles.recharge}>
         <PageHeaderLayout
           content={<HeadSift selDate={this.selDate.bind(this)} />}
         >
-          <Card title="充值金额" bordered={false} loading={loading}>
+          <Card title="充值金额" bordered={false} extra={<div className={styles.title_extra}>累计充值：{numeral(rechargeAll).format('0,0')}</div>} loading={loading}>
             <div>
-              <LineChart height={300} dv={dv} title='万元'/>
+              <LineChart height={400} dv={dv} title='万元'/>
             </div>
           </Card>
-          <Card title="充值用户" bordered={false} loading={loading}>
+          <Card title="充值用户" bordered={false} extra={<div className={styles.title_extra}>累计充值用户：{numeral(rechargeUserAll).format('0,0')}人</div>} loading={loading}>
             <div>
-              <LineChart height={300} dv={dv1}/>
+              <LineChart height={400} dv={dv1}/>
             </div>
           </Card>
         </PageHeaderLayout>
@@ -115,6 +122,3 @@ export default class Recharge extends Component {
   }
 }
 
-/**
-
- */

@@ -74,10 +74,26 @@ export function getTimeDistance(type) {
 
     return [moment(`${preYear}-${fixedZero(preMonth + 1)}-01 00:00:00`), moment(moment(`${year}-${fixedZero(month + 1)}-01 00:00:00`).valueOf() - 1000)];
   }
-  if (type === 'year') {
+
+  if (type === 'halfyear') {//半年
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const day = now.getDate();
+    const preDate = moment(now).subtract(6, 'months');
+    const preYear = preDate.year();
+    const preMonth = preDate.month();
+
+    return [moment(`${preYear}-${fixedZero(preMonth + 1)}-${day} 00:00:00`), moment(moment(`${year}-${fixedZero(month + 1)}-${day} 00:00:00`).valueOf() - 1000)];
+  }
+
+  if (type === 'year') {//今年
     const year = now.getFullYear();
 
     return [moment(`${year}-01-01 00:00:00`), moment(`${year}-12-31 23:59:59`)];
+  }
+
+  if (type === 'all') {//所有数据
+    return [moment(`1900-01-01 00:00:00`), moment(`2020-12-31 23:59:59`)];
   }
 }
 

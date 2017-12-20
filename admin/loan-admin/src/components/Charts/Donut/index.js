@@ -49,8 +49,8 @@ export default class Donut extends Component {
     });
     chart.source(data);
     chart.coord('theta', {
-      radius: 0.9,
-      innerRadius: 0.66
+      radius: 1,
+      innerRadius: 0.7
     });
     chart.guide().html({
       position: [ '50%', '50%' ],

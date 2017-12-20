@@ -67,9 +67,9 @@ class BasicLayout extends React.PureComponent {
     return { location, breadcrumbNameMap };
   }
   componentDidMount() {
-    this.props.dispatch({
-      type: 'user/fetchCurrent',
-    });
+    // this.props.dispatch({
+    //   type: 'user/fetchCurrent',
+    // });
   }
   componentWillUnmount() {
     this.triggerResizeEvent.cancel();
@@ -242,8 +242,8 @@ class BasicLayout extends React.PureComponent {
     }
   }
   render() {
-    const { currentUser, collapsed, fetchingNotices, getRouteData } = this.props;
-
+    let { currentUser, collapsed, fetchingNotices, getRouteData } = this.props;
+    currentUser = currentUser || ''
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
         <Menu.Item disabled><Icon type="user" />个人中心</Menu.Item>
@@ -360,8 +360,8 @@ class BasicLayout extends React.PureComponent {
 }
 
 export default connect(state => ({
-  currentUser: state.user.currentUser,
-  collapsed: state.global.collapsed,
-  fetchingNotices: state.global.fetchingNotices,
-  notices: state.global.notices,
+  // currentUser: state.user.currentUser,
+  // collapsed: state.global.collapsed,
+  // fetchingNotices: state.global.fetchingNotices,
+  // notices: state.global.notices,
 }))(BasicLayout);

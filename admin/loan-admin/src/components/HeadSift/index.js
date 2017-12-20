@@ -20,7 +20,7 @@ export default class PageHeader extends PureComponent {
     margin20: false,//是否上下margin 20px
     shortcut: true,//是否显示 日期快捷选择入口
     selDate: ()=>{},//更改日期触发
-    defaultDate: 'year',//默认昨天
+    defaultDate: 'halfyear',//默认半年
     defaultPro: '',//productId 默认全部产品
     isShowDate: true,//是否显示日期筛选
   };
@@ -85,17 +85,21 @@ export default class PageHeader extends PureComponent {
         {
           shortcut?
           <div className={styles.salesExtra}>
-            <a className={this.isActive('preweek')} onClick={() => this.selectDate('preweek')}>
-              上周
-            </a>
+            
             <a className={this.isActive('month')} onClick={() => this.selectDate('month')}>
               本月
             </a>
             <a className={this.isActive('premonth')} onClick={() => this.selectDate('premonth')}>
               上月
             </a>
+            <a className={this.isActive('halfyear')} onClick={() => this.selectDate('halfyear')}>
+              半年
+            </a>
             <a className={this.isActive('year')} onClick={() => this.selectDate('year')}>
               今年
+            </a>
+            <a className={this.isActive('all')} onClick={() => this.selectDate('all')}>
+              ∞
             </a>
           </div>
           : '选择日期 '

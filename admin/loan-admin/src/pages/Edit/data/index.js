@@ -2,7 +2,7 @@ import React,{ Component } from 'react'
 import { connect } from 'dva';
 import { Row, Col, Icon, Card, Tabs, Table, Radio, Menu, notification } from 'antd';
 import moment from 'moment'
-
+import numeral from 'numeral'
 import PageHeaderLayout from '../../../layouts/PageHeaderLayout';
 import HeadSift from '../../../components/HeadSift'
 import fetch, { obj2params } from '../../../utils/fetch'
@@ -33,7 +33,7 @@ export default class ReadData extends Component {
   }
   componentDidMount() {
 
-    let date = getTimeDistance('year');
+    let date = getTimeDistance('halfyear');
     let startDate = moment(date[0]).format('YYYY-MM-DD');
     let endDate = moment(date[1]).format('YYYY-MM-DD')
     Object.assign(cData, {
@@ -129,7 +129,9 @@ export default class ReadData extends Component {
     let dataSource = list.map((v, index) => {
       return {
         date: v.start_date+'~'+v.end_date,
-        ...v
+        ...v,
+        recharge: numeral(+v.recharge).format('0,0'),
+        profit: numeral(+v.profit).format('0,0'),
       }
     })
     return (
