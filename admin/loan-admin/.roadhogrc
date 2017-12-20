@@ -1,5 +1,6 @@
 {
   "entry": "src/index.js",
+  "publicPath": "/loan/",
   "extraBabelPlugins": [
     "transform-runtime",
     "transform-decorators-legacy",
