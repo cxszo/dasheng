@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Layout, Menu, Icon, Avatar, Dropdown, Tag, message, Spin } from 'antd';
+import { Layout, Menu, Icon, Avatar, Dropdown, Tag, message, Spin, notification } from 'antd';
 import DocumentTitle from 'react-document-title';
 import { connect } from 'dva';
-import { Link, Route, Redirect, Switch } from 'dva/router';
+import { Link, Route, Redirect, Switch, routerRedux } from 'dva/router';
 import moment from 'moment';
 import groupBy from 'lodash/groupBy';
 import { ContainerQuery } from 'react-container-query';
@@ -12,7 +12,8 @@ import Debounce from 'lodash-decorators/debounce';
 import GlobalFooter from '../components/GlobalFooter';
 import NotFound from '../routes/Exception/404';
 import styles from './BasicLayout.less';
-import logo from '../assets/60.png';
+import logo from '../assets/logo1.png';
+import { TOKEN } from '../constant/localKey'
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -67,9 +68,19 @@ class BasicLayout extends React.PureComponent {
     return { location, breadcrumbNameMap };
   }
   componentDidMount() {
-    // this.props.dispatch({
-    //   type: 'user/fetchCurrent',
-    // });
+    let token = localStorage.getItem(TOKEN)
+    if( token ){
+      this.props.dispatch({
+        type: 'user/fetchCurrent',
+        payload: {token},
+      });
+    }else{
+      notification.open({
+        message: 'hi~',
+        description: '请先登录.',
+      });
+      this.props.dispatch(routerRedux.push('/user/login'));
+    }
   }
   componentWillUnmount() {
     this.triggerResizeEvent.cancel();
@@ -360,8 +371,8 @@ class BasicLayout extends React.PureComponent {
 }
 
 export default connect(state => ({
-  // currentUser: state.user.currentUser,
-  // collapsed: state.global.collapsed,
-  // fetchingNotices: state.global.fetchingNotices,
-  // notices: state.global.notices,
+  currentUser: state.user.currentUser,
+  collapsed: state.global.collapsed,
+  fetchingNotices: state.global.fetchingNotices,
+  notices: state.global.notices,
 }))(BasicLayout);

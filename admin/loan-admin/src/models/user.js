@@ -1,4 +1,6 @@
 import { query as queryUsers, queryCurrent } from '../services/user';
+import fetch, { obj2params } from '../utils/fetch'
+import API from '../constant/api'
 
 export default {
   namespace: 'user',
@@ -20,17 +22,16 @@ export default {
         type: 'save',
         payload: response,
       });
-      yield put({
-        type: 'changeLoading',
-        payload: false,
-      });
     },
-    *fetchCurrent(_, { call, put }) {
-      const response = yield call(queryCurrent);
+    *fetchCurrent({ payload }, { call, put }) {
+      const response = yield call(fetch.get, `${API.queryCurrent}?${obj2params(payload)}`);
       yield put({
         type: 'saveCurrentUser',
         payload: response,
       });
+      if(response.status === 'error'){
+        yield put(routerRedux.push('/user/login'));
+      }
     },
   },
 
@@ -39,6 +40,7 @@ export default {
       return {
         ...state,
         list: action.payload,
+        loading: false
       };
     },
     changeLoading(state, action) {

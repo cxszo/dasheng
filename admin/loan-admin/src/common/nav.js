@@ -54,40 +54,41 @@ export const getNavData = app => [
         children: [
           {
             name: '编辑查看数据',
-            path: 'data',
+            path: 'readdata',
             component: dynamicWrapper(app, ['dataAll'], () => import('../pages/Edit/data/')),
           },
+          
+        ],
+      },
+    ],
+  },
+  {
+    component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),
+    path: '/user',
+    layout: 'UserLayout',
+    children: [
+      {
+        name: '帐户',
+        icon: 'user',
+        path: 'user',
+        children: [
+          {
+            name: '登录',
+            path: 'login',
+            component: dynamicWrapper(app, ['login'], () => import('../pages/User/login/')),
+          },
+          // {
+          //   name: '注册',
+          //   path: 'register',
+          //   component: dynamicWrapper(app, ['register'], () => import('../routes/User/Register')),
+          // },
+          // {
+          //   name: '注册结果',
+          //   path: 'register-result',
+          //   component: dynamicWrapper(app, [], () => import('../routes/User/RegisterResult')),
+          // },
         ],
       },
     ],
   }
-  // {
-  //   component: dynamicWrapper(app, [], () => import('../layouts/UserLayout')),
-  //   path: '/user',
-  //   layout: 'UserLayout',
-  //   children: [
-  //     {
-  //       name: '帐户',
-  //       icon: 'user',
-  //       path: 'user',
-  //       children: [
-  //         {
-  //           name: '登录',
-  //           path: 'login',
-  //           component: dynamicWrapper(app, ['login'], () => import('../routes/User/Login')),
-  //         },
-  //         {
-  //           name: '注册',
-  //           path: 'register',
-  //           component: dynamicWrapper(app, ['register'], () => import('../routes/User/Register')),
-  //         },
-  //         {
-  //           name: '注册结果',
-  //           path: 'register-result',
-  //           component: dynamicWrapper(app, [], () => import('../routes/User/RegisterResult')),
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // }
 ];

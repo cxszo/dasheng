@@ -1,6 +1,7 @@
 import { routerRedux } from 'dva/router';
-import { fakeAccountLogin, fakeMobileLogin } from '../services/api';
-
+import fetch from '../utils/fetch'
+import API from '../constant/api'
+import { TOKEN } from '../constant/localKey'
 export default {
   namespace: 'login',
 
@@ -9,37 +10,23 @@ export default {
   },
 
   effects: {
-    *accountSubmit({ payload }, { call, put }) {
+    //用户密码登录
+    *submit({ payload }, { call, put }) {
       yield put({
         type: 'changeSubmitting',
-        payload: true,
       });
-      const response = yield call(fakeAccountLogin, payload);
+      const response = yield call(fetch.post, API.login, payload);
+      if(response.token){
+        localStorage.setItem(TOKEN, response.token)
+      }
       yield put({
         type: 'changeLoginStatus',
         payload: response,
       });
-      yield put({
-        type: 'changeSubmitting',
-        payload: false,
-      });
     },
-    *mobileSubmit(_, { call, put }) {
-      yield put({
-        type: 'changeSubmitting',
-        payload: true,
-      });
-      const response = yield call(fakeMobileLogin);
-      yield put({
-        type: 'changeLoginStatus',
-        payload: response,
-      });
-      yield put({
-        type: 'changeSubmitting',
-        payload: false,
-      });
-    },
+    //对此登录
     *logout(_, { put }) {
+      localStorage.removeItem(TOKEN)
       yield put({
         type: 'changeLoginStatus',
         payload: {
@@ -55,7 +42,7 @@ export default {
       return {
         ...state,
         status: payload.status,
-        type: payload.type,
+        submitting: false,
       };
     },
     changeSubmitting(state, { payload }) {

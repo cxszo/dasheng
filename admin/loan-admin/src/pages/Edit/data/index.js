@@ -1,6 +1,6 @@
 import React,{ Component } from 'react'
 import { connect } from 'dva';
-import { Row, Col, Icon, Card, Tabs, Table, Radio, Menu, notification } from 'antd';
+import { Row, Col, Icon, Card, Tabs, Table, Radio, Menu, notification, Modal, Form, Input } from 'antd';
 import moment from 'moment'
 import numeral from 'numeral'
 import PageHeaderLayout from '../../../layouts/PageHeaderLayout';
@@ -10,10 +10,12 @@ import API from '../../../constant/api'
 import { getTimeDistance } from '../../../utils/utils';
 
 const { TabPane } = Tabs;
+const FormItem = Form.Item;
 import styles from './index.less'
 
 
 
+// {"recharge":"589400 ","add":"1181","apply":"1492","buy":"3659","recharge_user":"2299","profit":"628197 ","refund":"137540 ","start_date":"2017-12-11","end_date":"2017-12-17"}
 
 
 const ldata = {
@@ -28,8 +30,11 @@ let cData = {
 @connect(state => ({
   dataAll: state.dataAll,
 }))
+@Form.create()
 export default class ReadData extends Component {
   state = {
+    visible: false,
+    isOkLoading: false
   }
   componentDidMount() {
 
@@ -74,11 +79,50 @@ export default class ReadData extends Component {
     })
     this.fetch()
   }
-  edit(){
-    notification.open({
-      message: '',
-      description: '待开发.',
+ 
+  edit({ date, recharge, buy, apply, recharge_user, refund, profit, add  }) {//产品id 产品名 结算方式 修改人
+    this.props.form.setFields({
+      date: { value: date },
+      recharge: { value: recharge.replace(/,/g, '') },
+      buy: { value: buy },
+      add: { value: add },
+      apply: { value: apply },
+      recharge_user: { value: recharge_user },
+      refund: { value: refund.replace(/,/g, '') },
+      profit: { value: profit.replace(/,/g, '') },
     });
+    this.setState({
+      visible: true,
+    });
+  }
+  modifyCancel = (e) => {
+    this.setState({
+      visible: false,
+      isOkLoading: false,
+    });
+  }
+  modifyOk(e){
+    const { validateFields, resetFields } = this.props.form;
+    validateFields(['date', 'recharge', 'add', 'apply', 'buy', 'recharge_user', 'profit', 'refund'], {first:false}, async (err, value)=>{
+      if(err) return ;
+      this.setState({isOkLoading: true});
+      let res = await fetch.post(API.edit, value)
+      let { status } = res;
+      this.modifyCancel()
+      resetFields();
+      if( status == 'ok' ){
+        notification.open({
+          message: 'hi~',
+          description: '修改成功.',
+        });
+        this.fetch()
+      }else{
+        notification.open({
+          message: 'hi~',
+          description: '修改失败.',
+        });
+      }
+    })
   }
   render(){
     
@@ -92,7 +136,7 @@ export default class ReadData extends Component {
       width: 120,
       fixed: 'left',
     },{
-      title: '充值金额(￥)',
+      title: '充值金额(元)',
       dataIndex: 'recharge',
       key: 'recharge',
     },{
@@ -112,7 +156,7 @@ export default class ReadData extends Component {
       dataIndex: 'recharge_user',
       key: 'recharge_user',
     },{
-      title: '净收入(￥)',
+      title: '净收入(元)',
       dataIndex: 'profit',
       key: 'profit',
     },{
@@ -132,8 +176,20 @@ export default class ReadData extends Component {
         ...v,
         recharge: numeral(+v.recharge).format('0,0'),
         profit: numeral(+v.profit).format('0,0'),
+        refund: numeral(+v.refund).format('0,0')
       }
     })
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 10 },
+        sm: { span: 10 },
+      },
+      wrapperCol: {
+        xs: { span: 14 },
+        sm: { span: 14 },
+      },
+    };
+    const { getFieldDecorator, getFieldsValue, getFieldValue } = this.props.form;
     return (
       <div className={styles.add_user}>
         <PageHeaderLayout
@@ -158,6 +214,133 @@ export default class ReadData extends Component {
           />
         </Card>
         </PageHeaderLayout>
+
+        <Modal
+          title="修改结算方式"
+          width={700}
+          maskClosable={false}
+          confirmLoading={this.state.isOkLoading}
+          visible={this.state.visible}
+          onOk={this.modifyOk.bind(this)}
+          onCancel={this.modifyCancel.bind(this)}
+        >
+          <Row>
+            <Col span={11}>
+              <Form>
+                <FormItem
+                  {...formItemLayout}
+                  label="日期"
+                >
+                  {getFieldDecorator('date')(
+                    <Input disabled/>
+                  )}
+                </FormItem>
+                <FormItem
+                  {...formItemLayout}
+                  label="新增用户"
+                >
+                  {getFieldDecorator('add', {
+                    rules: [{
+                      type: 'string', message: '',
+                    }, {
+                      required: true, message: '请输入新增用户',
+                    }],
+                  })(
+                    <Input />
+                  )}
+                </FormItem>
+                <FormItem
+                  {...formItemLayout}
+                  label="消费用户"
+                >
+                  {getFieldDecorator('buy', {
+                    rules: [{
+                      type: 'string', message: '',
+                    }, {
+                      required: true, message: '请输入消费用户',
+                    }],
+                  })(
+                    <Input />
+                  )}
+                </FormItem>
+                <FormItem
+                  {...formItemLayout}
+                  label="净收入"
+                >
+                  {getFieldDecorator('profit', {
+                    rules: [{
+                      type: 'string', message: '',
+                    }, {
+                      required: true, message: '请输入净收入',
+                    }],
+                  })(
+                    <Input />
+                  )}
+                </FormItem>
+              </Form>
+            </Col>
+            <Col span={12}>
+              <Form>
+                <FormItem
+                  {...formItemLayout}
+                  label="充值金额"
+                >
+                  {getFieldDecorator('recharge', {
+                    rules: [{
+                      type: 'string', message: '',
+                    }, {
+                      required: true, message: '请输入充值金额',
+                    }],
+                  })(
+                    <Input />
+                  )}
+                </FormItem>
+                <FormItem
+                  {...formItemLayout}
+                  label="申请认证用户"
+                >
+                  {getFieldDecorator('apply', {
+                    rules: [{
+                      type: 'string', message: '',
+                    }, {
+                      required: true, message: '请输入申请认证用户',
+                    }],
+                  })(
+                    <Input />
+                  )}
+                </FormItem>
+                <FormItem
+                  {...formItemLayout}
+                  label="充值用户"
+                >
+                  {getFieldDecorator('recharge_user', {
+                    rules: [{
+                      type: 'string', message: '',
+                    }, {
+                      required: true, message: '请输入充值用户',
+                    }],
+                  })(
+                    <Input />
+                  )}
+                </FormItem>
+                <FormItem
+                  {...formItemLayout}
+                  label="退款"
+                >
+                  {getFieldDecorator('refund', {
+                    rules: [{
+                      type: 'string', message: '',
+                    }, {
+                      required: true, message: '请输入退款',
+                    }],
+                  })(
+                    <Input />
+                  )}
+                </FormItem>
+              </Form>
+            </Col>
+          </Row>
+        </Modal>
       </div>
     )
   }
