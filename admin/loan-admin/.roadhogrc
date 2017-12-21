@@ -1,6 +1,6 @@
 {
   "entry": "src/index.js",
-  "publicPath": "/loan/",
+  "publicPath": "/admin/yydk_od/",
   "extraBabelPlugins": [
     "transform-runtime",
     "transform-decorators-legacy",

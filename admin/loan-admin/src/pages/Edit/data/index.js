@@ -92,7 +92,7 @@ export default class ReadData extends Component {
       width: 120,
       fixed: 'left',
     },{
-      title: '充值金额(万)',
+      title: '充值金额(￥)',
       dataIndex: 'recharge',
       key: 'recharge',
     },{
@@ -112,7 +112,7 @@ export default class ReadData extends Component {
       dataIndex: 'recharge_user',
       key: 'recharge_user',
     },{
-      title: '净收入(万)',
+      title: '净收入(￥)',
       dataIndex: 'profit',
       key: 'profit',
     },{
